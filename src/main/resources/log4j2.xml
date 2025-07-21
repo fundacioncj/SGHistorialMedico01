@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %5p [%t] %-40.40c{1.} : %m%n%ex
+        </Property>
+        <Property name="APP_LOG_ROOT">logs</Property>
+    </Properties>
+    
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <JsonLayout complete="false" compact="true" eventEol="true" properties="true" stacktraceAsString="true">
+                <KeyValuePair key="application" value="SGHistorialMedico"/>
+                <KeyValuePair key="environment" value="${sys:spring.profiles.active:-default}"/>
+            </JsonLayout>
+        </Console>
+        
+        <!-- Application Log File -->
+        <RollingFile name="AppLogFile" 
+                     fileName="${APP_LOG_ROOT}/application.log"
+                     filePattern="${APP_LOG_ROOT}/application-%d{yyyy-MM-dd}-%i.log">
+            <JsonLayout complete="false" compact="false" eventEol="true" properties="true" stacktraceAsString="true">
+                <KeyValuePair key="application" value="SGHistorialMedico"/>
+                <KeyValuePair key="logType" value="application"/>
+                <KeyValuePair key="environment" value="${sys:spring.profiles.active:-default}"/>
+            </JsonLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        
+        <!-- Error Log File -->
+        <RollingFile name="ErrorLogFile" 
+                     fileName="${APP_LOG_ROOT}/errors.log"
+                     filePattern="${APP_LOG_ROOT}/errors-%d{yyyy-MM-dd}-%i.log">
+            <JsonLayout complete="false" compact="false" eventEol="true" properties="true" stacktraceAsString="true">
+                <KeyValuePair key="application" value="SGHistorialMedico"/>
+                <KeyValuePair key="logType" value="error"/>
+                <KeyValuePair key="environment" value="${sys:spring.profiles.active:-default}"/>
+            </JsonLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+        </RollingFile>
+        
+        <!-- Consulta Externa Specific Log -->
+        <RollingFile name="ConsultaExternaLogFile" 
+                     fileName="${APP_LOG_ROOT}/consulta-externa.log"
+                     filePattern="${APP_LOG_ROOT}/consulta-externa-%d{yyyy-MM-dd}-%i.log">
+            <JsonLayout complete="false" compact="false" eventEol="true" properties="true" stacktraceAsString="true">
+                <KeyValuePair key="application" value="SGHistorialMedico"/>
+                <KeyValuePair key="module" value="consultaExterna"/>
+                <KeyValuePair key="environment" value="${sys:spring.profiles.active:-default}"/>
+            </JsonLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        
+        <!-- Performance Log -->
+        <RollingFile name="PerformanceLogFile" 
+                     fileName="${APP_LOG_ROOT}/performance.log"
+                     filePattern="${APP_LOG_ROOT}/performance-%d{yyyy-MM-dd}-%i.log">
+            <JsonLayout complete="false" compact="false" eventEol="true" properties="true" stacktraceAsString="true">
+                <KeyValuePair key="application" value="SGHistorialMedico"/>
+                <KeyValuePair key="logType" value="performance"/>
+                <KeyValuePair key="environment" value="${sys:spring.profiles.active:-default}"/>
+            </JsonLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        
+        <!-- Audit Log -->
+        <RollingFile name="AuditLogFile" 
+                     fileName="${APP_LOG_ROOT}/audit.log"
+                     filePattern="${APP_LOG_ROOT}/audit-%d{yyyy-MM-dd}-%i.log">
+            <JsonLayout complete="false" compact="false" eventEol="true" properties="true" stacktraceAsString="true">
+                <KeyValuePair key="application" value="SGHistorialMedico"/>
+                <KeyValuePair key="logType" value="audit"/>
+                <KeyValuePair key="environment" value="${sys:spring.profiles.active:-default}"/>
+            </JsonLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    
+    <Loggers>
+        <!-- Root Logger -->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AppLogFile"/>
+            <AppenderRef ref="ErrorLogFile"/>
+        </Root>
+        
+        <!-- Application Loggers -->
+        <Logger name="com.ug.ec" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AppLogFile"/>
+            <AppenderRef ref="ErrorLogFile"/>
+        </Logger>
+        
+        <!-- Consulta Externa Specific Logger -->
+        <Logger name="com.ug.ec.domain.consultaexterna" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="ConsultaExternaLogFile"/>
+            <AppenderRef ref="ErrorLogFile"/>
+        </Logger>
+        
+        <Logger name="com.ug.ec.application.consultaexterna" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="ConsultaExternaLogFile"/>
+            <AppenderRef ref="ErrorLogFile"/>
+        </Logger>
+        
+        <Logger name="com.ug.ec.infrastructure.rest.consultaexterna" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="ConsultaExternaLogFile"/>
+            <AppenderRef ref="ErrorLogFile"/>
+        </Logger>
+        
+        <!-- Performance Logger -->
+        <Logger name="PERFORMANCE" level="INFO" additivity="false">
+            <AppenderRef ref="PerformanceLogFile"/>
+        </Logger>
+        
+        <!-- Audit Logger -->
+        <Logger name="AUDIT" level="INFO" additivity="false">
+            <AppenderRef ref="AuditLogFile"/>
+        </Logger>
+        
+        <!-- Spring Framework Loggers -->
+        <Logger name="org.springframework" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AppLogFile"/>
+        </Logger>
+        
+        <!-- MongoDB Loggers -->
+        <Logger name="org.springframework.data.mongodb" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AppLogFile"/>
+        </Logger>
+        
+        <!-- HTTP Request Logging -->
+        <Logger name="org.springframework.web" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AppLogFile"/>
+        </Logger>
+        
+        <!-- Hibernate Validator -->
+        <Logger name="org.hibernate.validator" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AppLogFile"/>
+        </Logger>
+        
+        <!-- Third Party Loggers -->
+        <Logger name="com.fasterxml.jackson" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AppLogFile"/>
+        </Logger>
+        
+        <Logger name="io.swagger" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AppLogFile"/>
+        </Logger>
+    </Loggers>
+</Configuration>

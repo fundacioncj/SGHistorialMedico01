@@ -1,0 +1,24 @@
+# Configuración base para todos los tests
+spring:
+  profiles:
+    active: test
+  
+  # MongoDB embebido para tests
+  data:
+    mongodb:
+      database: test_historial_medico
+      host: localhost
+      port: 27017
+      
+  # Configuración de logging
+  logging:
+    level:
+      com.ug.ec: DEBUG
+      org.springframework.data.mongodb: DEBUG
+      org.springframework.boot.test: INFO
+      
+# Configuración de testing
+test:
+  mongodb:
+    cleanup-after-test: true
+    use-embedded: true

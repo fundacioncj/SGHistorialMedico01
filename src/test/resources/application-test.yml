@@ -1,0 +1,34 @@
+
+# Configuración para tests
+spring:
+  profiles:
+    active: test
+    
+  # MongoDB para tests (embedded o testcontainers)
+  data:
+    mongodb:
+      database: test_historial_medico
+      port: 27017
+      host: localhost
+      
+  # Logging para tests
+  logging:
+    level:
+      com.ug.ec: DEBUG
+      org.springframework.data.mongodb: DEBUG
+      org.springframework.boot.test: INFO
+
+# Configuración de JUnit
+junit:
+  jupiter:
+    execution:
+      parallel:
+        enabled: true
+        mode:
+          default: concurrent
+          
+# Configuración específica para tests de dominio
+test:
+  data:
+    cleanup: true
+    seed: true

@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: testcontainers
+    
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/test_historial_medico
+      
+testcontainers:
+  mongodb:
+    image: mongo:5.0
+    port: 27017
+    database: test_historial_medico

@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: mongo-test
+    
+  data:
+    mongodb:
+      database: test_historial_medico_mongo
+      host: localhost
+      port: 27017
+      
+  test:
+    database:
+      replace: any
