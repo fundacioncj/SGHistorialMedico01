@@ -5,10 +5,12 @@ import lombok.Builder;
 import lombok.With;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import lombok.extern.jackson.Jacksonized;
 
 @Value
 @Builder(toBuilder = true)
 @With
+@Jacksonized
 public class DatosFormulario {
     
     @NotBlank(message = "El número de formulario es obligatorio")

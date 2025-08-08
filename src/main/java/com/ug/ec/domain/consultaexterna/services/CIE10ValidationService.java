@@ -2,6 +2,7 @@ package com.ug.ec.domain.consultaexterna.services;
 
 import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Counter;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;

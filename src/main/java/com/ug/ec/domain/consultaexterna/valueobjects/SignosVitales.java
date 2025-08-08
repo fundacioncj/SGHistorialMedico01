@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.DecimalMax;
+import lombok.extern.jackson.Jacksonized;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Jacksonized
 public class SignosVitales {
     
     @NotNull(message = "La presión arterial es obligatoria")

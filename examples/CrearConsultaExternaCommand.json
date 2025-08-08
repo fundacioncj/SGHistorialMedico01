@@ -1,0 +1,123 @@
+{
+  "usuarioCreador": "admin.sistema",
+  "datosFormulario": {
+    "numeroFormulario": "HCU-002-2025-0001",
+    "establecimiento": "Hospital General",
+    "codigoEstablecimiento": "1234",
+    "areaSalud": "Zona 8",
+    "distrito": "Guayaquil",
+    "canton": "Guayaquil",
+    "provincia": "Guayas"
+  },
+  "datosPaciente": {
+    "cedula": "0912345678",
+    "numeroHistoriaClinica": "HCL-0001",
+    "primerNombre": "Juan",
+    "segundoNombre": "Carlos",
+    "apellidoPaterno": "Pérez",
+    "apellidoMaterno": "Gómez",
+    "fechaNacimiento": "1990-05-15",
+    "sexo": "MASCULINO",
+    "direccion": "Av. Principal 123",
+    "telefono": "0991234567",
+    "email": "juan.perez@example.com",
+    "contactoEmergencia": "María Pérez",
+    "telefonoEmergencia": "0987654321"
+  },
+  "datosConsulta": {
+    "numeroConsulta": "CE-2025-000123",
+    "fechaConsulta": "2025-08-12T10:30:00",
+    "especialidad": "Medicina Interna",
+    "medicoTratante": "Dr. José Morales",
+    "codigoMedico": "MED-123",
+    "tipoConsulta": "PRIMERA_VEZ",
+    "motivoConsulta": "Dolor torácico de 2 días",
+    "observaciones": "Paciente estable"
+  },
+  "anamnesis": {
+    "enfermedadActual": "Dolor torácico opresivo, irradiado a brazo izquierdo",
+    "antecedentesPatologicosPersonales": "Hipertensión",
+    "antecedentesPatologicosFamiliares": "Cardiopatía en padre",
+    "antecedentesQuirurgicos": "Apendicectomía 2010",
+    "antecedentesGinecoObstetricos": null,
+    "habitos": {
+      "fuma": false,
+      "bebeAlcohol": false,
+      "actividadFisica": "Moderada",
+      "dieta": "Balanceada"
+    },
+    "medicamentosActuales": ["Enalapril 10mg"],
+    "alergias": ["Penicilina"],
+    "revisionSistemas": "Sin hallazgos relevantes",
+    "observaciones": "Ninguna"
+  },
+  "examenFisico": {
+    "signosVitales": {
+      "presionArterial": "120/80",
+      "frecuenciaCardiaca": 80,
+      "frecuenciaRespiratoria": 16,
+      "temperatura": 36.8,
+      "saturacionOxigeno": 98
+    },
+    "examenGeneral": "Paciente consciente, orientado x3",
+    "examenesRegionales": [
+      {
+        "region": "Torax",
+        "descripcion": "Murmullo vesicular conservado",
+        "hallazgos": [],
+        "normal": true
+      }
+    ],
+    "medidasAntropometricas": {
+      "pesoKg": 75.0,
+      "tallaM": 1.75,
+      "imc": 24.5,
+      "cinturaCm": 85.0,
+      "caderaCm": 95.0
+    }
+  },
+  "diagnosticos": [
+    {
+      "codigoCie10": "I20.0",
+      "descripcion": "Angina inestable",
+      "tipo": "PRINCIPAL",
+      "observaciones": "Evaluar marcadores cardíacos",
+      "fechaDiagnostico": "2025-08-12T10:45:00",
+      "severidad": "MODERADO",
+      "requiereSeguimiento": true,
+      "tiempoSeguimientoMeses": 3,
+      "planSeguimiento": "Control en 3 meses",
+      "manifestacionesClinicas": ["Dolor torácico"],
+      "factoresRiesgo": ["HTA"],
+      "esCronico": false,
+      "requiereInterconsulta": false
+    }
+  ],
+  "planTratamiento": {
+    "prescripciones": [
+      {
+        "medicamento": "Aspirina",
+        "dosis": "100 mg",
+        "frecuencia": "cada 24h",
+        "viaAdministracion": "Oral",
+        "duracionDias": 30,
+        "indicaciones": "Tomar después de alimentos",
+        "fechaPrescripcion": "2025-08-12",
+        "cantidad": 30,
+        "unidadMedida": "tabletas",
+        "medicamentoGenerico": true
+      }
+    ],
+    "indicacionesGenerales": ["Reposo relativo"],
+    "citasSeguimiento": [
+      {
+        "fecha": "2025-09-12T09:00:00",
+        "motivo": "Control",
+        "urgente": false
+      }
+    ],
+    "interconsultas": [],
+    "recomendaciones": ["Dieta baja en sodio"],
+    "planEducacional": "Educación sobre factores de riesgo cardiovascular"
+  }
+}

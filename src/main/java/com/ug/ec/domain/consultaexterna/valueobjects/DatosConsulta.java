@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import jakarta.validation.constraints.*;
 import com.ug.ec.domain.consultaexterna.enums.TipoConsulta;
+import lombok.extern.jackson.Jacksonized;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Jacksonized
 public class DatosConsulta {
     
     @NotBlank(message = "El número de consulta es obligatorio")

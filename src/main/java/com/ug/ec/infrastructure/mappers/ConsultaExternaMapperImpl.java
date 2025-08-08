@@ -3,9 +3,11 @@ package com.ug.ec.infrastructure.mappers;
 import com.ug.ec.application.consultaexterna.dto.ConsultaExternaDto;
 import com.ug.ec.application.consultaexterna.mappers.ConsultaExternaMapper;
 import com.ug.ec.domain.consultaexterna.ConsultaExterna;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
+@Primary
 public class ConsultaExternaMapperImpl extends ConsultaExternaMapper {
     
     @Override

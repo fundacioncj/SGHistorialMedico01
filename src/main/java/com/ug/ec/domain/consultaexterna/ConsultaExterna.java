@@ -1,5 +1,6 @@
 package com.ug.ec.domain.consultaexterna;
 
+import com.ug.ec.infrastructure.persistence.consultaexterna.ConsultaExternaDocument;
 import lombok.Value;
 import lombok.Builder;
 import lombok.With;

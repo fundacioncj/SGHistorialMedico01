@@ -10,6 +10,7 @@ import com.ug.ec.domain.consultaexterna.exceptions.ConsultaExternaNotFoundExcept
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +25,7 @@ import java.time.LocalDateTime;
 public class ConsultaExternaQueryHandler {
     
     private final ConsultaExternaRepository consultaExternaRepository;
+
     private final ConsultaExternaMapper mapper;
     
     public ConsultaExternaDto handle(BuscarConsultaExternaPorIdQuery query) {

@@ -7,6 +7,7 @@ import com.ug.ec.domain.consultaexterna.ConsultaExterna;
 import com.ug.ec.domain.consultaexterna.valueobjects.DatosAuditoria;
 import com.ug.ec.domain.consultaexterna.enums.EstadoConsulta;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

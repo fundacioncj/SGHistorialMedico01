@@ -1,0 +1,117 @@
+{
+  "id": "60f1a5c2e8f87a2b94c12345",
+  "usuarioActualizador": "admin.sistema",
+  "datosFormulario": {
+    "numeroFormulario": "HCU-002-2025-0001",
+    "establecimiento": "Hospital General",
+    "codigoEstablecimiento": "1234",
+    "areaSalud": "Zona 8",
+    "distrito": "Guayaquil",
+    "canton": "Guayaquil",
+    "provincia": "Guayas"
+  },
+  "datosPaciente": {
+    "cedula": "0912345678",
+    "numeroHistoriaClinica": "HCL-0001",
+    "primerNombre": "Juan",
+    "segundoNombre": "Carlos",
+    "apellidoPaterno": "Pérez",
+    "apellidoMaterno": "Gómez",
+    "fechaNacimiento": "1990-05-15",
+    "sexo": "MASCULINO",
+    "direccion": "Av. Principal 123",
+    "telefono": "0991234567",
+    "email": "juan.perez@example.com",
+    "contactoEmergencia": "María Pérez",
+    "telefonoEmergencia": "0987654321"
+  },
+  "datosConsulta": {
+    "numeroConsulta": "CE-2025-000123",
+    "fechaConsulta": "2025-08-12T10:30:00",
+    "especialidad": "Medicina Interna",
+    "medicoTratante": "Dr. José Morales",
+    "codigoMedico": "MED-123",
+    "tipoConsulta": "CONTROL",
+    "motivoConsulta": "Control de tratamiento",
+    "observaciones": "Paciente estable"
+  },
+  "anamnesis": {
+    "enfermedadActual": "Evolución favorable del cuadro",
+    "antecedentesPatologicosPersonales": "Hipertensión",
+    "antecedentesPatologicosFamiliares": "Cardiopatía en padre",
+    "antecedentesQuirurgicos": "Apendicectomía 2010",
+    "antecedentesGinecoObstetricos": null,
+    "habitos": {
+      "fuma": false,
+      "bebeAlcohol": false,
+      "actividadFisica": "Moderada",
+      "dieta": "Balanceada"
+    },
+    "medicamentosActuales": ["Aspirina 100mg"],
+    "alergias": ["Penicilina"],
+    "revisionSistemas": "Sin hallazgos relevantes",
+    "observaciones": "Ninguna"
+  },
+  "examenFisico": {
+    "signosVitales": {
+      "presionArterial": "118/76",
+      "frecuenciaCardiaca": 72,
+      "frecuenciaRespiratoria": 16,
+      "temperatura": 36.7,
+      "saturacionOxigeno": 98
+    },
+    "examenGeneral": "Paciente consciente, orientado x3",
+    "examenesRegionales": [],
+    "medidasAntropometricas": {
+      "pesoKg": 74.0,
+      "tallaM": 1.75,
+      "imc": 24.1,
+      "cinturaCm": 84.0,
+      "caderaCm": 95.0
+    }
+  },
+  "diagnosticos": [
+    {
+      "codigoCie10": "I20.0",
+      "descripcion": "Angina inestable",
+      "tipo": "PRINCIPAL",
+      "observaciones": "Continúa tratamiento",
+      "fechaDiagnostico": "2025-08-12T10:45:00",
+      "severidad": "LEVE",
+      "requiereSeguimiento": true,
+      "tiempoSeguimientoMeses": 6,
+      "planSeguimiento": "Control en 6 meses",
+      "manifestacionesClinicas": ["Dolor torácico ocasional"],
+      "factoresRiesgo": ["HTA"],
+      "esCronico": false,
+      "requiereInterconsulta": false
+    }
+  ],
+  "planTratamiento": {
+    "prescripciones": [
+      {
+        "medicamento": "Aspirina",
+        "dosis": "100 mg",
+        "frecuencia": "cada 24h",
+        "viaAdministracion": "Oral",
+        "duracionDias": 60,
+        "indicaciones": "Tomar después de alimentos",
+        "fechaPrescripcion": "2025-08-12",
+        "cantidad": 60,
+        "unidadMedida": "tabletas",
+        "medicamentoGenerico": true
+      }
+    ],
+    "indicacionesGenerales": ["Continuar dieta baja en sodio"],
+    "citasSeguimiento": [
+      {
+        "fecha": "2025-12-12T09:00:00",
+        "motivo": "Control",
+        "urgente": false
+      }
+    ],
+    "interconsultas": [],
+    "recomendaciones": ["Aumentar actividad física"],
+    "planEducacional": "Refuerzo de educación sobre factores de riesgo cardiovascular"
+  }
+}

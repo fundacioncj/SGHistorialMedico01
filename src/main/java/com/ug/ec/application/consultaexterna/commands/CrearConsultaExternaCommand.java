@@ -10,11 +10,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.extern.jackson.Jacksonized;
+
 import java.util.List;
 
 @Value
 @Builder(toBuilder = true)
 @With
+@Jacksonized
 public class CrearConsultaExternaCommand {
     
     @NotBlank(message = "El usuario creador es obligatorio")

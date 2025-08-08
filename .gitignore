@@ -36,3 +36,17 @@ build/
 # ── Archivos Markdown locales que no quiero versionar ──
 Diseño de Nuevos Flujos de Negocio.md
 informe_validacion_consulta_externa.md
+
+./logs/*
+
+# ── Docs locales: no versionar ──
+/002 CONSULTA EXTERNA 2021*/
+/Diseño de Nuevos Flujos de Negocio.md
+/ENDPOINTS-REPORT.md
+/informe_validacion_consulta_externa.md
+
+# ── Docs locales: no versionar ──
+/002 CONSULTA EXTERNA 2021*/
+/Diseño de Nuevos Flujos de Negocio.md
+/ENDPOINTS-REPORT.md
+/informe_validacion_consulta_externa.md

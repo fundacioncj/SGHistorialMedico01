@@ -3,6 +3,7 @@ package com.ug.ec.domain.consultaexterna.valueobjects;
 import lombok.Value;
 import lombok.Builder;
 import lombok.With;
+import lombok.extern.jackson.Jacksonized;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 @Value
 @Builder(toBuilder = true)
 @With
+@Jacksonized
 public class PlanTratamiento {
     
     @Builder.Default

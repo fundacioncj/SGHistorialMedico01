@@ -1,8 +1,5 @@
 
-# Configuración para tests
-spring:
-  profiles:
-    active: test
+
     
   # MongoDB para tests (embedded o testcontainers)
   data:

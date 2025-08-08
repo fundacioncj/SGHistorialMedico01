@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import jakarta.validation.constraints.*;
 import com.ug.ec.domain.consultaexterna.enums.TipoDiagnostico;
+import lombok.extern.jackson.Jacksonized;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@Jacksonized
 public class Diagnostico {
     
     @NotBlank(message = "El código CIE-10 es obligatorio")

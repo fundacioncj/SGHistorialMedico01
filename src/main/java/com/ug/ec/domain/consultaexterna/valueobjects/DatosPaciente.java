@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import jakarta.validation.constraints.*;
 import com.ug.ec.domain.consultaexterna.enums.Sexo;
+import lombok.extern.jackson.Jacksonized;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -14,6 +15,7 @@ import java.time.Period;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Jacksonized
 public class DatosPaciente {
     
     @NotBlank(message = "La cédula es obligatoria")
