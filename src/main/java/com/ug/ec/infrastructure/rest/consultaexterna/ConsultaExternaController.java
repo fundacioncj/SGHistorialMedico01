@@ -611,6 +611,12 @@ public class ConsultaExternaController {
     private ResponseEntity<Map<String, Object>> manejarError(Exception e) {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         String mensaje = "Error interno del servidor";
+
+        // Desencapsular causas comunes
+        Throwable cause = e.getCause();
+        if (e instanceof ConsultaExternaConsultaException && cause instanceof ConsultaExternaNotFoundException) {
+            e = (ConsultaExternaNotFoundException) cause;
+        }
         
         if (e instanceof ConsultaExternaNotFoundException) {
             status = HttpStatus.NOT_FOUND;
@@ -621,6 +627,9 @@ public class ConsultaExternaController {
         } else if (e instanceof ConsultaExternaNoEditableException) {
             status = HttpStatus.CONFLICT;
             mensaje = "Consulta externa no editable";
+        } else if (e instanceof IllegalStateException) { // p.ej., no eliminable
+            status = HttpStatus.CONFLICT;
+            mensaje = "Operación en conflicto con el estado actual";
         } else if (e instanceof DatosPacienteInvalidosException ||
                    e instanceof DatosConsultaInvalidosException ||
                    e instanceof AnamnesisInvalidaException ||

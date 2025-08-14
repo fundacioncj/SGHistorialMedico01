@@ -4,15 +4,19 @@ import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.extern.jackson.Jacksonized;
+
+import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Jacksonized
 public class ExamenFisicoRegional {
     
     private String region;
-    private String hallazgos;
+    private List<String> hallazgos;
     private String observaciones;
     
     @Builder.Default
@@ -26,7 +30,11 @@ public class ExamenFisicoRegional {
         if (normal) {
             descripcion.append("Normal");
         } else {
-            descripcion.append(hallazgos != null ? hallazgos : "Sin hallazgos específicos");
+            if (hallazgos != null && !hallazgos.isEmpty()) {
+                descripcion.append(String.join(", ", hallazgos));
+            } else {
+                descripcion.append("Sin hallazgos específicos");
+            }
         }
         
         if (observaciones != null && !observaciones.trim().isEmpty()) {
@@ -37,7 +45,7 @@ public class ExamenFisicoRegional {
     }
     
     public boolean tieneHallazgosAnormales() {
-        return !normal || (hallazgos != null && !hallazgos.trim().isEmpty());
+        return !normal || (hallazgos != null && !hallazgos.isEmpty());
     }
     
     // Método corregido para la referencia en ExamenFisico

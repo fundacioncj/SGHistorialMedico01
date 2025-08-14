@@ -11,10 +11,12 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.util.List;
+import lombok.extern.jackson.Jacksonized;
 
 @Value
 @Builder(toBuilder = true)
 @With
+@Jacksonized
 public class ActualizarConsultaExternaCommand {
     
     @NotBlank(message = "El ID de la consulta es obligatorio")
