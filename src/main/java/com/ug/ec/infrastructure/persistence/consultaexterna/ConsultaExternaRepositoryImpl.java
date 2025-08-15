@@ -9,6 +9,7 @@ import com.ug.ec.domain.consultaexterna.ConsultaExterna;
 import com.ug.ec.domain.consultaexterna.enums.EstadoConsulta;
 import com.ug.ec.application.consultaexterna.ports.ConsultaExternaRepository;
 import com.ug.ec.infrastructure.mappers.ConsultaExternaDocumentMapper;
+import com.ug.ec.infrastructure.persistence.consultaexterna.ConsultaExternaDocument;
 
 import lombok.RequiredArgsConstructor;
 
@@ -44,8 +45,10 @@ public class ConsultaExternaRepositoryImpl implements ConsultaExternaRepository 
     
     @Override
     public List<ConsultaExterna> findAll() {
-        return mongoRepository.findAll().stream()
-                .map(document -> mapper.toDomain(document))
+        // Excluimos registros eliminados lógicamente
+        List<ConsultaExternaDocument> documents = mongoRepository.findByEliminadaNot(true);
+        return documents.stream()
+                .map(mapper::toDomain)
                 .collect(Collectors.toList());
     }
     

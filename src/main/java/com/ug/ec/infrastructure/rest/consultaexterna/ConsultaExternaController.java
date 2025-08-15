@@ -4,6 +4,7 @@ import com.ug.ec.application.consultaexterna.commands.CrearConsultaExternaComman
 import com.ug.ec.application.consultaexterna.commands.ActualizarConsultaExternaCommand;
 import com.ug.ec.application.consultaexterna.commands.EliminarConsultaExternaCommand;
 import com.ug.ec.application.consultaexterna.dto.ConsultaExternaDto;
+import com.ug.ec.application.consultaexterna.dto.ConsultaExternaResumenDto;
 import com.ug.ec.application.consultaexterna.handlers.ConsultaExternaCommandHandler;
 import com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler;
 import com.ug.ec.application.consultaexterna.queries.BuscarConsultaExternaPorIdQuery;
@@ -29,12 +30,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
+import org.springframework.validation.annotation.Validated;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Map;
 
 @Slf4j
 @RestController
+@Validated
 @RequestMapping("/api/v1/consultas-externas")
 @RequiredArgsConstructor
 @Tag(name = "Consultas Externas", description = "API para la gestión de consultas externas médicas (Formulario HCU-002)")
@@ -102,7 +106,7 @@ public class ConsultaExternaController {
             
         } catch (Exception e) {
             log.error("Error al crear consulta externa: {}", e.getMessage(), e);
-            return manejarError(e);
+            throw e;
         }
     }
     
@@ -162,7 +166,7 @@ public class ConsultaExternaController {
             
         } catch (Exception e) {
             log.error("Error al obtener consulta externa por ID: {}", e.getMessage(), e);
-            return manejarError(e);
+            throw e;
         }
     }
     
@@ -198,7 +202,7 @@ public class ConsultaExternaController {
                 required = true,
                 example = "0912345678"
             )
-            @PathVariable String cedula,
+            @PathVariable @Pattern(regexp = "^\\d{10}$", message = "La cédula debe tener 10 dígitos numéricos") String cedula,
             @Parameter(
                 description = "Fecha desde la cual filtrar las consultas (formato ISO)", 
                 example = "2023-01-01"
@@ -233,7 +237,7 @@ public class ConsultaExternaController {
                     .tamanio(tamanio)
                     .build();
             
-            Page<ConsultaExternaDto> consultasPage = queryHandler.handle(query);
+            Page<ConsultaExternaResumenDto> consultasPage = queryHandler.handle(query);
             
             Map<String, Object> response = Map.of(
                     "success", true,
@@ -255,7 +259,7 @@ public class ConsultaExternaController {
             
         } catch (Exception e) {
             log.error("Error al buscar consultas externas por cédula: {}", e.getMessage(), e);
-            return manejarError(e);
+            throw e;
         }
     }
     
@@ -316,7 +320,7 @@ public class ConsultaExternaController {
             
         } catch (Exception e) {
             log.error("Error al buscar consulta externa por número: {}", e.getMessage(), e);
-            return manejarError(e);
+            throw e;
         }
     }
     
@@ -401,7 +405,7 @@ public class ConsultaExternaController {
                             .tamanio(tamanio)
                             .build();
             
-            Page<ConsultaExternaDto> consultasPage = queryHandler.handle(query);
+            Page<ConsultaExternaResumenDto> consultasPage = queryHandler.handle(query);
             
             Map<String, Object> response = Map.of(
                     "success", true,
@@ -423,7 +427,7 @@ public class ConsultaExternaController {
             
         } catch (Exception e) {
             log.error("Error al buscar consultas externas con filtros: {}", e.getMessage(), e);
-            return manejarError(e);
+            throw e;
         }
     }
     
@@ -502,7 +506,7 @@ public class ConsultaExternaController {
             
         } catch (Exception e) {
             log.error("Error al actualizar consulta externa: {}", e.getMessage(), e);
-            return manejarError(e);
+            throw e;
         }
     }
     
@@ -603,50 +607,7 @@ public class ConsultaExternaController {
         
         } catch (Exception e) {
             log.error("Error al eliminar consulta externa: {}", e.getMessage(), e);
-            return manejarError(e);
+            throw e;
         }
-    }
-    
-    // Método auxiliar para manejar errores
-    private ResponseEntity<Map<String, Object>> manejarError(Exception e) {
-        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-        String mensaje = "Error interno del servidor";
-
-        // Desencapsular causas comunes
-        Throwable cause = e.getCause();
-        if (e instanceof ConsultaExternaConsultaException && cause instanceof ConsultaExternaNotFoundException) {
-            e = (ConsultaExternaNotFoundException) cause;
-        }
-        
-        if (e instanceof ConsultaExternaNotFoundException) {
-            status = HttpStatus.NOT_FOUND;
-            mensaje = "Consulta externa no encontrada";
-        } else if (e instanceof ConsultaExternaDuplicadaException) {
-            status = HttpStatus.CONFLICT;
-            mensaje = "Consulta externa duplicada";
-        } else if (e instanceof ConsultaExternaNoEditableException) {
-            status = HttpStatus.CONFLICT;
-            mensaje = "Consulta externa no editable";
-        } else if (e instanceof IllegalStateException) { // p.ej., no eliminable
-            status = HttpStatus.CONFLICT;
-            mensaje = "Operación en conflicto con el estado actual";
-        } else if (e instanceof DatosPacienteInvalidosException ||
-                   e instanceof DatosConsultaInvalidosException ||
-                   e instanceof AnamnesisInvalidaException ||
-                   e instanceof ExamenFisicoInvalidoException ||
-                   e instanceof DiagnosticoInvalidoException ||
-                   e instanceof IllegalArgumentException) {
-            status = HttpStatus.BAD_REQUEST;
-            mensaje = "Datos de entrada inválidos";
-        }
-        
-        Map<String, Object> response = Map.of(
-                "success", false,
-                "message", mensaje,
-                "error", e.getMessage(),
-                "timestamp", LocalDateTime.now()
-        );
-        
-        return ResponseEntity.status(status).body(response);
     }
 }

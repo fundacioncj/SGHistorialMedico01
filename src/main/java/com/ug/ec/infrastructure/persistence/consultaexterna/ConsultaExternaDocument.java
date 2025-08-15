@@ -19,7 +19,7 @@ import java.util.Map;
  * Documento MongoDB para la colección de consultas externas.
  * Se han añadido índices para optimizar las consultas más frecuentes.
  */
-@Document(collection = "consultas_externas")
+@Document(collection = "consultas-externas")
 @CompoundIndexes({
     @CompoundIndex(name = "cedula_fecha_idx", def = "{'datosPaciente.cedula': 1, 'datosConsulta.fechaConsulta': -1}"),
     @CompoundIndex(name = "medico_fecha_idx", def = "{'datosConsulta.medicoTratante': 1, 'datosConsulta.fechaConsulta': -1}")
@@ -55,6 +55,12 @@ public class ConsultaExternaDocument {
     private EstadoConsulta estado;
     
     private DatosAuditoria auditoria;
+    
+    @Indexed
+    private Boolean eliminada;
+    private java.time.LocalDateTime fechaEliminacion;
+    private String usuarioEliminador;
+    private String motivoEliminacion;
     
     private Map<String, Object> camposAdicionales;
 }

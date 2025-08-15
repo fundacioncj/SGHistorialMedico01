@@ -7,6 +7,7 @@ import com.ug.ec.application.consultaexterna.ports.ConsultaExternaRepository;
 import com.ug.ec.domain.consultaexterna.ConsultaExterna;
 import com.ug.ec.domain.consultaexterna.valueobjects.DatosAuditoria;
 import com.ug.ec.domain.consultaexterna.enums.EstadoConsulta;
+import com.ug.ec.application.consultaexterna.mappers.ConsultaExternaMapper;
 import com.ug.ec.domain.consultaexterna.exceptions.ConsultaExternaNotFoundException;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,9 +20,12 @@ import lombok.extern.slf4j.Slf4j;
 public class ConsultaExternaCommandHandler {
 
     private final ConsultaExternaRepository repository;
+    private final ConsultaExternaMapper mapper;
     
-    public ConsultaExternaCommandHandler(@Qualifier("consultaExternaRepositoryImpl") ConsultaExternaRepository repository) {
+    public ConsultaExternaCommandHandler(@Qualifier("consultaExternaRepositoryImpl") ConsultaExternaRepository repository,
+                                         ConsultaExternaMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     public String handle(CrearConsultaExternaCommand command) {
@@ -29,20 +33,14 @@ public class ConsultaExternaCommandHandler {
                 command.getDatosPaciente().getCedula());
         
         try {
-            ConsultaExterna consulta = ConsultaExterna.builder()
-                    .numeroConsulta(command.getDatosConsulta().getNumeroConsulta())
-                    .datosFormulario(command.getDatosFormulario())
-                    .datosPaciente(command.getDatosPaciente())
-                    .datosConsulta(command.getDatosConsulta())
-                    .anamnesis(command.getAnamnesis())
-                    .examenFisico(command.getExamenFisico())
-                    .diagnosticos(command.getDiagnosticos())
-                    .planTratamiento(command.getPlanTratamiento())
-                    .estado(EstadoConsulta.EN_PROCESO)
-                    .auditoria(DatosAuditoria.crearNuevo("SISTEMA"))
+            ConsultaExterna consulta = mapper.fromCommand(command);
+            
+            // Asegurar auditoría con usuario creador del comando
+            ConsultaExterna consultaConAuditoria = consulta.toBuilder()
+                    .auditoria(DatosAuditoria.crearNuevo(command.getUsuarioCreador()))
                     .build();
             
-            ConsultaExterna consultaGuardada = repository.save(consulta);
+            ConsultaExterna consultaGuardada = repository.save(consultaConAuditoria);
             
             log.info("Consulta externa creada exitosamente con ID: {}", consultaGuardada.getId());
             return consultaGuardada.getId();
@@ -59,18 +57,7 @@ public class ConsultaExternaCommandHandler {
         ConsultaExterna consultaExistente = repository.findById(command.getId())
                 .orElseThrow(() -> new ConsultaExternaNotFoundException("No se encontró la consulta con ID: " + command.getId()));
         
-        ConsultaExterna consultaActualizada = consultaExistente.toBuilder()
-                .datosFormulario(command.getDatosFormulario() != null ? command.getDatosFormulario() : consultaExistente.getDatosFormulario())
-                .datosPaciente(command.getDatosPaciente() != null ? command.getDatosPaciente() : consultaExistente.getDatosPaciente())
-                .datosConsulta(command.getDatosConsulta() != null ? command.getDatosConsulta() : consultaExistente.getDatosConsulta())
-                .anamnesis(command.getAnamnesis() != null ? command.getAnamnesis() : consultaExistente.getAnamnesis())
-                .examenFisico(command.getExamenFisico() != null ? command.getExamenFisico() : consultaExistente.getExamenFisico())
-                .diagnosticos(command.getDiagnosticos() != null ? command.getDiagnosticos() : consultaExistente.getDiagnosticos())
-                .planTratamiento(command.getPlanTratamiento() != null ? command.getPlanTratamiento() : consultaExistente.getPlanTratamiento())
-                .auditoria(consultaExistente.getAuditoria() != null ? 
-                    consultaExistente.getAuditoria().actualizar("SISTEMA") : 
-                    DatosAuditoria.crearNuevo("SISTEMA"))
-                .build();
+        ConsultaExterna consultaActualizada = mapper.updateFromCommand(consultaExistente, command);
         
         repository.save(consultaActualizada);
         
@@ -88,9 +75,17 @@ public class ConsultaExternaCommandHandler {
             throw new IllegalStateException("No se puede eliminar una consulta completada");
         }
         
-        repository.deleteById(command.getId());
+        // Borrado lógico: marcamos el registro como eliminado y registramos auditoría de eliminación
+        ConsultaExterna consultaEliminada = consultaExistente.toBuilder()
+                .eliminada(true)
+                .fechaEliminacion(java.time.LocalDateTime.now())
+                .usuarioEliminador(command.getUsuarioEliminador())
+                .motivoEliminacion(command.getMotivoEliminacion())
+                .build();
         
-        log.info("Consulta externa eliminada exitosamente. Número: {}, Paciente: {}", 
+        repository.save(consultaEliminada);
+        
+        log.info("Consulta externa eliminada lógicamente. Número: {}, Paciente: {}", 
                 consultaExistente.getNumeroConsulta(),
                 consultaExistente.getDatosPaciente().getCedula());
     }

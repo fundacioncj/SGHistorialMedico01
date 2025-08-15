@@ -22,7 +22,7 @@ import java.util.HashMap;
 public class ConsultaExternaMapper {
     
     /**
-     * Convierte una entidad de dominio a un DTO
+     * Convierte una entidad de dominio a un DTO completo
      */
     public ConsultaExternaDto entityToDto(ConsultaExterna entity) {
         if (entity == null) {
@@ -98,6 +98,25 @@ public class ConsultaExternaMapper {
                 .diagnosticos(command.getDiagnosticos() != null ? command.getDiagnosticos() : existente.getDiagnosticos())
                 .planTratamiento(command.getPlanTratamiento() != null ? command.getPlanTratamiento() : existente.getPlanTratamiento())
                 .auditoria(auditoriaActualizada)
+                .build();
+    }
+
+    // DTO reducido para listados
+    public com.ug.ec.application.consultaexterna.dto.ConsultaExternaResumenDto entityToResumenDto(ConsultaExterna entity) {
+        if (entity == null) {
+            return null;
+        }
+        return com.ug.ec.application.consultaexterna.dto.ConsultaExternaResumenDto.builder()
+                .id(entity.getId())
+                .numeroConsulta(entity.obtenerNumeroConsulta())
+                .cedulaPaciente(entity.getDatosPaciente() != null ? entity.getDatosPaciente().getCedula() : null)
+                .nombreCompletoPaciente(entity.getDatosPaciente() != null ? entity.getDatosPaciente().obtenerNombreCompleto() : null)
+                .fechaConsulta(entity.getDatosConsulta() != null ? entity.getDatosConsulta().getFechaConsulta() : null)
+                .especialidad(entity.getDatosConsulta() != null ? entity.getDatosConsulta().getEspecialidad() : null)
+                .medicoTratante(entity.getDatosConsulta() != null ? entity.getDatosConsulta().getMedicoTratante() : null)
+                .estado(entity.getEstado())
+                .fechaCreacion(entity.getAuditoria() != null ? entity.getAuditoria().getFechaCreacion() : null)
+                .creadoPor(entity.getAuditoria() != null ? entity.getAuditoria().getCreadoPor() : null)
                 .build();
     }
 }

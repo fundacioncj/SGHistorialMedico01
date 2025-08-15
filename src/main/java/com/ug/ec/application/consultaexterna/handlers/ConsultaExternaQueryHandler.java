@@ -1,6 +1,7 @@
 package com.ug.ec.application.consultaexterna.handlers;
 
 import com.ug.ec.application.consultaexterna.dto.ConsultaExternaDto;
+import com.ug.ec.application.consultaexterna.dto.ConsultaExternaResumenDto;
 import com.ug.ec.application.consultaexterna.mappers.ConsultaExternaMapper;
 import com.ug.ec.application.consultaexterna.ports.ConsultaExternaRepository;
 import com.ug.ec.application.consultaexterna.queries.*;
@@ -48,7 +49,7 @@ public class ConsultaExternaQueryHandler {
         }
     }
     
-    public Page<ConsultaExternaDto> handle(BuscarConsultaExternaPorCedulaQuery query) {
+    public Page<ConsultaExternaResumenDto> handle(BuscarConsultaExternaPorCedulaQuery query) {
         log.info("Buscando consultas externas por cédula: {}", query.getCedula());
         
         try {
@@ -71,7 +72,7 @@ public class ConsultaExternaQueryHandler {
                         .findByDatosPacienteCedula(query.getCedula(), pageable);
             }
             
-            Page<ConsultaExternaDto> resultadoPage = consultasPage.map(mapper::entityToDto);
+            Page<ConsultaExternaResumenDto> resultadoPage = consultasPage.map(mapper::entityToResumenDto);
             
             log.info("Encontradas {} consultas externas para cédula: {}", 
                     resultadoPage.getTotalElements(), query.getCedula());
@@ -105,7 +106,7 @@ public class ConsultaExternaQueryHandler {
         }
     }
     
-    public Page<ConsultaExternaDto> handle(BuscarConsultasExternasPorFechaQuery query) {
+    public Page<ConsultaExternaResumenDto> handle(BuscarConsultasExternasPorFechaQuery query) {
         log.info("Buscando consultas externas por fecha desde: {} hasta: {}", 
                 query.getFechaDesde(), query.getFechaHasta());
         
@@ -124,7 +125,7 @@ public class ConsultaExternaQueryHandler {
                             query.getEstado(),
                             pageable);
             
-            Page<ConsultaExternaDto> resultadoPage = consultasPage.map(mapper::entityToDto);
+            Page<ConsultaExternaResumenDto> resultadoPage = consultasPage.map(mapper::entityToResumenDto);
             
             log.info("Encontradas {} consultas externas para el rango de fechas", 
                     resultadoPage.getTotalElements());

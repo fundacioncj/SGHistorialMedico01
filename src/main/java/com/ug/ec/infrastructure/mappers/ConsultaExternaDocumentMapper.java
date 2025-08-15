@@ -24,6 +24,10 @@ public class ConsultaExternaDocumentMapper {
                 .planTratamiento(domain.getPlanTratamiento())
                 .estado(domain.getEstado())
                 .auditoria(domain.getAuditoria())
+                .eliminada(domain.getEliminada())
+                .fechaEliminacion(domain.getFechaEliminacion())
+                .usuarioEliminador(domain.getUsuarioEliminador())
+                .motivoEliminacion(domain.getMotivoEliminacion())
                 .camposAdicionales(domain.getCamposAdicionales())
                 .build();
     }
@@ -45,6 +49,10 @@ public class ConsultaExternaDocumentMapper {
                 .planTratamiento(document.getPlanTratamiento())
                 .estado(document.getEstado())
                 .auditoria(document.getAuditoria())
+                .eliminada(document.getEliminada() != null ? document.getEliminada() : false)
+                .fechaEliminacion(document.getFechaEliminacion())
+                .usuarioEliminador(document.getUsuarioEliminador())
+                .motivoEliminacion(document.getMotivoEliminacion())
                 .camposAdicionales(document.getCamposAdicionales())
                 .build();
     }

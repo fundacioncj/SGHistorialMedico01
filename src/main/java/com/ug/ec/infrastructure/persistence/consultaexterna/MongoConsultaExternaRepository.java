@@ -33,37 +33,47 @@ public interface MongoConsultaExternaRepository extends
     boolean existsByNumeroConsulta(String numeroConsulta);
 
     // Métodos originales (sin proyección)
+    @Query(value = "{'eliminada': {$ne: true}, 'datosPaciente.cedula': ?0}")
     Page<ConsultaExternaDocument> findByDatosPacienteCedula(String cedula, Pageable pageable);
 
+    @Query(value = "{'eliminada': {$ne: true}, 'datosPaciente.cedula': ?0, 'datosConsulta.fechaConsulta': {$gte: ?1, $lte: ?2}}")
     Page<ConsultaExternaDocument> findByDatosPacienteCedulaAndDatosConsultaFechaConsultaBetween(
             String cedula, 
             LocalDateTime fechaDesde, 
             LocalDateTime fechaHasta, 
             Pageable pageable);
 
+    @Query(value = "{'eliminada': {$ne: true}, 'datosPaciente.numeroHistoriaClinica': ?0}")
     Page<ConsultaExternaDocument> findByDatosPacienteNumeroHistoriaClinica(
             String numeroHistoriaClinica, 
             Pageable pageable);
 
+    @Query(value = "{'eliminada': {$ne: true}, 'datosConsulta.medicoTratante': ?0}")
     Page<ConsultaExternaDocument> findByDatosConsultaMedicoTratante(
             String medicoTratante, 
             Pageable pageable);
 
+    @Query(value = "{'eliminada': {$ne: true}, 'datosFormulario.codigoEstablecimiento': ?0}")
     Page<ConsultaExternaDocument> findByDatosFormularioCodigoEstablecimiento(
             String codigoEstablecimiento, 
             Pageable pageable);
 
+    @Query(value = "{'eliminada': {$ne: true}, 'datosConsulta.fechaConsulta': {$gte: ?0, $lte: ?1}}")
     Page<ConsultaExternaDocument> findByDatosConsultaFechaConsultaBetween(
             LocalDateTime fechaDesde, 
             LocalDateTime fechaHasta, 
             Pageable pageable);
+            
+    // Búsqueda de todos excluyendo eliminados (para adaptador)
+    @Query(value = "{'eliminada': {$ne: true}}")
+    List<ConsultaExternaDocument> findByEliminadaNot(boolean eliminada);
             
     // ========== MÉTODOS CON PROYECCIÓN ==========
     
     /**
      * Busca consultas por cédula del paciente con proyección para resumen
      */
-    @Query(value = "{'datosPaciente.cedula': ?0}", 
+    @Query(value = "{'eliminada': {$ne: true}, 'datosPaciente.cedula': ?0}", 
            fields = "{'id': 1, 'numeroConsulta': 1, 'datosPaciente.cedula': 1, 'datosPaciente.nombre': 1, " +
                     "'datosPaciente.numeroHistoriaClinica': 1, 'datosConsulta.fechaConsulta': 1, " +
                     "'datosConsulta.medicoTratante': 1, 'datosConsulta.especialidad': 1, " +
@@ -74,7 +84,7 @@ public interface MongoConsultaExternaRepository extends
     /**
      * Busca consultas por número de historia clínica con proyección para resumen
      */
-    @Query(value = "{'datosPaciente.numeroHistoriaClinica': ?0}", 
+    @Query(value = "{'eliminada': {$ne: true}, 'datosPaciente.numeroHistoriaClinica': ?0}", 
            fields = "{'id': 1, 'numeroConsulta': 1, 'datosPaciente.cedula': 1, 'datosPaciente.nombre': 1, " +
                     "'datosPaciente.numeroHistoriaClinica': 1, 'datosConsulta.fechaConsulta': 1, " +
                     "'datosConsulta.medicoTratante': 1, 'datosConsulta.especialidad': 1, " +
@@ -86,7 +96,7 @@ public interface MongoConsultaExternaRepository extends
     /**
      * Busca consultas por rango de fechas con proyección para resumen
      */
-    @Query(value = "{'datosConsulta.fechaConsulta': {$gte: ?0, $lte: ?1}}", 
+    @Query(value = "{'eliminada': {$ne: true}, 'datosConsulta.fechaConsulta': {$gte: ?0, $lte: ?1}}", 
            fields = "{'id': 1, 'numeroConsulta': 1, 'datosPaciente.cedula': 1, 'datosPaciente.nombre': 1, " +
                     "'datosPaciente.numeroHistoriaClinica': 1, 'datosConsulta.fechaConsulta': 1, " +
                     "'datosConsulta.medicoTratante': 1, 'datosConsulta.especialidad': 1, " +
@@ -98,7 +108,7 @@ public interface MongoConsultaExternaRepository extends
     /**
      * Busca consultas por médico tratante con proyección para resumen
      */
-    @Query(value = "{'datosConsulta.medicoTratante': ?0}", 
+    @Query(value = "{'eliminada': {$ne: true}, 'datosConsulta.medicoTratante': ?0}", 
            fields = "{'id': 1, 'numeroConsulta': 1, 'datosPaciente.cedula': 1, 'datosPaciente.nombre': 1, " +
                     "'datosPaciente.numeroHistoriaClinica': 1, 'datosConsulta.fechaConsulta': 1, " +
                     "'datosConsulta.medicoTratante': 1, 'datosConsulta.especialidad': 1, " +

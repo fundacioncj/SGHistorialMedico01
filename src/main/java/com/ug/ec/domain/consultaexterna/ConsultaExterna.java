@@ -34,6 +34,13 @@ public class ConsultaExterna {
     EstadoConsulta estado;
     DatosAuditoria auditoria;
     
+    // Borrado lógico
+    @Builder.Default
+    Boolean eliminada = false;
+    LocalDateTime fechaEliminacion;
+    String usuarioEliminador;
+    String motivoEliminacion;
+    
     @Builder.Default
     Map<String, Object> camposAdicionales = new HashMap<>();
     
