@@ -18,7 +18,7 @@ public class ConsultaExternaValidacionService {
     public void validarDatosConsulta(ConsultaExterna consultaExterna) {
         log.info("Validando datos de consulta externa: {}", consultaExterna.getNumeroConsulta());
         
-        validarDatosPaciente(consultaExterna.getDatosPaciente());
+      //  validarDatosPaciente(consultaExterna.getDatosPaciente());
         validarDatosConsulta(consultaExterna.getDatosConsulta());
         validarAnamnesis(consultaExterna.getAnamnesis());
         validarExamenFisico(consultaExterna.getExamenFisico());

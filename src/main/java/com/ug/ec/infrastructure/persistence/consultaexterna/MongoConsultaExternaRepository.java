@@ -36,8 +36,8 @@ public interface MongoConsultaExternaRepository extends
     @Query(value = "{'eliminada': {$ne: true}, 'datosPaciente.cedula': ?0}")
     Page<ConsultaExternaDocument> findByDatosPacienteCedula(String cedula, Pageable pageable);
 
-    @Query(value = "{'eliminada': {$ne: true}, 'datosPaciente.cedula': ?0, 'datosConsulta.fechaConsulta': {$gte: ?1, $lte: ?2}}")
-    Page<ConsultaExternaDocument> findByDatosPacienteCedulaAndDatosConsultaFechaConsultaBetween(
+    @Query(value = "{'eliminada': {$ne: true}, 'cedulaPaciente': ?0, 'datosConsulta.fechaConsulta': {$gte: ?1, $lte: ?2}}")
+    Page<ConsultaExternaDocument> findByCedulaPacienteAndDatosConsultaFechaConsultaBetween(
             String cedula, 
             LocalDateTime fechaDesde, 
             LocalDateTime fechaHasta, 

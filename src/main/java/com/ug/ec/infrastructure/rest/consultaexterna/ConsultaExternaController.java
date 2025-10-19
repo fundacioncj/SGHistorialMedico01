@@ -2,11 +2,13 @@ package com.ug.ec.infrastructure.rest.consultaexterna;
 
 import com.ug.ec.application.consultaexterna.commands.CrearConsultaExternaCommand;
 import com.ug.ec.application.consultaexterna.commands.ActualizarConsultaExternaCommand;
+import com.ug.ec.application.consultaexterna.commands.CrearTriajeCommand;
 import com.ug.ec.application.consultaexterna.commands.EliminarConsultaExternaCommand;
 import com.ug.ec.application.consultaexterna.dto.ConsultaExternaDto;
 import com.ug.ec.application.consultaexterna.dto.ConsultaExternaResumenDto;
 import com.ug.ec.application.consultaexterna.handlers.ConsultaExternaCommandHandler;
 import com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler;
+import com.ug.ec.application.consultaexterna.handlers.CrearTriajeCommandHandler;
 import com.ug.ec.application.consultaexterna.queries.BuscarConsultaExternaPorIdQuery;
 import com.ug.ec.application.consultaexterna.queries.BuscarConsultaExternaPorCedulaQuery;
 import com.ug.ec.application.consultaexterna.queries.BuscarConsultaExternaPorNumeroConsultaQuery;
@@ -46,6 +48,23 @@ public class ConsultaExternaController {
     
     private final ConsultaExternaCommandHandler commandHandler;
     private final ConsultaExternaQueryHandler queryHandler;
+    private final CrearTriajeCommandHandler triajeCommandHandler;
+
+    @PostMapping("/triaje")
+    public ResponseEntity<Map<String, Object>> crearTriaje(
+            @Valid @RequestBody CrearTriajeCommand command) {
+
+        String id = triajeCommandHandler.handle(command);
+
+        Map<String, Object> response = Map.of(
+                "success", true,
+                "message", "Triaje registrado correctamente",
+                "data", Map.of("id", id),
+                "timestamp", LocalDateTime.now()
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
     
     @Operation(
         summary = "Crear una nueva consulta externa",
@@ -87,8 +106,7 @@ public class ConsultaExternaController {
             )
             @Valid @RequestBody CrearConsultaExternaCommand command) {
         
-        log.info("Iniciando creación de consulta externa para paciente: {}", 
-                command.getDatosPaciente().getCedula());
+
         
         try {
             String consultaId = commandHandler.handle(command);

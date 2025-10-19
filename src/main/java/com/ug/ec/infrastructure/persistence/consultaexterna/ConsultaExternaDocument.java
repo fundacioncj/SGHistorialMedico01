@@ -21,7 +21,7 @@ import java.util.Map;
  */
 @Document(collection = "consultas-externas")
 @CompoundIndexes({
-    @CompoundIndex(name = "cedula_fecha_idx", def = "{'datosPaciente.cedula': 1, 'datosConsulta.fechaConsulta': -1}"),
+    @CompoundIndex(name = "cedula_fecha_idx", def = "{'cedulaPaciente': 1, 'datosConsulta.fechaConsulta': -1}"),
     @CompoundIndex(name = "medico_fecha_idx", def = "{'datosConsulta.medicoTratante': 1, 'datosConsulta.fechaConsulta': -1}")
 })
 @Data
@@ -32,15 +32,13 @@ public class ConsultaExternaDocument {
     
     @Id
     private String id;
-    
+
+    private String historiaClinicaId;;
+
     @Indexed(unique = true)
     private String numeroConsulta;
-    
-    private DatosFormulario datosFormulario;
-    
-    // Índices para campos frecuentemente consultados
-    private DatosPaciente datosPaciente;
-    
+
+    private String cedulaPaciente;
     private DatosConsulta datosConsulta;
     
     private Anamnesis anamnesis;

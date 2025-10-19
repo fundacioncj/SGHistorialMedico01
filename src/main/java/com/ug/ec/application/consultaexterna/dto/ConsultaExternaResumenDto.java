@@ -13,7 +13,7 @@ public class ConsultaExternaResumenDto {
 
     // Datos esenciales del paciente
     String cedulaPaciente;
-    String nombreCompletoPaciente;
+
 
     // Datos esenciales de consulta
     LocalDateTime fechaConsulta;

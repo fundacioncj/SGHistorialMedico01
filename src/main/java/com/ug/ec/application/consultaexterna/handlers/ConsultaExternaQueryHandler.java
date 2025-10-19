@@ -36,9 +36,8 @@ public class ConsultaExternaQueryHandler {
             ConsultaExterna consultaExterna = consultaExternaRepository.findById(query.getId())
                     .orElseThrow(() -> new ConsultaExternaNotFoundException(
                         "Consulta externa no encontrada con ID: " + query.getId()));
-            
+
             ConsultaExternaDto resultado = mapper.entityToDto(consultaExterna);
-            
             log.info("Consulta externa encontrada exitosamente con ID: {}", query.getId());
             
             return resultado;

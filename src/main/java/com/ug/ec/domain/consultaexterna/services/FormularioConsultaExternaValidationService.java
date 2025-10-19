@@ -46,11 +46,11 @@ public class FormularioConsultaExternaValidationService {
         }
         
         // Validar secciones del formulario
-        errores.addAll(validarDatosFormulario(consulta.getDatosFormulario()));
-        errores.addAll(validarDatosPaciente(consulta.getDatosPaciente()));
+//        errores.addAll(validarDatosFormulario(consulta.getDatosFormulario()));
+//        errores.addAll(validarDatosPaciente(consulta.getDatosPaciente()));
         errores.addAll(validarDatosConsulta(consulta.getDatosConsulta()));
         errores.addAll(validarAnamnesis(consulta.getAnamnesis()));
-        errores.addAll(validarExamenFisico(consulta.getExamenFisico(), consulta.getDatosPaciente()));
+        errores.addAll(validarExamenFisico(consulta.getExamenFisico()));
         errores.addAll(validarDiagnosticos(consulta.getDiagnosticos()));
         errores.addAll(validarPlanTratamiento(consulta.getPlanTratamiento()));
         
@@ -219,10 +219,9 @@ public class FormularioConsultaExternaValidationService {
     /**
      * Valida el examen físico
      * @param examenFisico Examen físico a validar
-     * @param datosPaciente Datos del paciente para validaciones contextuales
      * @return Lista de errores encontrados
      */
-    private List<String> validarExamenFisico(ExamenFisico examenFisico, DatosPaciente datosPaciente) {
+    private List<String> validarExamenFisico(ExamenFisico examenFisico) {
         List<String> errores = new ArrayList<>();
         
         if (examenFisico == null) {
@@ -254,15 +253,7 @@ public class FormularioConsultaExternaValidationService {
                 errores.add("La temperatura es obligatoria");
             }
             
-            // Validar signos vitales según la edad del paciente
-            if (datosPaciente != null && datosPaciente.getFechaNacimiento() != null) {
-                List<String> alertasSignosVitales = validacionesClinicasService.validarSignosVitalesPorEdad(
-                        signos, datosPaciente.getFechaNacimiento());
-                
-                if (!alertasSignosVitales.isEmpty()) {
-                    errores.addAll(alertasSignosVitales);
-                }
-            }
+
         }
         
         // Validar medidas antropométricas

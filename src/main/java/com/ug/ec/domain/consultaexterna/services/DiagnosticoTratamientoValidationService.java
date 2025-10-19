@@ -163,15 +163,7 @@ public class DiagnosticoTratamientoValidationService {
             return advertencias;
         }
         
-        // Verificar si hay interconsultas en el plan
-        if (planTratamiento.getInterconsultas() == null || planTratamiento.getInterconsultas().isEmpty()) {
-            advertencias.add("Se detectaron diagnósticos que requieren atención especializada, pero no hay interconsultas registradas");
-            
-            // Agregar detalle de los diagnósticos que requieren especialista
-            diagnosticosEspecializados.forEach(d -> 
-                    advertencias.add("El diagnóstico '" + d.getDescripcion() + "' (" + d.getCodigoCie10() + 
-                            ") requiere valoración por especialista"));
-        }
+
         
         return advertencias;
     }

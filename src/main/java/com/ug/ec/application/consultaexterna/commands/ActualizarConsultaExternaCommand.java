@@ -24,14 +24,7 @@ public class ActualizarConsultaExternaCommand {
     
     @NotBlank(message = "El usuario actualizador es obligatorio")
     String usuarioActualizador;
-    
-    @NotNull(message = "Los datos del formulario son obligatorios")
-    @Valid
-    DatosFormulario datosFormulario;
-    
-    @NotNull(message = "Los datos del paciente son obligatorios")
-    @Valid
-    DatosPaciente datosPaciente;
+
     
     @NotNull(message = "Los datos de la consulta son obligatorios")
     @Valid
@@ -63,14 +56,7 @@ public class ActualizarConsultaExternaCommand {
     public String getUsuarioActualizador() {
         return usuarioActualizador;
     }
-    
-    public DatosFormulario getDatosFormulario() {
-        return datosFormulario;
-    }
-    
-    public DatosPaciente getDatosPaciente() {
-        return datosPaciente;
-    }
+
     
     public DatosConsulta getDatosConsulta() {
         return datosConsulta;

@@ -26,6 +26,9 @@ public class ExamenFisico {
     
     @Builder.Default
     private List<ExamenFisicoRegional> examenesRegionales = new ArrayList<>();
+
+    @Builder.Default
+    private List<ExamenFisicoSistemico> examenesSistemicos = new ArrayList<>();
     
     private MedidasAntropometricas medidasAntropometricas;
     

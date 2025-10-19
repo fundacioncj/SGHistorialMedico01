@@ -21,13 +21,12 @@ import java.util.HashMap;
 public class ConsultaExterna {
     
     String id;
-    
     String numeroConsulta;
-    
-    DatosFormulario datosFormulario;
-    DatosPaciente datosPaciente;
+    String cedulaPaciente;
+    String historiaClinicaId;
     DatosConsulta datosConsulta;
     Anamnesis anamnesis;
+
     ExamenFisico examenFisico;
     List<Diagnostico> diagnosticos;
     PlanTratamiento planTratamiento;
@@ -103,25 +102,7 @@ public class ConsultaExterna {
     }
     
     /**
-     * Agrega interconsultas al plan existente
-     */
-    public ConsultaExterna agregarInterconsultas(List<Interconsulta> nuevasInterconsultas) {
-        if (nuevasInterconsultas == null || nuevasInterconsultas.isEmpty()) {
-            return this;
-        }
-        
-        PlanTratamiento planActualizado = planTratamiento != null ? 
-            planTratamiento.agregarInterconsultas(nuevasInterconsultas) :
-            PlanTratamiento.builder()
-                .interconsultas(nuevasInterconsultas)
-                .prescripciones(List.of())
-                .indicacionesGenerales(List.of())
-                .citasSeguimiento(List.of())
-                .recomendaciones(List.of())
-                .build();
-                
-        return actualizarPlanTratamiento(planActualizado);
-    }
+
     
     // ========== MÉTODOS DE CONSULTA ==========
     
@@ -167,17 +148,15 @@ public class ConsultaExterna {
             throw new ConsultaExternaIncompletaException("La consulta debe tener al menos un diagnóstico");
         }
         
-        if (anamnesis == null || anamnesis.getEnfermedadActual() == null) {
-            throw new ConsultaExternaIncompletaException("La anamnesis es obligatoria");
-        }
+//        if (anamnesis == null || anamnesis.getEnfermedadActual() == null) {
+//            throw new ConsultaExternaIncompletaException("La anamnesis es obligatoria");
+//        }
         
         if (examenFisico == null) {
             throw new ConsultaExternaIncompletaException("El examen físico es obligatorio");
         }
         
-        if (datosPaciente == null || datosPaciente.getCedula() == null) {
-            throw new ConsultaExternaIncompletaException("Los datos del paciente son obligatorios");
-        }
+
     }
     
     /**
@@ -196,7 +175,7 @@ public class ConsultaExterna {
      * Obtiene la cédula del paciente de forma segura
      */
     public String obtenerCedulaPaciente() {
-        return datosPaciente != null ? datosPaciente.getCedula() : "DESCONOCIDO";
+        return cedulaPaciente != null ? cedulaPaciente : "DESCONOCIDO";
     }
     
     /**

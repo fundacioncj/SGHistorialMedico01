@@ -82,7 +82,7 @@ public class MongoConsultaExternaRepositoryAdapter implements ConsultaExternaRep
             LocalDateTime fechaDesde, 
             LocalDateTime fechaHasta, 
             Pageable pageable) {
-        Page<ConsultaExternaDocument> documentPage = mongoRepository.findByDatosPacienteCedulaAndDatosConsultaFechaConsultaBetween(
+        Page<ConsultaExternaDocument> documentPage = mongoRepository.findByCedulaPacienteAndDatosConsultaFechaConsultaBetween(
                 cedula, fechaDesde, fechaHasta, pageable);
         List<ConsultaExterna> consultas = documentPage.getContent().stream()
                 .map(document -> mapper.toDomain(document))

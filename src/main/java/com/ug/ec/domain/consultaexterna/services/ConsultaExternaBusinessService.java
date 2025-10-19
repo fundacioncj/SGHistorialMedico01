@@ -41,20 +41,14 @@ public class ConsultaExternaBusinessService {
             // Aplicar lógica de negocio específica - cada método retorna nueva instancia
             ConsultaExterna consultaProcesada = consultaOriginal;
 
-            if (consultaOriginal.esConsultaPrimeraVez()) {
-                consultaProcesada = procesarPrimeraConsulta(consultaProcesada);
-                // Incrementar contador para consultas nuevas
-                consultaExternaCreatedCounter.increment();
-            } else {
+
                 consultaProcesada = procesarConsultaSubsecuente(consultaProcesada);
                 // Incrementar contador para consultas actualizadas
                 consultaExternaUpdatedCounter.increment();
-            }
+
 
             // Evaluar necesidad de interconsultas
-            if (evaluarNecesidadInterconsulta(consultaProcesada)) {
-                consultaProcesada = procesarInterconsultasAutomaticas(consultaProcesada);
-            }
+
 
             // Marcar como completada - retorna nueva instancia
             ConsultaExterna consultaFinal = consultaProcesada.completar();
@@ -173,19 +167,7 @@ public class ConsultaExternaBusinessService {
      * Genera interconsultas automáticas basadas en hallazgos clínicos
      * Retorna nueva instancia de ConsultaExterna
      */
-    private ConsultaExterna procesarInterconsultasAutomaticas(ConsultaExterna consulta) {
-        List<Interconsulta> interconsultasGeneradas = generarInterconsultasAutomaticas(consulta);
 
-        if (interconsultasGeneradas.isEmpty()) {
-            return consulta;
-        }
-
-        // Usar método inmutable para agregar interconsultas
-        ConsultaExterna consultaConInterconsultas = consulta.agregarInterconsultas(interconsultasGeneradas);
-        
-        log.info("Agregadas {} interconsultas automáticas", interconsultasGeneradas.size());
-        return consultaConInterconsultas;
-    }
 
     /**
      * Genera interconsultas basadas en criterios médicos automáticos
@@ -291,9 +273,7 @@ public class ConsultaExternaBusinessService {
             throw new ConsultaExternaIncompletaException("Examen físico es obligatorio en primera consulta");
         }
 
-        if (consulta.getDatosPaciente() == null ||
-                consulta.getDatosPaciente().getCedula() == null ||
-                consulta.getDatosPaciente().getCedula().trim().isEmpty()) {
+        if (consulta.getCedulaPaciente() == null || consulta.getCedulaPaciente().trim().isEmpty()) {
             throw new ConsultaExternaIncompletaException("Datos del paciente son obligatorios");
         }
 

@@ -18,28 +18,12 @@ public class Anamnesis {
     
     @NotBlank(message = "La enfermedad actual es obligatoria")
     private String enfermedadActual;
-    
-    private String antecedentesPatologicosPersonales;
-    private String antecedentesPatologicosFamiliares;
-    private String antecedentesQuirurgicos;
-    private String antecedentesGinecoObstetricos;
-    
-    private HabitosPersonales habitos;
+
+
     private List<String> medicamentosActuales;
-    private List<String> alergias;
     
     private String revisionSistemas;
     private String observaciones;
     
-    // Métodos de dominio
-    public boolean tieneAntecedentesPatologicos() {
-        return (antecedentesPatologicosPersonales != null && 
-                !antecedentesPatologicosPersonales.trim().isEmpty()) ||
-               (antecedentesPatologicosFamiliares != null && 
-                !antecedentesPatologicosFamiliares.trim().isEmpty());
-    }
-    
-    public boolean tieneAlergias() {
-        return alergias != null && !alergias.isEmpty();
-    }
+
 }

@@ -29,8 +29,7 @@ public class ConsultaExternaCommandHandler {
     }
 
     public String handle(CrearConsultaExternaCommand command) {
-        log.info("Iniciando creación de consulta externa para paciente: {}", 
-                command.getDatosPaciente().getCedula());
+
         
         try {
             ConsultaExterna consulta = mapper.fromCommand(command);
@@ -87,6 +86,6 @@ public class ConsultaExternaCommandHandler {
         
         log.info("Consulta externa eliminada lógicamente. Número: {}, Paciente: {}", 
                 consultaExistente.getNumeroConsulta(),
-                consultaExistente.getDatosPaciente().getCedula());
+                consultaExistente.getCedulaPaciente());
     }
 }

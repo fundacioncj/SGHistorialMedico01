@@ -35,7 +35,7 @@ public class ConsultaExternaRepositoryImpl implements ConsultaExternaRepository 
     @Override
     public Optional<ConsultaExterna> findById(String id) {
         return mongoRepository.findById(id)
-                .map(document -> mapper.toDomain(document));
+                .map(mapper::toDomain);
     }
     
     @Override
@@ -77,7 +77,7 @@ public class ConsultaExternaRepositoryImpl implements ConsultaExternaRepository 
     @Override
     public Page<ConsultaExterna> findByDatosPacienteCedulaAndDatosConsultaFechaConsultaBetween(
             String cedula, LocalDateTime fechaDesde, LocalDateTime fechaHasta, Pageable pageable) {
-        Page<ConsultaExternaDocument> documentPage = mongoRepository.findByDatosPacienteCedulaAndDatosConsultaFechaConsultaBetween(
+        Page<ConsultaExternaDocument> documentPage = mongoRepository.findByCedulaPacienteAndDatosConsultaFechaConsultaBetween(
                 cedula, fechaDesde, fechaHasta, pageable);
         List<ConsultaExterna> consultas = documentPage.getContent().stream()
                 .map(document -> mapper.toDomain(document))

@@ -28,12 +28,12 @@ public class ConsultaExternaMapper {
         if (entity == null) {
             return null;
         }
-        
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>");
         return ConsultaExternaDto.builder()
                 .id(entity.getId())
                 .numeroConsulta(entity.getNumeroConsulta())
-                .datosFormulario(entity.getDatosFormulario())
-                .datosPaciente(entity.getDatosPaciente())
+                .historiaClinicaId(entity.getHistoriaClinicaId())
+                .cedulaPaciente(entity.getCedulaPaciente())
                 .datosConsulta(entity.getDatosConsulta())
                 .anamnesis(entity.getAnamnesis())
                 .examenFisico(entity.getExamenFisico())
@@ -56,8 +56,8 @@ public class ConsultaExternaMapper {
         return ConsultaExterna.builder()
                 .id(dto.getId())
                 .numeroConsulta(dto.getNumeroConsulta())
-                .datosFormulario(dto.getDatosFormulario())
-                .datosPaciente(dto.getDatosPaciente())
+                .historiaClinicaId(dto.getHistoriaClinicaId())
+               .cedulaPaciente(dto.getCedulaPaciente())
                 .datosConsulta(dto.getDatosConsulta())
                 .anamnesis(dto.getAnamnesis())
                 .examenFisico(dto.getExamenFisico())
@@ -72,8 +72,8 @@ public class ConsultaExternaMapper {
     public ConsultaExterna fromCommand(CrearConsultaExternaCommand command) {
         return ConsultaExterna.builder()
                 .numeroConsulta(command.getDatosConsulta().getNumeroConsulta())
-                .datosFormulario(command.getDatosFormulario())
-                .datosPaciente(command.getDatosPaciente())
+                .historiaClinicaId(command.getHistoriaClinicaId())
+              .cedulaPaciente(command.getCedulaPaciente())
                 .datosConsulta(command.getDatosConsulta())
                 .anamnesis(command.getAnamnesis())
                 .examenFisico(command.getExamenFisico())
@@ -90,8 +90,6 @@ public class ConsultaExternaMapper {
             DatosAuditoria.crearNuevo("SISTEMA");
 
         return existente.toBuilder()
-                .datosFormulario(command.getDatosFormulario() != null ? command.getDatosFormulario() : existente.getDatosFormulario())
-                .datosPaciente(command.getDatosPaciente() != null ? command.getDatosPaciente() : existente.getDatosPaciente())
                 .datosConsulta(command.getDatosConsulta() != null ? command.getDatosConsulta() : existente.getDatosConsulta())
                 .anamnesis(command.getAnamnesis() != null ? command.getAnamnesis() : existente.getAnamnesis())
                 .examenFisico(command.getExamenFisico() != null ? command.getExamenFisico() : existente.getExamenFisico())
@@ -109,8 +107,7 @@ public class ConsultaExternaMapper {
         return com.ug.ec.application.consultaexterna.dto.ConsultaExternaResumenDto.builder()
                 .id(entity.getId())
                 .numeroConsulta(entity.obtenerNumeroConsulta())
-                .cedulaPaciente(entity.getDatosPaciente() != null ? entity.getDatosPaciente().getCedula() : null)
-                .nombreCompletoPaciente(entity.getDatosPaciente() != null ? entity.getDatosPaciente().obtenerNombreCompleto() : null)
+                .cedulaPaciente(entity.getCedulaPaciente() != null ? entity.getCedulaPaciente() : null)
                 .fechaConsulta(entity.getDatosConsulta() != null ? entity.getDatosConsulta().getFechaConsulta() : null)
                 .especialidad(entity.getDatosConsulta() != null ? entity.getDatosConsulta().getEspecialidad() : null)
                 .medicoTratante(entity.getDatosConsulta() != null ? entity.getDatosConsulta().getMedicoTratante() : null)

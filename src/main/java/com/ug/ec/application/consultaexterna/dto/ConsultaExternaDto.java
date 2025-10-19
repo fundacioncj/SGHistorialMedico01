@@ -18,8 +18,8 @@ import java.util.Map;
 public class ConsultaExternaDto {
     private String id;
     private String numeroConsulta;
-    private DatosFormulario datosFormulario;
-    private DatosPaciente datosPaciente;
+    private String historiaClinicaId;
+    private String cedulaPaciente;
     private DatosConsulta datosConsulta;
     private Anamnesis anamnesis;
     private ExamenFisico examenFisico;

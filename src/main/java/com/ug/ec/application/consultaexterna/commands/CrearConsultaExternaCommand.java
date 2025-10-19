@@ -22,14 +22,14 @@ public class CrearConsultaExternaCommand {
     
     @NotBlank(message = "El usuario creador es obligatorio")
     String usuarioCreador;
-    
-    @NotNull(message = "Los datos del formulario son obligatorios")
+
+    @NotNull(message = "Es requerida la Hstoria Clinica")
     @Valid
-    DatosFormulario datosFormulario;
-    
-    @NotNull(message = "Los datos del paciente son obligatorios")
+    String historiaClinicaId;
+
+    @NotNull(message = "La cedual del paciente es requerida")
     @Valid
-    DatosPaciente datosPaciente;
+    String cedulaPaciente;
     
     @NotNull(message = "Los datos de la consulta son obligatorios")
     @Valid
@@ -38,6 +38,7 @@ public class CrearConsultaExternaCommand {
     @NotNull(message = "La anamnesis es obligatoria")
     @Valid
     Anamnesis anamnesis;
+
     
     @NotNull(message = "El examen físico es obligatorio")
     @Valid
@@ -58,13 +59,7 @@ public class CrearConsultaExternaCommand {
         return usuarioCreador;
     }
     
-    public DatosFormulario getDatosFormulario() {
-        return datosFormulario;
-    }
-    
-    public DatosPaciente getDatosPaciente() {
-        return datosPaciente;
-    }
+
     
     public DatosConsulta getDatosConsulta() {
         return datosConsulta;
