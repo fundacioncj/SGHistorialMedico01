@@ -11,7 +11,7 @@ _auth_header() {
 
 # POST /api/v1/consultas-externas
 post_consultas_externas_min() {
-  curl -sS -X POST "$BASE_URL$CTX/api/v1/consultas-externas" -H 'Content-Type: application/json' $( _auth_header ) --data @examples/CrearConsultaExternaCommand.json
+  curl -sS -X POST "$BASE_URL$CTX/api/v1/consultas-externas" -H 'Content-Type: application/json' $( _auth_header ) --data @Collection-postman/CrearConsultaExternaCommand.json
 }
 
 # GET /api/v1/consultas-externas/{id}
@@ -62,7 +62,7 @@ get_consultas_buscar_full() {
 # PUT /api/v1/consultas-externas/{id}
 put_consulta_actualizar_min() {
   local id="${1:-60f1a5c2e8f87a2b94c12345}"
-  curl -sS -X PUT "$BASE_URL$CTX/api/v1/consultas-externas/${id}" -H 'Content-Type: application/json' $( _auth_header ) --data @examples/ActualizarConsultaExternaCommand.json
+  curl -sS -X PUT "$BASE_URL$CTX/api/v1/consultas-externas/${id}" -H 'Content-Type: application/json' $( _auth_header ) --data @Collection-postman/ActualizarConsultaExternaCommand.json
 }
 
 # DELETE /api/v1/consultas-externas/{id}

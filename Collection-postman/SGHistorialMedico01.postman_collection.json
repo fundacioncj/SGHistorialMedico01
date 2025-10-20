@@ -1,0 +1,142 @@
+{
+  "info": {
+    "name": "SGHistorialMedico01 API",
+    "description": "Colección Postman para probar el microservicio SGHistorialMedico01.\n\nEsta colección define solicitudes para cada uno de los endpoints expuestos por el servicio.\nUtiliza variables para el servidor base (`baseUrl`) y el contexto de la aplicación (`ctx`).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8081", "type": "string" },
+    { "key": "ctx", "value": "", "type": "string" },
+    { "key": "consultaId", "value": "60f1a5c2e8f87a2b94c12345", "type": "string" },
+    { "key": "cedula", "value": "0912345678", "type": "string" },
+    { "key": "numeroConsulta", "value": "CE-2023-001234", "type": "string" },
+    { "key": "fechaDesde", "value": "2023-01-01", "type": "string" },
+    { "key": "fechaHasta", "value": "2023-12-31", "type": "string" },
+    { "key": "pagina", "value": "0", "type": "string" },
+    { "key": "tamanio", "value": "10", "type": "string" },
+    { "key": "especialidad", "value": "Cardiología", "type": "string" },
+    { "key": "medicoTratante", "value": "Juan Perez", "type": "string" },
+    { "key": "estado", "value": "COMPLETADA", "type": "string" },
+    { "key": "motivo", "value": "Registro duplicado", "type": "string" },
+    { "key": "usuario", "value": "admin.sistema", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Crear consulta externa",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuarioCreador\": \"admin.sistema\",\n  \"datosFormulario\": {\n    \"numeroFormulario\": \"HCU-002-2025-0001\",\n    \"establecimiento\": \"Hospital General\",\n    \"codigoEstablecimiento\": \"1234\",\n    \"areaSalud\": \"Zona 8\",\n    \"distrito\": \"Guayaquil\",\n    \"canton\": \"Guayaquil\",\n    \"provincia\": \"Guayas\"\n  },\n  \"datosPaciente\": {\n    \"cedula\": \"0912345678\",\n    \"numeroHistoriaClinica\": \"HCL-0001\",\n    \"primerNombre\": \"Juan\",\n    \"segundoNombre\": \"Carlos\",\n    \"apellidoPaterno\": \"P\u00e9rez\",\n    \"apellidoMaterno\": \"G\u00f3mez\",\n    \"fechaNacimiento\": \"1990-05-15\",\n    \"sexo\": \"MASCULINO\",\n    \"direccion\": \"Av. Principal 123\",\n    \"telefono\": \"0991234567\",\n    \"email\": \"juan.perez@example.com\",\n    \"contactoEmergencia\": \"Mar\u00eda P\u00e9rez\",\n    \"telefonoEmergencia\": \"0987654321\"\n  },\n  \"datosConsulta\": {\n    \"numeroConsulta\": \"CE-2025-000123\",\n    \"fechaConsulta\": \"2025-08-12T10:30:00\",\n    \"especialidad\": \"Medicina Interna\",\n    \"medicoTratante\": \"Dr. Jos\u00e9 Morales\",\n    \"codigoMedico\": \"MED-123\",\n    \"tipoConsulta\": \"PRIMERA_VEZ\",\n    \"motivoConsulta\": \"Dolor tor\u00e1cico de 2 d\u00edas\",\n    \"observaciones\": \"Paciente estable\"\n  },\n  \"anamnesis\": {\n    \"enfermedadActual\": \"Dolor tor\u00e1cico opresivo, irradiado a brazo izquierdo\",\n    \"antecedentesPatologicosPersonales\": \"Hipertensi\u00f3n\",\n    \"antecedentesPatologicosFamiliares\": \"Cardiopat\u00eda en padre\",\n    \"antecedentesQuirurgicos\": \"Apendicectom\u00eda 2010\",\n    \"antecedentesGinecoObstetricos\": null,\n    \"habitos\": {\n      \"fuma\": false,\n      \"bebeAlcohol\": false,\n      \"actividadFisica\": \"Moderada\",\n      \"dieta\": \"Balanceada\"\n    },\n    \"medicamentosActuales\": [\"Enalapril 10mg\"],\n    \"alergias\": [\"Penicilina\"],\n    \"revisionSistemas\": \"Sin hallazgos relevantes\",\n    \"observaciones\": \"Ninguna\"\n  },\n  \"examenFisico\": {\n    \"signosVitales\": {\n      \"presionArterial\": \"120/80\",\n      \"frecuenciaCardiaca\": 80,\n      \"frecuenciaRespiratoria\": 16,\n      \"temperatura\": 36.8,\n      \"saturacionOxigeno\": 98\n    },\n    \"examenGeneral\": \"Paciente consciente, orientado x3\",\n    \"examenesRegionales\": [\n      {\n        \"region\": \"Torax\",\n        \"descripcion\": \"Murmullo vesicular conservado\",\n        \"hallazgos\": [],\n        \"normal\": true\n      }\n    ],\n    \"medidasAntropometricas\": {\n      \"pesoKg\": 75.0,\n      \"tallaM\": 1.75,\n      \"imc\": 24.5,\n      \"cinturaCm\": 85.0,\n      \"caderaCm\": 95.0\n    }\n  },\n  \"diagnosticos\": [\n    {\n      \"codigoCie10\": \"I20.0\",\n      \"descripcion\": \"Angina inestable\",\n      \"tipo\": \"PRINCIPAL\",\n      \"observaciones\": \"Evaluar marcadores cardi\u00e1cos\",\n      \"fechaDiagnostico\": \"2025-08-12T10:45:00\",\n      \"severidad\": \"MODERADO\",\n      \"requiereSeguimiento\": true,\n      \"tiempoSeguimientoMeses\": 3,\n      \"planSeguimiento\": \"Control en 3 meses\",\n      \"manifestacionesClinicas\": [\"Dolor tor\u00e1cico\"],\n      \"factoresRiesgo\": [\"HTA\"],\n      \"esCronico\": false,\n      \"requiereInterconsulta\": false\n    }\n  ],\n  \"planTratamiento\": {\n    \"prescripciones\": [\n      {\n        \"medicamento\": \"Aspirina\",\n        \"dosis\": \"100 mg\",\n        \"frecuencia\": \"cada 24h\",\n        \"viaAdministracion\": \"Oral\",\n        \"duracionDias\": 30,\n        \"indicaciones\": \"Tomar despu\u00e9s de alimentos\",\n        \"fechaPrescripcion\": \"2025-08-12\",\n        \"cantidad\": 30,\n        \"unidadMedida\": \"tabletas\",\n        \"medicamentoGenerico\": true\n      }\n    ],\n    \"indicacionesGenerales\": [\"Reposo relativo\"],\n    \"citasSeguimiento\": [\n      {\n        \"fecha\": \"2025-09-12T09:00:00\",\n        \"motivo\": \"Control\",\n        \"urgente\": false\n      }\n    ],\n    \"interconsultas\": [],\n    \"recomendaciones\": [\"Dieta baja en sodio\"],\n    \"planEducacional\": \"Educaci\u00f3n sobre factores de riesgo cardiovascular\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}{{ctx}}/api/v1/consultas-externas",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "consultas-externas"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obtener consulta por ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}{{ctx}}/api/v1/consultas-externas/{{consultaId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "consultas-externas", "{{consultaId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar consultas por cédula",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}{{ctx}}/api/v1/consultas-externas/paciente/{{cedula}}?fechaDesde={{fechaDesde}}&fechaHasta={{fechaHasta}}&pagina={{pagina}}&tamanio={{tamanio}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "consultas-externas", "paciente", "{{cedula}}"],
+          "query": [
+            { "key": "fechaDesde", "value": "{{fechaDesde}}" },
+            { "key": "fechaHasta", "value": "{{fechaHasta}}" },
+            { "key": "pagina", "value": "{{pagina}}" },
+            { "key": "tamanio", "value": "{{tamanio}}" }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar consulta por número",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}{{ctx}}/api/v1/consultas-externas/numero/{{numeroConsulta}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "consultas-externas", "numero", "{{numeroConsulta}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar consultas con filtros",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}{{ctx}}/api/v1/consultas-externas/buscar?fechaDesde={{fechaDesde}}&fechaHasta={{fechaHasta}}&especialidad={{especialidad}}&medicoTratante={{medicoTratante}}&estado={{estado}}&pagina={{pagina}}&tamanio={{tamanio}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "consultas-externas", "buscar"],
+          "query": [
+            { "key": "fechaDesde", "value": "{{fechaDesde}}" },
+            { "key": "fechaHasta", "value": "{{fechaHasta}}" },
+            { "key": "especialidad", "value": "{{especialidad}}" },
+            { "key": "medicoTratante", "value": "{{medicoTratante}}" },
+            { "key": "estado", "value": "{{estado}}" },
+            { "key": "pagina", "value": "{{pagina}}" },
+            { "key": "tamanio", "value": "{{tamanio}}" }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Actualizar consulta externa",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"60f1a5c2e8f87a2b94c12345\",\n  \"usuarioActualizador\": \"admin.sistema\",\n  \"datosFormulario\": {\n    \"numeroFormulario\": \"HCU-002-2025-0001\",\n    \"establecimiento\": \"Hospital General\",\n    \"codigoEstablecimiento\": \"1234\",\n    \"areaSalud\": \"Zona 8\",\n    \"distrito\": \"Guayaquil\",\n    \"canton\": \"Guayaquil\",\n    \"provincia\": \"Guayas\"\n  },\n  \"datosPaciente\": {\n    \"cedula\": \"0912345678\",\n    \"numeroHistoriaClinica\": \"HCL-0001\",\n    \"primerNombre\": \"Juan\",\n    \"segundoNombre\": \"Carlos\",\n    \"apellidoPaterno\": \"P\u00e9rez\",\n    \"apellidoMaterno\": \"G\u00f3mez\",\n    \"fechaNacimiento\": \"1990-05-15\",\n    \"sexo\": \"MASCULINO\",\n    \"direccion\": \"Av. Principal 123\",\n    \"telefono\": \"0991234567\",\n    \"email\": \"juan.perez@example.com\",\n    \"contactoEmergencia\": \"Mar\u00eda P\u00e9rez\",\n    \"telefonoEmergencia\": \"0987654321\"\n  },\n  \"datosConsulta\": {\n    \"numeroConsulta\": \"CE-2025-000123\",\n    \"fechaConsulta\": \"2025-08-12T10:30:00\",\n    \"especialidad\": \"Medicina Interna\",\n    \"medicoTratante\": \"Dr. Jos\u00e9 Morales\",\n    \"codigoMedico\": \"MED-123\",\n    \"tipoConsulta\": \"CONTROL\",\n    \"motivoConsulta\": \"Control de tratamiento\",\n    \"observaciones\": \"Paciente estable\"\n  },\n  \"anamnesis\": {\n    \"enfermedadActual\": \"Evoluci\u00f3n favorable del cuadro\",\n    \"antecedentesPatologicosPersonales\": \"Hipertensi\u00f3n\",\n    \"antecedentesPatologicosFamiliares\": \"Cardiopat\u00eda en padre\",\n    \"antecedentesQuirurgicos\": \"Apendicectom\u00eda 2010\",\n    \"antecedentesGinecoObstetricos\": null,\n    \"habitos\": {\n      \"fuma\": false,\n      \"bebeAlcohol\": false,\n      \"actividadFisica\": \"Moderada\",\n      \"dieta\": \"Balanceada\"\n    },\n    \"medicamentosActuales\": [\"Aspirina 100mg\"],\n    \"alergias\": [\"Penicilina\"],\n    \"revisionSistemas\": \"Sin hallazgos relevantes\",\n    \"observaciones\": \"Ninguna\"\n  },\n  \"examenFisico\": {\n    \"signosVitales\": {\n      \"presionArterial\": \"118/76\",\n      \"frecuenciaCardiaca\": 72,\n      \"frecuenciaRespiratoria\": 16,\n      \"temperatura\": 36.7,\n      \"saturacionOxigeno\": 98\n    },\n    \"examenGeneral\": \"Paciente consciente, orientado x3\",\n    \"examenesRegionales\": [],\n    \"medidasAntropometricas\": {\n      \"pesoKg\": 74.0,\n      \"tallaM\": 1.75,\n      \"imc\": 24.1,\n      \"cinturaCm\": 84.0,\n      \"caderaCm\": 95.0\n    }\n  },\n  \"diagnosticos\": [\n    {\n      \"codigoCie10\": \"I20.0\",\n      \"descripcion\": \"Angina inestable\",\n      \"tipo\": \"PRINCIPAL\",\n      \"observaciones\": \"Contin\u00faa tratamiento\",\n      \"fechaDiagnostico\": \"2025-08-12T10:45:00\",\n      \"severidad\": \"LEVE\",\n      \"requiereSeguimiento\": true,\n      \"tiempoSeguimientoMeses\": 6,\n      \"planSeguimiento\": \"Control en 6 meses\",\n      \"manifestacionesClinicas\": [\"Dolor tor\u00e1cico ocasional\"],\n      \"factoresRiesgo\": [\"HTA\"],\n      \"esCronico\": false,\n      \"requiereInterconsulta\": false\n    }\n  ],\n  \"planTratamiento\": {\n    \"prescripciones\": [\n      {\n        \"medicamento\": \"Aspirina\",\n        \"dosis\": \"100 mg\",\n        \"frecuencia\": \"cada 24h\",\n        \"viaAdministracion\": \"Oral\",\n        \"duracionDias\": 60,\n        \"indicaciones\": \"Tomar despu\u00e9s de alimentos\",\n        \"fechaPrescripcion\": \"2025-08-12\",\n        \"cantidad\": 60,\n        \"unidadMedida\": \"tabletas\",\n        \"medicamentoGenerico\": true\n      }\n    ],\n    \"indicacionesGenerales\": [\"Continuar dieta baja en sodio\"],\n    \"citasSeguimiento\": [\n      {\n        \"fecha\": \"2025-12-12T09:00:00\",\n        \"motivo\": \"Control\",\n        \"urgente\": false\n      }\n    ],\n    \"interconsultas\": [],\n    \"recomendaciones\": [\"Aumentar actividad f\u00edsica\"],\n    \"planEducacional\": \"Refuerzo de educaci\u00f3n sobre factores de riesgo cardiovascular\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}{{ctx}}/api/v1/consultas-externas/{{consultaId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "consultas-externas", "{{consultaId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eliminar consulta externa",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{baseUrl}}{{ctx}}/api/v1/consultas-externas/{{consultaId}}?motivo={{motivo}}&usuario={{usuario}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "consultas-externas", "{{consultaId}}"],
+          "query": [
+            { "key": "motivo", "value": "{{motivo}}" },
+            { "key": "usuario", "value": "{{usuario}}" }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
