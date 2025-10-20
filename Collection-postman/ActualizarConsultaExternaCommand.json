@@ -1,5 +1,8 @@
 {
-  "usuarioCreador": "admin.sistema",
+  "id": "60f1a5c2e8f87a2b94c12345",
+  "usuarioActualizador": "admin.sistema",
+  "cedulaPaciente": "0912345678",
+  "historiaClinicaId": "HCL-0001",
   "datosFormulario": {
     "numeroFormulario": "HCU-002-2025-0001",
     "establecimiento": "Hospital General",
@@ -30,12 +33,12 @@
     "especialidad": "Medicina Interna",
     "medicoTratante": "Dr. José Morales",
     "codigoMedico": "MED-123",
-    "tipoConsulta": "PRIMERA_VEZ",
-    "motivoConsulta": "Dolor torácico de 2 días",
+    "tipoConsulta": "CONTROL",
+    "motivoConsulta": "Control de tratamiento",
     "observaciones": "Paciente estable"
   },
   "anamnesis": {
-    "enfermedadActual": "Dolor torácico opresivo, irradiado a brazo izquierdo",
+    "enfermedadActual": "Evolución favorable del cuadro",
     "antecedentesPatologicosPersonales": "Hipertensión",
     "antecedentesPatologicosFamiliares": "Cardiopatía en padre",
     "antecedentesQuirurgicos": "Apendicectomía 2010",
@@ -46,33 +49,26 @@
       "actividadFisica": "Moderada",
       "dieta": "Balanceada"
     },
-    "medicamentosActuales": ["Enalapril 10mg"],
+    "medicamentosActuales": ["Aspirina 100mg"],
     "alergias": ["Penicilina"],
     "revisionSistemas": "Sin hallazgos relevantes",
     "observaciones": "Ninguna"
   },
   "examenFisico": {
     "signosVitales": {
-      "presionArterial": "120/80",
-      "frecuenciaCardiaca": 80,
+      "presionArterial": "118/76",
+      "frecuenciaCardiaca": 72,
       "frecuenciaRespiratoria": 16,
-      "temperatura": 36.8,
+      "temperatura": 36.7,
       "saturacionOxigeno": 98
     },
     "examenGeneral": "Paciente consciente, orientado x3",
-    "examenesRegionales": [
-      {
-        "region": "Torax",
-        "descripcion": "Murmullo vesicular conservado",
-        "hallazgos": [],
-        "normal": true
-      }
-    ],
+    "examenesRegionales": [],
     "medidasAntropometricas": {
-      "pesoKg": 75.0,
+      "pesoKg": 74.0,
       "tallaM": 1.75,
-      "imc": 24.5,
-      "cinturaCm": 85.0,
+      "imc": 24.1,
+      "cinturaCm": 84.0,
       "caderaCm": 95.0
     }
   },
@@ -81,13 +77,13 @@
       "codigoCie10": "I20.0",
       "descripcion": "Angina inestable",
       "tipo": "PRINCIPAL",
-      "observaciones": "Evaluar marcadores cardíacos",
+      "observaciones": "Continúa tratamiento",
       "fechaDiagnostico": "2025-08-12T10:45:00",
-      "severidad": "MODERADO",
+      "severidad": "LEVE",
       "requiereSeguimiento": true,
-      "tiempoSeguimientoMeses": 3,
-      "planSeguimiento": "Control en 3 meses",
-      "manifestacionesClinicas": ["Dolor torácico"],
+      "tiempoSeguimientoMeses": 6,
+      "planSeguimiento": "Control en 6 meses",
+      "manifestacionesClinicas": ["Dolor torácico ocasional"],
       "factoresRiesgo": ["HTA"],
       "esCronico": false,
       "requiereInterconsulta": false
@@ -100,24 +96,24 @@
         "dosis": "100 mg",
         "frecuencia": "cada 24h",
         "viaAdministracion": "Oral",
-        "duracionDias": 30,
+        "duracionDias": 60,
         "indicaciones": "Tomar después de alimentos",
         "fechaPrescripcion": "2025-08-12",
-        "cantidad": 30,
+        "cantidad": 60,
         "unidadMedida": "tabletas",
         "medicamentoGenerico": true
       }
     ],
-    "indicacionesGenerales": ["Reposo relativo"],
+    "indicacionesGenerales": "Continuar dieta baja en sodio",
     "citasSeguimiento": [
       {
-        "fecha": "2025-09-12T09:00:00",
+        "fecha": "2025-12-12T09:00:00",
         "motivo": "Control",
         "urgente": false
       }
     ],
     "interconsultas": [],
-    "recomendaciones": ["Dieta baja en sodio"],
-    "planEducacional": "Educación sobre factores de riesgo cardiovascular"
+    "recomendaciones": ["Aumentar actividad física"],
+    "planEducacional": "Refuerzo de educación sobre factores de riesgo cardiovascular"
   }
 }

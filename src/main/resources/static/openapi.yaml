@@ -1,0 +1,789 @@
+openapi: 3.1.0
+info:
+  title: SGHistorialMedico01 API
+  version: "1.0.0"
+  description: |
+    This OpenAPI specification documents the REST API exposed by the SGHistorialMedico01
+    microservice.  The service provides operations for creating, updating, retrieving,
+    listing and deleting medical consultations (Formulario 002).
+servers:
+  - url: http://localhost:8081
+    description: Local development server
+tags:
+  - name: Consultas Externas
+    description: API para la gestión de consultas externas médicas (Formulario HCU‑002)
+
+paths:
+  /api/v1/consultas-externas:
+    post:
+      tags: [Consultas Externas]
+      summary: Crear una nueva consulta externa
+      description: Crea un nuevo registro de consulta externa médica con todos sus datos asociados.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrearConsultaExternaCommand'
+            examples:
+              ejemplo:
+                summary: Ejemplo de creación de consulta
+                value:
+                  usuarioCreador: "admin.sistema"
+                  cedulaPaciente: "0912345678"
+                  historiaClinicaId: "HCL-0001"
+                  datosFormulario:
+                    numeroFormulario: "HCU-002-2025-0001"
+                    establecimiento: "Hospital General"
+                    codigoEstablecimiento: "1234"
+                    areaSalud: "Zona 8"
+                    distrito: "Guayaquil"
+                    canton: "Guayaquil"
+                    provincia: "Guayas"
+                  datosPaciente:
+                    cedula: "0912345678"
+                    numeroHistoriaClinica: "HCL-0001"
+                    primerNombre: "Juan"
+                    segundoNombre: "Carlos"
+                    apellidoPaterno: "Pérez"
+                    apellidoMaterno: "Gómez"
+                    fechaNacimiento: "1990-05-15"
+                    sexo: "MASCULINO"
+                    direccion: "Av. Principal 123"
+                    telefono: "0991234567"
+                    email: "juan.perez@example.com"
+                    contactoEmergencia: "María Pérez"
+                    telefonoEmergencia: "0987654321"
+                  datosConsulta:
+                    numeroConsulta: "CE-2025-000123"
+                    fechaConsulta: "2025-08-12T10:30:00"
+                    especialidad: "Medicina Interna"
+                    medicoTratante: "Dr. José Morales"
+                    codigoMedico: "MED-123"
+                    tipoConsulta: "PRIMERA_VEZ"
+                    motivoConsulta: "Dolor torácico de 2 días"
+                    observaciones: "Paciente estable"
+                  anamnesis:
+                    enfermedadActual: "Dolor torácico opresivo, irradiado a brazo izquierdo"
+                    antecedentesPatologicosPersonales: "Hipertensión"
+                    antecedentesPatologicosFamiliares: "Cardiopatía en padre"
+                    antecedentesQuirurgicos: "Apendicectomía 2010"
+                    antecedentesGinecoObstetricos: null
+                    habitos:
+                      fuma: false
+                      bebeAlcohol: false
+                      actividadFisica: "Moderada"
+                      dieta: "Balanceada"
+                    medicamentosActuales:
+                      - "Enalapril 10mg"
+                    alergias:
+                      - "Penicilina"
+                    revisionSistemas: "Sin hallazgos relevantes"
+                    observaciones: "Ninguna"
+                  examenFisico:
+                    signosVitales:
+                      presionArterial: "120/80"
+                      frecuenciaCardiaca: 80
+                      frecuenciaRespiratoria: 16
+                      temperatura: 36.8
+                      saturacionOxigeno: 98
+                    examenGeneral: "Paciente consciente, orientado x3"
+                    examenesRegionales:
+                      - region: "Torax"
+                        descripcion: "Murmullo vesicular conservado"
+                        hallazgos: []
+                        normal: true
+                    medidasAntropometricas:
+                      pesoKg: 75.0
+                      tallaM: 1.75
+                      imc: 24.5
+                      cinturaCm: 85.0
+                      caderaCm: 95.0
+                  diagnosticos:
+                    - codigoCie10: "I20.0"
+                      descripcion: "Angina inestable"
+                      tipo: "PRINCIPAL"
+                      observaciones: "Evaluar marcadores cardíacos"
+                      fechaDiagnostico: "2025-08-12T10:45:00"
+                      severidad: "MODERADO"
+                      requiereSeguimiento: true
+                      tiempoSeguimientoMeses: 3
+                      planSeguimiento: "Control en 3 meses"
+                      manifestacionesClinicas:
+                        - "Dolor torácico"
+                      factoresRiesgo:
+                        - "HTA"
+                      esCronico: false
+                      requiereInterconsulta: false
+                  planTratamiento:
+                    prescripciones:
+                      - medicamento: "Aspirina"
+                        dosis: "100 mg"
+                        frecuencia: "cada 24h"
+                        viaAdministracion: "Oral"
+                        duracionDias: 30
+                        indicaciones: "Tomar después de alimentos"
+                        fechaPrescripcion: "2025-08-12"
+                        cantidad: 30
+                        unidadMedida: "tabletas"
+                        medicamentoGenerico: true
+                    indicacionesGenerales: "Reposo relativo"
+                    citasSeguimiento:
+                      - fecha: "2025-09-12T09:00:00"
+                        motivo: "Control"
+                        urgente: false
+                    interconsultas: []
+                    recomendaciones:
+                      - "Dieta baja en sodio"
+                    planEducacional: "Educación sobre factores de riesgo cardiovascular"
+      responses:
+        '201':
+          description: Consulta externa creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaGenerica'
+        '400':
+          description: Datos de entrada inválidos
+        '409':
+          description: Consulta externa duplicada
+        '500':
+          description: Error interno del servidor
+
+  /api/v1/consultas-externas/{id}:
+    get:
+      tags: [Consultas Externas]
+      summary: Obtener una consulta externa por ID
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Consulta externa encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaGenerica'
+        '404':
+          description: Consulta no encontrada
+        '500':
+          description: Error interno del servidor
+    put:
+      tags: [Consultas Externas]
+      summary: Actualizar una consulta externa existente
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActualizarConsultaExternaCommand'
+            examples:
+              ejemplo:
+                value:
+                  id: "60f1a5c2e8f87a2b94c12345"
+                  usuarioActualizador: "admin.sistema"
+                  cedulaPaciente: "0912345678"
+                  historiaClinicaId: "HCL-0001"
+                  planTratamiento:
+                    indicacionesGenerales: "Continuar dieta baja en sodio"
+                  # ... resto de campos igual que en CrearConsultaExternaCommand
+      responses:
+        '200':
+          description: Consulta externa actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaGenerica'
+        '400':
+          description: Datos inválidos o ID no coincidente
+        '404':
+          description: Consulta externa no encontrada
+        '409':
+          description: Consulta no editable
+        '500':
+          description: Error interno del servidor
+    delete:
+      tags: [Consultas Externas]
+      summary: Eliminar una consulta externa
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+        - name: motivo
+          in: query
+          description: Motivo de la eliminación
+          required: true
+          schema:
+            type: string
+        - name: usuario
+          in: query
+          description: Usuario que realiza la eliminación
+          required: false
+          schema:
+            type: string
+            default: sistema
+      responses:
+        '200':
+          description: Consulta externa eliminada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaGenerica'
+        '400':
+          description: Parámetros de entrada inválidos
+        '404':
+          description: Consulta externa no encontrada
+        '409':
+          description: Consulta no eliminable
+        '500':
+          description: Error interno del servidor
+
+  /api/v1/consultas-externas/paciente/{cedula}:
+    get:
+      tags: [Consultas Externas]
+      summary: Buscar consultas externas por cédula del paciente
+      parameters:
+        - name: cedula
+          in: path
+          required: true
+          description: Cédula del paciente (10 dígitos)
+          schema:
+            type: string
+            pattern: "^\\d{10}$"
+        - name: fechaDesde
+          in: query
+          required: false
+          description: Fecha desde (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: fechaHasta
+          in: query
+          required: false
+          description: Fecha hasta (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: pagina
+          in: query
+          required: false
+          description: Número de página
+          schema:
+            type: integer
+            default: 0
+        - name: tamanio
+          in: query
+          required: false
+          description: Tamaño de página
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: Consultas externas encontradas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaPaginada'
+        '400':
+          description: Parámetros de búsqueda inválidos
+        '500':
+          description: Error interno del servidor
+
+  /api/v1/consultas-externas/numero/{numeroConsulta}:
+    get:
+      tags: [Consultas Externas]
+      summary: Buscar consulta externa por número de consulta
+      parameters:
+        - name: numeroConsulta
+          in: path
+          required: true
+          description: Número de consulta externa
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Consulta externa encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaGenerica'
+        '404':
+          description: Consulta no encontrada
+        '500':
+          description: Error interno del servidor
+
+  /api/v1/consultas-externas/buscar:
+    get:
+      tags: [Consultas Externas]
+      summary: Buscar consultas externas con filtros avanzados
+      parameters:
+        - name: fechaDesde
+          in: query
+          required: true
+          description: Fecha desde (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: fechaHasta
+          in: query
+          required: true
+          description: Fecha hasta (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: especialidad
+          in: query
+          required: false
+          description: Especialidad médica
+          schema:
+            type: string
+        - name: medicoTratante
+          in: query
+          required: false
+          description: Nombre del médico tratante
+          schema:
+            type: string
+        - name: estado
+          in: query
+          required: false
+          description: Estado de la consulta
+          schema:
+            $ref: '#/components/schemas/EstadoConsulta'
+        - name: pagina
+          in: query
+          required: false
+          description: Número de página
+          schema:
+            type: integer
+            default: 0
+        - name: tamanio
+          in: query
+          required: false
+          description: Tamaño de página
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: Consultas externas encontradas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaPaginada'
+        '400':
+          description: Parámetros de búsqueda inválidos
+        '500':
+          description: Error interno del servidor
+
+components:
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      description: Identificador único de la consulta externa
+      schema:
+        type: string
+
+  schemas:
+    EstadoConsulta:
+      type: string
+      enum:
+        - INICIADA
+        - EN_PROCESO
+        - COMPLETADA
+        - CANCELADA
+        - SUSPENDIDA
+
+    CrearConsultaExternaCommand:
+      type: object
+      required:
+        - usuarioCreador
+        - cedulaPaciente
+        - historiaClinicaId
+        - datosFormulario
+        - datosPaciente
+        - datosConsulta
+        - anamnesis
+        - examenFisico
+        - diagnosticos
+        - planTratamiento
+      properties:
+        usuarioCreador:
+          type: string
+        cedulaPaciente:
+          type: string
+        historiaClinicaId:
+          type: string
+        datosFormulario:
+          $ref: '#/components/schemas/DatosFormulario'
+        datosPaciente:
+          $ref: '#/components/schemas/DatosPaciente'
+        datosConsulta:
+          $ref: '#/components/schemas/DatosConsulta'
+        anamnesis:
+          $ref: '#/components/schemas/Anamnesis'
+        examenFisico:
+          $ref: '#/components/schemas/ExamenFisico'
+        diagnosticos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Diagnostico'
+        planTratamiento:
+          $ref: '#/components/schemas/PlanTratamiento'
+
+    ActualizarConsultaExternaCommand:
+      allOf:
+        - $ref: '#/components/schemas/CrearConsultaExternaCommand'
+        - type: object
+          required:
+            - id
+            - usuarioActualizador
+          properties:
+            id:
+              type: string
+            usuarioActualizador:
+              type: string
+
+    DatosFormulario:
+      type: object
+      required:
+        - numeroFormulario
+        - establecimiento
+        - codigoEstablecimiento
+        - areaSalud
+        - distrito
+        - canton
+        - provincia
+      properties:
+        numeroFormulario:
+          type: string
+        establecimiento:
+          type: string
+        codigoEstablecimiento:
+          type: string
+        areaSalud:
+          type: string
+        distrito:
+          type: string
+        canton:
+          type: string
+        provincia:
+          type: string
+
+    DatosPaciente:
+      type: object
+      required:
+        - cedula
+        - numeroHistoriaClinica
+        - primerNombre
+        - apellidoPaterno
+        - apellidoMaterno
+        - fechaNacimiento
+        - sexo
+      properties:
+        cedula:
+          type: string
+        numeroHistoriaClinica:
+          type: string
+        primerNombre:
+          type: string
+        segundoNombre:
+          type: string
+        apellidoPaterno:
+          type: string
+        apellidoMaterno:
+          type: string
+        fechaNacimiento:
+          type: string
+          format: date
+        sexo:
+          type: string
+          enum: [MASCULINO, FEMENINO, INDEFINIDO]
+        direccion:
+          type: string
+        telefono:
+          type: string
+        email:
+          type: string
+          format: email
+        contactoEmergencia:
+          type: string
+        telefonoEmergencia:
+          type: string
+
+    DatosConsulta:
+      type: object
+      required:
+        - numeroConsulta
+        - fechaConsulta
+        - especialidad
+        - medicoTratante
+        - tipoConsulta
+        - motivoConsulta
+      properties:
+        numeroConsulta:
+          type: string
+        fechaConsulta:
+          type: string
+          format: date-time
+        especialidad:
+          type: string
+        medicoTratante:
+          type: string
+        codigoMedico:
+          type: string
+        tipoConsulta:
+          type: string
+          enum: [PRIMERA_VEZ, SUBSECUENTE, CONTROL, EMERGENCIA]
+        motivoConsulta:
+          type: string
+        observaciones:
+          type: string
+
+    Anamnesis:
+      type: object
+      required:
+        - enfermedadActual
+      properties:
+        enfermedadActual:
+          type: string
+        antecedentesPatologicosPersonales:
+          type: string
+        antecedentesPatologicosFamiliares:
+          type: string
+        antecedentesQuirurgicos:
+          type: string
+        antecedentesGinecoObstetricos:
+          type: string
+          nullable: true
+        habitos:
+          $ref: '#/components/schemas/Habitos'
+        medicamentosActuales:
+          type: array
+          items:
+            type: string
+        alergias:
+          type: array
+          items:
+            type: string
+        revisionSistemas:
+          type: string
+        observaciones:
+          type: string
+
+    Habitos:
+      type: object
+      properties:
+        fuma:
+          type: boolean
+        bebeAlcohol:
+          type: boolean
+        actividadFisica:
+          type: string
+        dieta:
+          type: string
+
+    ExamenFisico:
+      type: object
+      required:
+        - signosVitales
+      properties:
+        signosVitales:
+          $ref: '#/components/schemas/SignosVitales'
+        examenGeneral:
+          type: string
+        examenesRegionales:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExamenFisicoRegional'
+        medidasAntropometricas:
+          $ref: '#/components/schemas/MedidasAntropometricas'
+
+    SignosVitales:
+      type: object
+      properties:
+        presionArterial:
+          type: string
+        frecuenciaCardiaca:
+          type: integer
+        frecuenciaRespiratoria:
+          type: integer
+        temperatura:
+          type: number
+          format: double
+        saturacionOxigeno:
+          type: integer
+
+    ExamenFisicoRegional:
+      type: object
+      properties:
+        region:
+          type: string
+        descripcion:
+          type: string
+        hallazgos:
+          type: array
+          items:
+            type: string
+        normal:
+          type: boolean
+
+    MedidasAntropometricas:
+      type: object
+      properties:
+        pesoKg:
+          type: number
+          format: double
+        tallaM:
+          type: number
+          format: double
+        imc:
+          type: number
+          format: double
+        cinturaCm:
+          type: number
+          format: double
+        caderaCm:
+          type: number
+          format: double
+
+    Diagnostico:
+      type: object
+      required:
+        - codigoCie10
+        - descripcion
+        - tipo
+        - fechaDiagnostico
+      properties:
+        codigoCie10:
+          type: string
+        descripcion:
+          type: string
+        tipo:
+          type: string
+          enum: [PRINCIPAL, SECUNDARIO, DIFERENCIAL, PRESUNTIVO, CONFIRMADO]
+        observaciones:
+          type: string
+        fechaDiagnostico:
+          type: string
+          format: date-time
+        severidad:
+          type: string
+        requiereSeguimiento:
+          type: boolean
+        tiempoSeguimientoMeses:
+          type: integer
+        planSeguimiento:
+          type: string
+        manifestacionesClinicas:
+          type: array
+          items:
+            type: string
+        factoresRiesgo:
+          type: array
+          items:
+            type: string
+        esCronico:
+          type: boolean
+        requiereInterconsulta:
+          type: boolean
+
+    PlanTratamiento:
+      type: object
+      properties:
+        prescripciones:
+          type: array
+          items:
+            $ref: '#/components/schemas/Prescripcion'
+        indicacionesGenerales:
+          type: string
+        citasSeguimiento:
+          type: array
+          items:
+            $ref: '#/components/schemas/CitaSeguimiento'
+        interconsultas:
+          type: array
+          items:
+            type: object
+        recomendaciones:
+          type: array
+          items:
+            type: string
+        planEducacional:
+          type: string
+
+    Prescripcion:
+      type: object
+      properties:
+        medicamento:
+          type: string
+        dosis:
+          type: string
+        frecuencia:
+          type: string
+        viaAdministracion:
+          type: string
+        duracionDias:
+          type: integer
+        indicaciones:
+          type: string
+        fechaPrescripcion:
+          type: string
+          format: date
+        cantidad:
+          type: integer
+        unidadMedida:
+          type: string
+        medicamentoGenerico:
+          type: boolean
+
+    CitaSeguimiento:
+      type: object
+      properties:
+        fecha:
+          type: string
+          format: date-time
+        motivo:
+          type: string
+        urgente:
+          type: boolean
+
+    RespuestaGenerica:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: object
+        timestamp:
+          type: string
+          format: date-time
+
+    RespuestaPaginada:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+        pagination:
+          type: object
+          properties:
+            totalElements:
+              type: integer
+            totalPages:
+              type: integer
+            currentPage:
+              type: integer
+            pageSize:
+              type: integer
+        timestamp:
+          type: string
+          format: date-time
