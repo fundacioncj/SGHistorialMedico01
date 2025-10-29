@@ -1,0 +1,453 @@
+{
+  "instant" : {
+    "epochSecond" : 1761160795,
+    "nanoOfSecond" : 560068660
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.DiagnosticoInterconsultaRulesService",
+  "message" : "DiagnosticoInterconsultaRulesService inicializado con 16 reglas de especialidad y 24 reglas de prioridad",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 33,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761160795,
+    "nanoOfSecond" : 567126635
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.InteraccionesMedicamentosService",
+  "message" : "InteraccionesMedicamentosService inicializado con 13 reglas de interacción",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 33,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761160952,
+    "nanoOfSecond" : 785964292
+  },
+  "thread" : "http-nio-8081-exec-9",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 0912345678",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 65,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761160952,
+    "nanoOfSecond" : 786463864
+  },
+  "thread" : "http-nio-8081-exec-9",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 0912345678",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 65,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761160952,
+    "nanoOfSecond" : 861934214
+  },
+  "thread" : "http-nio-8081-exec-9",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 0 consultas externas para cédula: 0912345678",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 65,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761160952,
+    "nanoOfSecond" : 862239397
+  },
+  "thread" : "http-nio-8081-exec-9",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 0 consultas externas para cédula: 0912345678",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 65,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761160975,
+    "nanoOfSecond" : 288487106
+  },
+  "thread" : "http-nio-8081-exec-10",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Obteniendo consulta externa por ID: 60f1a5c2e8f87a2b94c12345",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 66,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761160975,
+    "nanoOfSecond" : 288893942
+  },
+  "thread" : "http-nio-8081-exec-10",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consulta externa por ID: 60f1a5c2e8f87a2b94c12345",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 66,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761160975,
+    "nanoOfSecond" : 302848665
+  },
+  "thread" : "http-nio-8081-exec-10",
+  "level" : "ERROR",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Error al buscar consulta externa por ID: Consulta externa no encontrada con ID: 60f1a5c2e8f87a2b94c12345",
+  "thrown" : {
+    "commonElementCount" : 0,
+    "localizedMessage" : "Consulta externa no encontrada con ID: 60f1a5c2e8f87a2b94c12345",
+    "message" : "Consulta externa no encontrada con ID: 60f1a5c2e8f87a2b94c12345",
+    "name" : "com.ug.ec.domain.consultaexterna.exceptions.ConsultaExternaNotFoundException",
+    "extendedStackTrace" : "com.ug.ec.domain.consultaexterna.exceptions.ConsultaExternaNotFoundException: Consulta externa no encontrada con ID: 60f1a5c2e8f87a2b94c12345\n\tat com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler.lambda$handle$0(ConsultaExternaQueryHandler.java:38) ~[classes/:?]\n\tat java.base/java.util.Optional.orElseThrow(Optional.java:403) ~[?:?]\n\tat com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler.handle(ConsultaExternaQueryHandler.java:37) ~[classes/:?]\n\tat com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController.obtenerConsultaExternaPorId(ConsultaExternaController.java:172) ~[classes/:?]\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-6.2.8.jar:6.2.8]\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.2.8.jar:6.2.8]\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.2.8.jar:6.2.8]\n\tat org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:174) ~[spring-context-6.2.8.jar:6.2.8]\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.8.jar:6.2.8]\n\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728) ~[spring-aop-6.2.8.jar:6.2.8]\n\tat com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController$$SpringCGLIB$$0.obtenerConsultaExternaPorId(<generated>) ~[classes/:?]\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]\n\tat org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.42.jar:6.0]\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.42.jar:6.0]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat java.base/java.lang.Thread.run(Thread.java:1583) [?:?]\n"
+  },
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 66,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761160975,
+    "nanoOfSecond" : 306706188
+  },
+  "thread" : "http-nio-8081-exec-10",
+  "level" : "ERROR",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Error al obtener consulta externa por ID: Error al buscar la consulta externa",
+  "thrown" : {
+    "commonElementCount" : 0,
+    "localizedMessage" : "Error al buscar la consulta externa",
+    "message" : "Error al buscar la consulta externa",
+    "name" : "com.ug.ec.domain.consultaexterna.exceptions.ConsultaExternaConsultaException",
+    "cause" : {
+      "commonElementCount" : 62,
+      "localizedMessage" : "Consulta externa no encontrada con ID: 60f1a5c2e8f87a2b94c12345",
+      "message" : "Consulta externa no encontrada con ID: 60f1a5c2e8f87a2b94c12345",
+      "name" : "com.ug.ec.domain.consultaexterna.exceptions.ConsultaExternaNotFoundException",
+      "extendedStackTrace" : "com.ug.ec.domain.consultaexterna.exceptions.ConsultaExternaNotFoundException: Consulta externa no encontrada con ID: 60f1a5c2e8f87a2b94c12345\n\tat com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler.lambda$handle$0(ConsultaExternaQueryHandler.java:38) ~[classes/:?]\n\tat java.base/java.util.Optional.orElseThrow(Optional.java:403) ~[?:?]\n\tat com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler.handle(ConsultaExternaQueryHandler.java:37) ~[classes/:?]\n"
+    },
+    "extendedStackTrace" : "com.ug.ec.domain.consultaexterna.exceptions.ConsultaExternaConsultaException: Error al buscar la consulta externa\n\tat com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler.handle(ConsultaExternaQueryHandler.java:47) ~[classes/:?]\n\tat com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController.obtenerConsultaExternaPorId(ConsultaExternaController.java:172) ~[classes/:?]\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-6.2.8.jar:6.2.8]\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.2.8.jar:6.2.8]\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.2.8.jar:6.2.8]\n\tat org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:174) ~[spring-context-6.2.8.jar:6.2.8]\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.8.jar:6.2.8]\n\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728) ~[spring-aop-6.2.8.jar:6.2.8]\n\tat com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController$$SpringCGLIB$$0.obtenerConsultaExternaPorId(<generated>) ~[classes/:?]\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]\n\tat org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.42.jar:6.0]\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.8.jar:6.2.8]\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.42.jar:6.0]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.42.jar:10.1.42]\n\tat java.base/java.lang.Thread.run(Thread.java:1583) [?:?]\nCaused by: com.ug.ec.domain.consultaexterna.exceptions.ConsultaExternaNotFoundException: Consulta externa no encontrada con ID: 60f1a5c2e8f87a2b94c12345\n\tat com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler.lambda$handle$0(ConsultaExternaQueryHandler.java:38) ~[classes/:?]\n\tat java.base/java.util.Optional.orElseThrow(Optional.java:403) ~[?:?]\n\tat com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler.handle(ConsultaExternaQueryHandler.java:37) ~[classes/:?]\n\t... 62 more\n"
+  },
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 66,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761161885,
+    "nanoOfSecond" : 243170618
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas con filtros avanzados",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 59,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761161885,
+    "nanoOfSecond" : 243904487
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por fecha desde: 2023-01-01 hasta: 2023-12-31",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 59,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761161885,
+    "nanoOfSecond" : 299391786
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 0 consultas externas para el rango de fechas",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 59,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761161885,
+    "nanoOfSecond" : 299711612
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 0 consultas externas con filtros aplicados",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 59,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761165049,
+    "nanoOfSecond" : 559238174
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.DiagnosticoInterconsultaRulesService",
+  "message" : "DiagnosticoInterconsultaRulesService inicializado con 16 reglas de especialidad y 24 reglas de prioridad",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 39,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761165049,
+    "nanoOfSecond" : 636945598
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.InteraccionesMedicamentosService",
+  "message" : "InteraccionesMedicamentosService inicializado con 13 reglas de interacción",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 39,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761165388,
+    "nanoOfSecond" : 127952368
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.DiagnosticoInterconsultaRulesService",
+  "message" : "DiagnosticoInterconsultaRulesService inicializado con 16 reglas de especialidad y 24 reglas de prioridad",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 34,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761165388,
+    "nanoOfSecond" : 135256537
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.InteraccionesMedicamentosService",
+  "message" : "InteraccionesMedicamentosService inicializado con 13 reglas de interacción",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 34,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761172004,
+    "nanoOfSecond" : 424147248
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.DiagnosticoInterconsultaRulesService",
+  "message" : "DiagnosticoInterconsultaRulesService inicializado con 16 reglas de especialidad y 24 reglas de prioridad",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 37,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761172004,
+    "nanoOfSecond" : 432293991
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.InteraccionesMedicamentosService",
+  "message" : "InteraccionesMedicamentosService inicializado con 13 reglas de interacción",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 37,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761172011,
+    "nanoOfSecond" : 136986625
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Obteniendo consulta externa por ID: 68f927d7b1f4577e5a17804c",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 58,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761172011,
+    "nanoOfSecond" : 137521533
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consulta externa por ID: 68f927d7b1f4577e5a17804c",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 58,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761172011,
+    "nanoOfSecond" : 194449099
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Consulta externa encontrada exitosamente con ID: 68f927d7b1f4577e5a17804c",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 58,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1761172011,
+    "nanoOfSecond" : 195979790
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Consulta externa encontrada exitosamente con ID: 68f927d7b1f4577e5a17804c",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 58,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
