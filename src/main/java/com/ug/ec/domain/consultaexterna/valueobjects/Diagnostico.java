@@ -41,10 +41,8 @@ public class Diagnostico {
     private String planSeguimiento;
     private List<String> manifestacionesClinicas;
     private List<String> factoresRiesgo;
-    private String pronostico;
-    private Boolean esCronico;
-    private String especialidadRecomendada;
-    private Boolean requiereInterconsulta;
+
+
     
     // Métodos de dominio
     public boolean esDiagnosticoPrincipal() {
@@ -71,16 +69,7 @@ public class Diagnostico {
                     m.toLowerCase().contains("grave") || 
                     m.toLowerCase().contains("severo")));
     }
+
     
-    public boolean requiereAtencionEspecialista() {
-        return requiereInterconsulta != null && 
-               requiereInterconsulta && 
-               especialidadRecomendada != null && 
-               !especialidadRecomendada.isEmpty();
-    }
-    
-    public boolean necesitaSeguimientoContinuo() {
-        return (esCronico != null && esCronico) || 
-               (requiereSeguimiento != null && requiereSeguimiento);
-    }
+
 }

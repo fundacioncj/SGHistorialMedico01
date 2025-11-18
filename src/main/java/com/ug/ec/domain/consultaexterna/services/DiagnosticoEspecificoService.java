@@ -74,24 +74,9 @@ public class DiagnosticoEspecificoService {
             }
         }
         
-        if (Boolean.TRUE.equals(diagnostico.getEsCronico())) {
-            if (diagnostico.getRequiereSeguimiento() == null || !diagnostico.getRequiereSeguimiento()) {
-                camposFaltantes.add("requiereSeguimiento");
-            }
-            if (diagnostico.getTiempoSeguimientoMeses() == null) {
-                camposFaltantes.add("tiempoSeguimientoMeses");
-            }
-            if (diagnostico.getPlanSeguimiento() == null || diagnostico.getPlanSeguimiento().isEmpty()) {
-                camposFaltantes.add("planSeguimiento");
-            }
-        }
+
         
-        if (Boolean.TRUE.equals(diagnostico.getRequiereInterconsulta())) {
-            if (diagnostico.getEspecialidadRecomendada() == null || 
-                diagnostico.getEspecialidadRecomendada().isEmpty()) {
-                camposFaltantes.add("especialidadRecomendada");
-            }
-        }
+
         
         return camposFaltantes;
     }
@@ -109,22 +94,9 @@ public class DiagnosticoEspecificoService {
             throw new DiagnosticoInvalidoException(
                 "Un diagnóstico con severidad SEVERO debe incluir manifestaciones clínicas");
         }
+
         
-        // Validar coherencia entre diagnóstico crónico y seguimiento
-        if (Boolean.TRUE.equals(diagnostico.getEsCronico()) && 
-            (diagnostico.getRequiereSeguimiento() == null || 
-             !diagnostico.getRequiereSeguimiento())) {
-            throw new DiagnosticoInvalidoException(
-                "Un diagnóstico crónico debe requerir seguimiento");
-        }
-        
-        // Validar coherencia entre requerimiento de interconsulta y especialidad
-        if (Boolean.TRUE.equals(diagnostico.getRequiereInterconsulta()) && 
-            (diagnostico.getEspecialidadRecomendada() == null || 
-             diagnostico.getEspecialidadRecomendada().isEmpty())) {
-            throw new DiagnosticoInvalidoException(
-                "Si el diagnóstico requiere interconsulta, debe especificar la especialidad recomendada");
-        }
+
     }
     
     /**
@@ -139,19 +111,9 @@ public class DiagnosticoEspecificoService {
         if (diagnosticosConInterconsultaObligatoria.containsKey(codigoBase)) {
             String especialidadRequerida = diagnosticosConInterconsultaObligatoria.get(codigoBase);
             
-            if (diagnostico.getRequiereInterconsulta() == null || 
-                !diagnostico.getRequiereInterconsulta()) {
-                throw new DiagnosticoInvalidoException(
-                    "El diagnóstico con código " + diagnostico.getCodigoCie10() + 
-                    " requiere interconsulta obligatoria");
-            }
+
             
-            if (diagnostico.getEspecialidadRecomendada() == null || 
-                !diagnostico.getEspecialidadRecomendada().equalsIgnoreCase(especialidadRequerida)) {
-                throw new DiagnosticoInvalidoException(
-                    "El diagnóstico con código " + diagnostico.getCodigoCie10() + 
-                    " requiere interconsulta con la especialidad: " + especialidadRequerida);
-            }
+
         }
         
         // Verificar si el diagnóstico requiere seguimiento obligatorio
@@ -173,13 +135,7 @@ public class DiagnosticoEspecificoService {
             }
         }
         
-        // Verificar si el diagnóstico es crónico según el código
-        if (esDiagnosticoCronico(codigoBase) && 
-            (diagnostico.getEsCronico() == null || !diagnostico.getEsCronico())) {
-            throw new DiagnosticoInvalidoException(
-                "El diagnóstico con código " + diagnostico.getCodigoCie10() + 
-                " debe marcarse como crónico");
-        }
+       
     }
     
     /**

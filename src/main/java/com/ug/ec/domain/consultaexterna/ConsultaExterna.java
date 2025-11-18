@@ -1,6 +1,7 @@
 package com.ug.ec.domain.consultaexterna;
 
 import com.ug.ec.infrastructure.persistence.consultaexterna.ConsultaExternaDocument;
+import lombok.Data;
 import lombok.Value;
 import lombok.Builder;
 import lombok.With;
@@ -18,12 +19,14 @@ import java.util.HashMap;
 @Value
 @Builder(toBuilder = true)
 @With
+@Data
 public class ConsultaExterna {
     
     String id;
     String numeroConsulta;
     String cedulaPaciente;
     String historiaClinicaId;
+    String signosVitalesId;
     DatosConsulta datosConsulta;
     Anamnesis anamnesis;
 

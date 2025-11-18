@@ -17,16 +17,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Jacksonized
 public class DatosConsulta {
-    
+
     @NotBlank(message = "El número de consulta es obligatorio")
     private String numeroConsulta;
-    
+
     @NotNull(message = "La fecha de consulta es obligatoria")
-    @PastOrPresent(message = "La fecha de consulta no puede ser futura")
+//    @PastOrPresent(message = "La fecha de consulta no puede ser futura")
     private LocalDateTime fechaConsulta;
-    
-    @NotBlank(message = "La especialidad es obligatoria")
-    private String especialidad;
+
     
     @NotBlank(message = "El médico tratante es obligatorio")
     private String medicoTratante;
@@ -39,7 +37,7 @@ public class DatosConsulta {
     @NotBlank(message = "El motivo de consulta es obligatorio")
     private String motivoConsulta;
     
-    private String observaciones;
+
     
     // Métodos de dominio
     public String generarNumeroConsulta() {

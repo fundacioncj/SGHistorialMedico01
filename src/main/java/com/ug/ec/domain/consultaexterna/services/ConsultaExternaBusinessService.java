@@ -69,11 +69,7 @@ public class ConsultaExternaBusinessService {
         // Validaciones específicas para primera consulta
         validarDatosCompletosPrimeraConsulta(consulta);
 
-        // Evaluaciones médicas automáticas
-        SignosVitales signos = obtenerSignosVitales(consulta);
-        if (signos != null) {
-            evaluarRiesgosIniciales(signos);
-        }
+
 
         // Retornar consulta procesada (puede incluir modificaciones futuras)
         return consulta; // Por ahora inmutable, sin cambios
@@ -94,32 +90,14 @@ public class ConsultaExternaBusinessService {
         return consulta; // Por ahora inmutable, sin cambios
     }
 
-    /**
-     * Obtiene signos vitales de forma segura desde examenFisico
-     */
-    private SignosVitales obtenerSignosVitales(ConsultaExterna consulta) {
-        return consulta.getExamenFisico() != null ? 
-            consulta.getExamenFisico().getSignosVitales() : null;
-    }
+
 
     /**
      * Evalúa automáticamente si se requieren interconsultas basado en criterios médicos
      */
     private boolean evaluarNecesidadInterconsulta(ConsultaExterna consulta) {
-        SignosVitales signos = obtenerSignosVitales(consulta);
 
-        if (signos != null && signos.requiereAtencionUrgente()) {
-            log.warn("Signos vitales requieren atención urgente para consulta: {}",
-                    consulta.obtenerNumeroConsulta());
-            return true;
-        }
-
-        // Evaluar otros criterios médicos
-        if (tieneIndicadoresRiesgoCardiovascular(consulta)) {
-            log.info("Detectados indicadores de riesgo cardiovascular");
-            return true;
-        }
-
+        
         // Evaluar diagnósticos que requieren interconsulta
         if (diagnosticosRequierenInterconsulta(consulta)) {
             log.info("Diagnósticos requieren interconsulta especializada");
@@ -132,14 +110,7 @@ public class ConsultaExternaBusinessService {
     /**
      * Evalúa indicadores de riesgo cardiovascular
      */
-    private boolean tieneIndicadoresRiesgoCardiovascular(ConsultaExterna consulta) {
-        SignosVitales signos = obtenerSignosVitales(consulta);
-        if (signos == null) return false;
 
-        return signos.tieneHipertension() ||
-                "HIPERTENSION_GRADO_2".equals(signos.clasificarPresion()) ||
-                "CRISIS_HIPERTENSIVA".equals(signos.clasificarPresion());
-    }
 
     /**
      * Evalúa si los diagnósticos requieren interconsulta automática
@@ -170,96 +141,6 @@ public class ConsultaExternaBusinessService {
 
 
     /**
-     * Genera interconsultas basadas en criterios médicos automáticos
-     */
-    private List<Interconsulta> generarInterconsultasAutomaticas(ConsultaExterna consulta) {
-        List<Interconsulta> interconsultas = new ArrayList<>();
-
-        SignosVitales signos = obtenerSignosVitales(consulta);
-        if (signos == null) return interconsultas;
-
-        // Crisis hipertensiva → Cardiología urgente
-        if ("CRISIS_HIPERTENSIVA".equals(signos.clasificarPresion())) {
-            interconsultas.add(
-                    Interconsulta.builder()
-                            .especialidad("CARDIOLOGIA")
-                            .motivo("Crisis hipertensiva - Presión: " +
-                                    signos.getPresionSistolica() + "/" + signos.getPresionDiastolica())
-                            .prioridad(PrioridadInterconsulta.URGENTE)
-                            .estado(EstadoInterconsulta.SOLICITADA)
-                            .fechaSolicitud(LocalDateTime.now())
-                            .hallazgosRelevantes("Presión arterial crítica requiere evaluación inmediata")
-                            .build()
-            );
-        }
-
-        // Hipoxemia grave → Neumología urgente
-        if (signos.tieneHipoxemiaGrave()) {
-            interconsultas.add(
-                    Interconsulta.builder()
-                            .especialidad("NEUMOLOGIA")
-                            .motivo("Hipoxemia grave - SatO2: " + signos.getSaturacionOxigeno() + "%")
-                            .prioridad(PrioridadInterconsulta.URGENTE)
-                            .estado(EstadoInterconsulta.SOLICITADA)
-                            .fechaSolicitud(LocalDateTime.now())
-                            .hallazgosRelevantes("Saturación de oxígeno crítica")
-                            .build()
-            );
-        }
-
-        // Hipotensión severa → Medicina Interna urgente
-        if (signos.tieneHipotensionSevera()) {
-            interconsultas.add(
-                    Interconsulta.builder()
-                            .especialidad("MEDICINA_INTERNA")
-                            .motivo("Hipotensión severa - Evaluar shock")
-                            .prioridad(PrioridadInterconsulta.URGENTE)
-                            .estado(EstadoInterconsulta.SOLICITADA)
-                            .fechaSolicitud(LocalDateTime.now())
-                            .hallazgosRelevantes("Presión arterial severamente baja")
-                            .build()
-            );
-        }
-
-        // Arritmia severa → Cardiología alta prioridad
-        if (signos.getFrecuenciaCardiaca() != null) {
-            boolean taquicardiaGrave = signos.getFrecuenciaCardiaca().intValue() > 150;
-            boolean bradicardiaGrave = signos.getFrecuenciaCardiaca().intValue() < 40;
-
-            if (taquicardiaGrave || bradicardiaGrave) {
-                interconsultas.add(
-                        Interconsulta.builder()
-                                .especialidad("CARDIOLOGIA")
-                                .motivo("Evaluación de arritmia - FC: " + signos.getFrecuenciaCardiaca())
-                                .prioridad(PrioridadInterconsulta.ALTA)
-                                .estado(EstadoInterconsulta.SOLICITADA)
-                                .fechaSolicitud(LocalDateTime.now())
-                                .hallazgosRelevantes("Frecuencia cardíaca anormal severa")
-                                .build()
-                );
-            }
-        }
-
-        // Fiebre alta → Infectología
-        if (signos.getTemperatura() != null &&
-                signos.getTemperatura().compareTo(new java.math.BigDecimal("39.5")) > 0) {
-            interconsultas.add(
-                    Interconsulta.builder()
-                            .especialidad("INFECTOLOGIA")
-                            .motivo("Fiebre alta - Temperatura: " + signos.getTemperatura() + "°C")
-                            .prioridad(PrioridadInterconsulta.ALTA)
-                            .estado(EstadoInterconsulta.SOLICITADA)
-                            .fechaSolicitud(LocalDateTime.now())
-                            .hallazgosRelevantes("Hipertermia significativa")
-                            .build()
-            );
-        }
-
-        log.info("Generadas {} interconsultas automáticas", interconsultas.size());
-        return interconsultas;
-    }
-
-    /**
      * Valida que los datos estén completos para una primera consulta
      */
     private void validarDatosCompletosPrimeraConsulta(ConsultaExterna consulta) {
@@ -277,10 +158,7 @@ public class ConsultaExternaBusinessService {
             throw new ConsultaExternaIncompletaException("Datos del paciente son obligatorios");
         }
 
-        SignosVitales signos = obtenerSignosVitales(consulta);
-        if (signos == null) {
-            throw new ConsultaExternaIncompletaException("Signos vitales son obligatorios en primera consulta");
-        }
+
     }
 
     /**
@@ -313,10 +191,6 @@ public class ConsultaExternaBusinessService {
         String cedulaPaciente = consulta.obtenerCedulaPaciente();
         log.debug("Validando evolución del paciente: {}", cedulaPaciente);
 
-        // Validaciones básicas de evolución
-        SignosVitales signosActuales = obtenerSignosVitales(consulta);
-        if (signosActuales != null && signosActuales.requiereAtencionUrgente()) {
-            log.warn("Deterioro en signos vitales detectado en consulta subsecuente");
-        }
+
     }
 }

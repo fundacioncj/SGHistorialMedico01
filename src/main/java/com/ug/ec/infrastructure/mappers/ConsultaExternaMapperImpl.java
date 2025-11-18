@@ -20,6 +20,7 @@ public class ConsultaExternaMapperImpl extends ConsultaExternaMapper {
                 .id(entity.getId())
                 .numeroConsulta(entity.getNumeroConsulta())
                 .historiaClinicaId(entity.getHistoriaClinicaId())
+                .signosVitalesId(entity.getSignosVitalesId())
                 .cedulaPaciente(entity.getCedulaPaciente())
                 .datosConsulta(entity.getDatosConsulta())
                 .anamnesis(entity.getAnamnesis())

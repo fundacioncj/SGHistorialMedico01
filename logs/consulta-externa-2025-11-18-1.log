@@ -1,0 +1,1728 @@
+{
+  "instant" : {
+    "epochSecond" : 1763510460,
+    "nanoOfSecond" : 539294566
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.DiagnosticoInterconsultaRulesService",
+  "message" : "DiagnosticoInterconsultaRulesService inicializado con 16 reglas de especialidad y 24 reglas de prioridad",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 48,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510460,
+    "nanoOfSecond" : 548706086
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.InteraccionesMedicamentosService",
+  "message" : "InteraccionesMedicamentosService inicializado con 13 reglas de interacción",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 48,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510514,
+    "nanoOfSecond" : 847505942
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1767890123",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510514,
+    "nanoOfSecond" : 847976813
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1767890123",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510514,
+    "nanoOfSecond" : 929074491
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 0 consultas externas para cédula: 1767890123",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510514,
+    "nanoOfSecond" : 931093405
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 0 consultas externas para cédula: 1767890123",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510517,
+    "nanoOfSecond" : 465480507
+  },
+  "thread" : "http-nio-8081-exec-2",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 69,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510517,
+    "nanoOfSecond" : 465647806
+  },
+  "thread" : "http-nio-8081-exec-2",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 69,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510517,
+    "nanoOfSecond" : 492406763
+  },
+  "thread" : "http-nio-8081-exec-2",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 1 consultas externas para cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 69,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510517,
+    "nanoOfSecond" : 492734079
+  },
+  "thread" : "http-nio-8081-exec-2",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 1 consultas externas para cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 69,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510519,
+    "nanoOfSecond" : 418695189
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Obteniendo consulta externa por ID: 691be84f5b2b3d80c1f0a10b",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510519,
+    "nanoOfSecond" : 419030018
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consulta externa por ID: 691be84f5b2b3d80c1f0a10b",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510519,
+    "nanoOfSecond" : 433486845
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Consulta externa encontrada exitosamente con ID: 691be84f5b2b3d80c1f0a10b",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510519,
+    "nanoOfSecond" : 433758938
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Consulta externa encontrada exitosamente con ID: 691be84f5b2b3d80c1f0a10b",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510898,
+    "nanoOfSecond" : 322207628
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Obteniendo consulta externa por ID: 691be84f5b2b3d80c1f0a10b",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510898,
+    "nanoOfSecond" : 322343519
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consulta externa por ID: 691be84f5b2b3d80c1f0a10b",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510898,
+    "nanoOfSecond" : 340241727
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Consulta externa encontrada exitosamente con ID: 691be84f5b2b3d80c1f0a10b",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763510898,
+    "nanoOfSecond" : 340506657
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Consulta externa encontrada exitosamente con ID: 691be84f5b2b3d80c1f0a10b",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763511612,
+    "nanoOfSecond" : 525002674
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Obteniendo consulta externa por ID: 691be84f5b2b3d80c1f0a10b",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763511612,
+    "nanoOfSecond" : 525195251
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consulta externa por ID: 691be84f5b2b3d80c1f0a10b",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763511612,
+    "nanoOfSecond" : 534435100
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Consulta externa encontrada exitosamente con ID: 691be84f5b2b3d80c1f0a10b",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763511612,
+    "nanoOfSecond" : 535018932
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Consulta externa encontrada exitosamente con ID: 691be84f5b2b3d80c1f0a10b",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763512291,
+    "nanoOfSecond" : 715176551
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.DiagnosticoInterconsultaRulesService",
+  "message" : "DiagnosticoInterconsultaRulesService inicializado con 16 reglas de especialidad y 24 reglas de prioridad",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 48,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763512291,
+    "nanoOfSecond" : 722344858
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.InteraccionesMedicamentosService",
+  "message" : "InteraccionesMedicamentosService inicializado con 13 reglas de interacción",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 48,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763512384,
+    "nanoOfSecond" : 735908110
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.DiagnosticoInterconsultaRulesService",
+  "message" : "DiagnosticoInterconsultaRulesService inicializado con 16 reglas de especialidad y 24 reglas de prioridad",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 48,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763512384,
+    "nanoOfSecond" : 743111394
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.InteraccionesMedicamentosService",
+  "message" : "InteraccionesMedicamentosService inicializado con 13 reglas de interacción",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 48,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763512710,
+    "nanoOfSecond" : 463608596
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.DiagnosticoInterconsultaRulesService",
+  "message" : "DiagnosticoInterconsultaRulesService inicializado con 16 reglas de especialidad y 24 reglas de prioridad",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 48,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763512710,
+    "nanoOfSecond" : 470389119
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.InteraccionesMedicamentosService",
+  "message" : "InteraccionesMedicamentosService inicializado con 13 reglas de interacción",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 48,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513262,
+    "nanoOfSecond" : 238465041
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.DiagnosticoInterconsultaRulesService",
+  "message" : "DiagnosticoInterconsultaRulesService inicializado con 16 reglas de especialidad y 24 reglas de prioridad",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 48,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513262,
+    "nanoOfSecond" : 245371307
+  },
+  "thread" : "restartedMain",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.domain.consultaexterna.services.InteraccionesMedicamentosService",
+  "message" : "InteraccionesMedicamentosService inicializado con 13 reglas de interacción",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 48,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513314,
+    "nanoOfSecond" : 338564664
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513314,
+    "nanoOfSecond" : 339045955
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513314,
+    "nanoOfSecond" : 422604404
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 0 consultas externas para cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513314,
+    "nanoOfSecond" : 424394669
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 0 consultas externas para cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513463,
+    "nanoOfSecond" : 115224577
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1756789012",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513463,
+    "nanoOfSecond" : 115442851
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1756789012",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513463,
+    "nanoOfSecond" : 133050177
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 0 consultas externas para cédula: 1756789012",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513463,
+    "nanoOfSecond" : 133650980
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 0 consultas externas para cédula: 1756789012",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513685,
+    "nanoOfSecond" : 356114871
+  },
+  "thread" : "http-nio-8081-exec-10",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 77,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513685,
+    "nanoOfSecond" : 356196862
+  },
+  "thread" : "http-nio-8081-exec-10",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 77,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513685,
+    "nanoOfSecond" : 366345300
+  },
+  "thread" : "http-nio-8081-exec-10",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 0 consultas externas para cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 77,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513685,
+    "nanoOfSecond" : 366498183
+  },
+  "thread" : "http-nio-8081-exec-10",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 0 consultas externas para cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 77,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513699,
+    "nanoOfSecond" : 336070055
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1756789012",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513699,
+    "nanoOfSecond" : 336159621
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1756789012",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513699,
+    "nanoOfSecond" : 339448473
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 0 consultas externas para cédula: 1756789012",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513699,
+    "nanoOfSecond" : 339619189
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 0 consultas externas para cédula: 1756789012",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513804,
+    "nanoOfSecond" : 726774745
+  },
+  "thread" : "http-nio-8081-exec-9",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1767890123",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 76,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513804,
+    "nanoOfSecond" : 726854283
+  },
+  "thread" : "http-nio-8081-exec-9",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1767890123",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 76,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513804,
+    "nanoOfSecond" : 734327315
+  },
+  "thread" : "http-nio-8081-exec-9",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 0 consultas externas para cédula: 1767890123",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 76,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513804,
+    "nanoOfSecond" : 734483465
+  },
+  "thread" : "http-nio-8081-exec-9",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 0 consultas externas para cédula: 1767890123",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 76,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513806,
+    "nanoOfSecond" : 422223375
+  },
+  "thread" : "http-nio-8081-exec-10",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 77,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513806,
+    "nanoOfSecond" : 422307701
+  },
+  "thread" : "http-nio-8081-exec-10",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 77,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513806,
+    "nanoOfSecond" : 437839111
+  },
+  "thread" : "http-nio-8081-exec-10",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 1 consultas externas para cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 77,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513806,
+    "nanoOfSecond" : 438024234
+  },
+  "thread" : "http-nio-8081-exec-10",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 1 consultas externas para cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 77,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513810,
+    "nanoOfSecond" : 725011364
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513810,
+    "nanoOfSecond" : 725091112
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513810,
+    "nanoOfSecond" : 729635350
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 0 consultas externas para cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513810,
+    "nanoOfSecond" : 729770139
+  },
+  "thread" : "http-nio-8081-exec-1",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 0 consultas externas para cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 68,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513813,
+    "nanoOfSecond" : 53605753
+  },
+  "thread" : "http-nio-8081-exec-2",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 69,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513813,
+    "nanoOfSecond" : 53683557
+  },
+  "thread" : "http-nio-8081-exec-2",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 69,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513813,
+    "nanoOfSecond" : 56559374
+  },
+  "thread" : "http-nio-8081-exec-2",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 0 consultas externas para cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 69,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513813,
+    "nanoOfSecond" : 56683073
+  },
+  "thread" : "http-nio-8081-exec-2",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 0 consultas externas para cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 69,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513821,
+    "nanoOfSecond" : 253259322
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513821,
+    "nanoOfSecond" : 253330264
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513821,
+    "nanoOfSecond" : 257336154
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 0 consultas externas para cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513821,
+    "nanoOfSecond" : 257466385
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 0 consultas externas para cédula: 1778901234",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513827,
+    "nanoOfSecond" : 61281503
+  },
+  "thread" : "http-nio-8081-exec-4",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1756789012",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 71,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513827,
+    "nanoOfSecond" : 61356172
+  },
+  "thread" : "http-nio-8081-exec-4",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1756789012",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 71,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513827,
+    "nanoOfSecond" : 64486320
+  },
+  "thread" : "http-nio-8081-exec-4",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 0 consultas externas para cédula: 1756789012",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 71,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763513827,
+    "nanoOfSecond" : 64635326
+  },
+  "thread" : "http-nio-8081-exec-4",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 0 consultas externas para cédula: 1756789012",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 71,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514128,
+    "nanoOfSecond" : 827800083
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaCommandHandler",
+  "message" : "Consulta externa creada exitosamente con ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514128,
+    "nanoOfSecond" : 827991518
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Consulta externa creada exitosamente con ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514133,
+    "nanoOfSecond" : 693759427
+  },
+  "thread" : "http-nio-8081-exec-8",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 75,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514133,
+    "nanoOfSecond" : 693828334
+  },
+  "thread" : "http-nio-8081-exec-8",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 75,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514133,
+    "nanoOfSecond" : 699358269
+  },
+  "thread" : "http-nio-8081-exec-8",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 2 consultas externas para cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 75,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514133,
+    "nanoOfSecond" : 699499100
+  },
+  "thread" : "http-nio-8081-exec-8",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 2 consultas externas para cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 75,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514140,
+    "nanoOfSecond" : 830246607
+  },
+  "thread" : "http-nio-8081-exec-9",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Obteniendo consulta externa por ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 76,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514140,
+    "nanoOfSecond" : 830505256
+  },
+  "thread" : "http-nio-8081-exec-9",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consulta externa por ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 76,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514140,
+    "nanoOfSecond" : 837220116
+  },
+  "thread" : "http-nio-8081-exec-9",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Consulta externa encontrada exitosamente con ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 76,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514140,
+    "nanoOfSecond" : 837361768
+  },
+  "thread" : "http-nio-8081-exec-9",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Consulta externa encontrada exitosamente con ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 76,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514318,
+    "nanoOfSecond" : 581506243
+  },
+  "thread" : "http-nio-8081-exec-6",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 73,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514318,
+    "nanoOfSecond" : 581607079
+  },
+  "thread" : "http-nio-8081-exec-6",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 73,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514318,
+    "nanoOfSecond" : 591264486
+  },
+  "thread" : "http-nio-8081-exec-6",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 2 consultas externas para cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 73,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514318,
+    "nanoOfSecond" : 591495892
+  },
+  "thread" : "http-nio-8081-exec-6",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 2 consultas externas para cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 73,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514319,
+    "nanoOfSecond" : 667475355
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Obteniendo consulta externa por ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514319,
+    "nanoOfSecond" : 667542248
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consulta externa por ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514319,
+    "nanoOfSecond" : 670827181
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Consulta externa encontrada exitosamente con ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763514319,
+    "nanoOfSecond" : 670936713
+  },
+  "thread" : "http-nio-8081-exec-7",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Consulta externa encontrada exitosamente con ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 74,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763519281,
+    "nanoOfSecond" : 49983626
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Buscando consultas externas por cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763519281,
+    "nanoOfSecond" : 50044268
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consultas externas por cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763519281,
+    "nanoOfSecond" : 59504132
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Encontradas 2 consultas externas para cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763519281,
+    "nanoOfSecond" : 59660821
+  },
+  "thread" : "http-nio-8081-exec-3",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Encontradas 2 consultas externas para cédula: 1745678901",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 70,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763519282,
+    "nanoOfSecond" : 375216431
+  },
+  "thread" : "http-nio-8081-exec-4",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Obteniendo consulta externa por ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 71,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763519282,
+    "nanoOfSecond" : 375264520
+  },
+  "thread" : "http-nio-8081-exec-4",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Buscando consulta externa por ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 71,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763519282,
+    "nanoOfSecond" : 378004772
+  },
+  "thread" : "http-nio-8081-exec-4",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler",
+  "message" : "Consulta externa encontrada exitosamente con ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 71,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}
+{
+  "instant" : {
+    "epochSecond" : 1763519282,
+    "nanoOfSecond" : 378090310
+  },
+  "thread" : "http-nio-8081-exec-4",
+  "level" : "INFO",
+  "loggerName" : "com.ug.ec.infrastructure.rest.consultaexterna.ConsultaExternaController",
+  "message" : "Consulta externa encontrada exitosamente con ID: 691d171037ea09e42290ada3",
+  "contextMap" : { },
+  "endOfBatch" : false,
+  "loggerFqcn" : "org.apache.logging.slf4j.Log4jLogger",
+  "threadId" : 71,
+  "threadPriority" : 5,
+  "application" : "SGHistorialMedico",
+  "module" : "consultaExterna",
+  "environment" : "default"
+}

@@ -20,36 +20,6 @@ public class ExamenFisicoRegional {
     private String observaciones;
     
     @Builder.Default
-    private boolean normal = true;
-    
-    public String obtenerDescripcionFormateada() {
-        StringBuilder descripcion = new StringBuilder();
-        descripcion.append(region != null ? region : "Región no especificada");
-        descripcion.append(": ");
-        
-        if (normal) {
-            descripcion.append("Normal");
-        } else {
-            if (hallazgos != null && !hallazgos.isEmpty()) {
-                descripcion.append(String.join(", ", hallazgos));
-            } else {
-                descripcion.append("Sin hallazgos específicos");
-            }
-        }
-        
-        if (observaciones != null && !observaciones.trim().isEmpty()) {
-            descripcion.append(" - ").append(observaciones);
-        }
-        
-        return descripcion.toString();
-    }
-    
-    public boolean tieneHallazgosAnormales() {
-        return !normal || (hallazgos != null && !hallazgos.isEmpty());
-    }
-    
-    // Método corregido para la referencia en ExamenFisico
-    public boolean isNormal() {
-        return normal;
-    }
+    private boolean presente = false;
+
 }

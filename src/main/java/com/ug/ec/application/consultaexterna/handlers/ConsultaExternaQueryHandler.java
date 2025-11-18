@@ -38,6 +38,7 @@ public class ConsultaExternaQueryHandler {
                         "Consulta externa no encontrada con ID: " + query.getId()));
 
             ConsultaExternaDto resultado = mapper.entityToDto(consultaExterna);
+            System.out.println(consultaExterna);
             log.info("Consulta externa encontrada exitosamente con ID: {}", query.getId());
             
             return resultado;

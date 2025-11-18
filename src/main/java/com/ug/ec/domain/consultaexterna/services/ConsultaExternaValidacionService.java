@@ -72,13 +72,9 @@ public class ConsultaExternaValidacionService {
             throw new ExamenFisicoInvalidoException("El examen físico es obligatorio");
         }
         
-        if (examenFisico.getSignosVitales() == null) {
-            throw new ExamenFisicoInvalidoException("Los signos vitales son obligatorios");
-        }
+
         
-        if (!examenFisico.getSignosVitales().estanEnRangoNormal()) {
-            log.warn("Signos vitales fuera de rango normal detectados");
-        }
+
     }
     
     private void validarDiagnosticos(List<Diagnostico> diagnosticos) {

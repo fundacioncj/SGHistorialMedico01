@@ -4,6 +4,7 @@ import com.ug.ec.domain.consultaexterna.ConsultaExterna;
 import com.ug.ec.domain.consultaexterna.valueobjects.*;
 import com.ug.ec.domain.consultaexterna.enums.*;
 
+import com.ug.ec.domain.historiaclinica.valueobjects.DatosFormulario;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -180,10 +181,7 @@ public class FormularioConsultaExternaValidationService {
         if (datosConsulta.getMedicoTratante() == null || datosConsulta.getMedicoTratante().trim().isEmpty()) {
             errores.add("El médico tratante es obligatorio");
         }
-        
-        if (datosConsulta.getEspecialidad() == null || datosConsulta.getEspecialidad().trim().isEmpty()) {
-            errores.add("La especialidad es obligatoria");
-        }
+
         
         if (datosConsulta.getTipoConsulta() == null) {
             errores.add("El tipo de consulta es obligatorio");
@@ -230,65 +228,10 @@ public class FormularioConsultaExternaValidationService {
         }
         
         // Validar signos vitales
-        SignosVitales signos = examenFisico.getSignosVitales();
-        if (signos == null) {
-            errores.add("Los signos vitales son obligatorios");
-        } else {
-            // Validar campos obligatorios de signos vitales
-            if (signos.getPresionArterial() == null || signos.getPresionArterial().trim().isEmpty()) {
-                errores.add("La presión arterial es obligatoria");
-            } else if (!signos.getPresionArterial().contains("/")) {
-                errores.add("El formato de la presión arterial es inválido (debe ser sistólica/diastólica)");
-            }
-            
-            if (signos.getFrecuenciaCardiaca() == null) {
-                errores.add("La frecuencia cardíaca es obligatoria");
-            }
-            
-            if (signos.getFrecuenciaRespiratoria() == null) {
-                errores.add("La frecuencia respiratoria es obligatoria");
-            }
-            
-            if (signos.getTemperatura() == null) {
-                errores.add("La temperatura es obligatoria");
-            }
-            
 
-        }
+
         
-        // Validar medidas antropométricas
-        MedidasAntropometricas medidas = examenFisico.getMedidasAntropometricas();
-        if (medidas == null) {
-            errores.add("Las medidas antropométricas son obligatorias");
-        } else {
-            // Validar campos obligatorios de medidas antropométricas
-            if (medidas.getPeso() == null) {
-                errores.add("El peso es obligatorio");
-            }
-            
-            if (medidas.getTalla() == null) {
-                errores.add("La talla es obligatoria");
-            }
-            
-            // Validar coherencia de medidas antropométricas
-            if (medidas.getPeso() != null && medidas.getTalla() != null) {
-                if (medidas.getPeso().doubleValue() <= 0) {
-                    errores.add("El peso debe ser mayor a 0");
-                }
-                
-                if (medidas.getTalla().doubleValue() <= 0) {
-                    errores.add("La talla debe ser mayor a 0");
-                }
-                
-                // Validar IMC en rango razonable (10-100)
-                if (medidas.calcularIMC() != null) {
-                    double imc = medidas.calcularIMC().doubleValue();
-                    if (imc < 10 || imc > 100) {
-                        errores.add("El IMC calculado está fuera del rango razonable (10-100): " + imc);
-                    }
-                }
-            }
-        }
+
         
         // Validar examen físico regional
         List<ExamenFisicoRegional> examenesRegionales = examenFisico.getExamenesRegionales();

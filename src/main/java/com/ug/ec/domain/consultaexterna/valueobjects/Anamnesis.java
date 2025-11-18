@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import jakarta.validation.constraints.*;
 import lombok.extern.jackson.Jacksonized;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,10 +21,11 @@ public class Anamnesis {
     private String enfermedadActual;
 
 
-    private List<String> medicamentosActuales;
-    
-    private String revisionSistemas;
-    private String observaciones;
+
+
+    @Builder.Default
+    private List<RevisionOrganosSistemasItem> revisionActualOrganosSistemas = new ArrayList<>(0);
+
     
 
 }

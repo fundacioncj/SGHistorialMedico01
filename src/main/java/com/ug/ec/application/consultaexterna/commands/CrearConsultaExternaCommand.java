@@ -27,6 +27,10 @@ public class CrearConsultaExternaCommand {
     @Valid
     String historiaClinicaId;
 
+    @NotNull(message = "Es requerida la Hstoria Clinica")
+    @Valid
+    String signosVitalesId;
+
     @NotNull(message = "La cedual del paciente es requerida")
     @Valid
     String cedulaPaciente;

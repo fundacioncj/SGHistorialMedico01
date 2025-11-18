@@ -19,5 +19,5 @@ public class ExamenFisicoSistemico {
     private String observaciones;
 
     @Builder.Default
-    private boolean normal = true;
+    private boolean presente = false;
 }

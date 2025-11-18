@@ -17,7 +17,6 @@ public class ConsultaExternaResumenDto {
 
     // Datos esenciales de consulta
     LocalDateTime fechaConsulta;
-    String especialidad;
     String medicoTratante;
 
     // Estado y auditoría

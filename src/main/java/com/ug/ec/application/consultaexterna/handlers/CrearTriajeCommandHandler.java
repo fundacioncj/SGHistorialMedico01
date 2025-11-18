@@ -18,9 +18,7 @@ public class CrearTriajeCommandHandler {
 
     public String handle(CrearTriajeCommand command) {
         // Construir Examen Físico con signos vitales
-        ExamenFisico examenFisico = ExamenFisico.builder()
-                .signosVitales(command.getSignosVitales())
-                .build();
+
 
         // Evaluar prioridad
         String nivelPrioridad = determinarPrioridad(command.getSignosVitales());
@@ -28,7 +26,6 @@ public class CrearTriajeCommandHandler {
         // Crear consulta inicial con estado TRIAJE
         ConsultaExterna consulta = ConsultaExterna.builder()
                 .cedulaPaciente(command.getCedulaPaciente())
-                .examenFisico(examenFisico)
                 .estado(EstadoConsulta.INICIADA)
                 .auditoria(DatosAuditoria.crearNuevo(command.getUsuarioCreador()))
                 .build();

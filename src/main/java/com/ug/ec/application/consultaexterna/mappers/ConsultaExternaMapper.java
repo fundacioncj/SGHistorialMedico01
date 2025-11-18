@@ -29,10 +29,12 @@ public class ConsultaExternaMapper {
             return null;
         }
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>");
+
         return ConsultaExternaDto.builder()
                 .id(entity.getId())
                 .numeroConsulta(entity.getNumeroConsulta())
                 .historiaClinicaId(entity.getHistoriaClinicaId())
+                .signosVitalesId(entity.getSignosVitalesId())
                 .cedulaPaciente(entity.getCedulaPaciente())
                 .datosConsulta(entity.getDatosConsulta())
                 .anamnesis(entity.getAnamnesis())
@@ -57,6 +59,7 @@ public class ConsultaExternaMapper {
                 .id(dto.getId())
                 .numeroConsulta(dto.getNumeroConsulta())
                 .historiaClinicaId(dto.getHistoriaClinicaId())
+                .signosVitalesId(dto.getSignosVitalesId())
                .cedulaPaciente(dto.getCedulaPaciente())
                 .datosConsulta(dto.getDatosConsulta())
                 .anamnesis(dto.getAnamnesis())
@@ -73,13 +76,14 @@ public class ConsultaExternaMapper {
         return ConsultaExterna.builder()
                 .numeroConsulta(command.getDatosConsulta().getNumeroConsulta())
                 .historiaClinicaId(command.getHistoriaClinicaId())
+                .signosVitalesId(command.getSignosVitalesId())
               .cedulaPaciente(command.getCedulaPaciente())
                 .datosConsulta(command.getDatosConsulta())
                 .anamnesis(command.getAnamnesis())
                 .examenFisico(command.getExamenFisico())
                 .diagnosticos(command.getDiagnosticos())
                 .planTratamiento(command.getPlanTratamiento())
-                .estado(EstadoConsulta.EN_PROCESO)
+                .estado(EstadoConsulta.COMPLETADA)
                 .auditoria(DatosAuditoria.crearNuevo("SISTEMA"))
                 .build();
     }
@@ -109,7 +113,6 @@ public class ConsultaExternaMapper {
                 .numeroConsulta(entity.obtenerNumeroConsulta())
                 .cedulaPaciente(entity.getCedulaPaciente() != null ? entity.getCedulaPaciente() : null)
                 .fechaConsulta(entity.getDatosConsulta() != null ? entity.getDatosConsulta().getFechaConsulta() : null)
-                .especialidad(entity.getDatosConsulta() != null ? entity.getDatosConsulta().getEspecialidad() : null)
                 .medicoTratante(entity.getDatosConsulta() != null ? entity.getDatosConsulta().getMedicoTratante() : null)
                 .estado(entity.getEstado())
                 .fechaCreacion(entity.getAuditoria() != null ? entity.getAuditoria().getFechaCreacion() : null)

@@ -19,6 +19,7 @@ public class ConsultaExternaDto {
     private String id;
     private String numeroConsulta;
     private String historiaClinicaId;
+    private String signosVitalesId;
     private String cedulaPaciente;
     private DatosConsulta datosConsulta;
     private Anamnesis anamnesis;

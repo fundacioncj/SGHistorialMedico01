@@ -33,7 +33,8 @@ public class ConsultaExternaDocument {
     @Id
     private String id;
 
-    private String historiaClinicaId;;
+    private String historiaClinicaId;
+    private String signosVitalesId;
 
     @Indexed(unique = true)
     private String numeroConsulta;
