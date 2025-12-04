@@ -27,6 +27,7 @@ public class ConsultaExterna {
     String cedulaPaciente;
     String historiaClinicaId;
     String signosVitalesId;
+    String citaId;
     DatosConsulta datosConsulta;
     Anamnesis anamnesis;
 

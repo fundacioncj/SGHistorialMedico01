@@ -37,6 +37,12 @@ public class ConsultaExternaRepositoryImpl implements ConsultaExternaRepository 
         return mongoRepository.findById(id)
                 .map(mapper::toDomain);
     }
+
+    @Override
+    public Optional<ConsultaExterna> findByCitaId(String id) {
+        return mongoRepository.findByCitaId(id)
+                .map(mapper::toDomain);
+    }
     
     @Override
     public void deleteById(String id) {

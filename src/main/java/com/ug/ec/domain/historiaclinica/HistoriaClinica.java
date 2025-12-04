@@ -125,37 +125,9 @@ public class HistoriaClinica {
         this.auditoria = this.auditoria.actualizar(usuario);
     }
 
-    /**
-     * Elimina un antecedente personal
-     */
-    public void eliminarAntecedentePersonal(TipoAntecedente tipo, String usuario) {
-        boolean eliminado = this.antecedentesPatologicosPersonales.removeIf(
-                a -> a.getTipo() == tipo);
 
-        if (!eliminado) {
-            throw new IllegalArgumentException(
-                    "No existe un antecedente personal del tipo: " + tipo.getDescripcion());
-        }
 
-        this.fechaUltimaActualizacion = LocalDateTime.now();
-        this.auditoria = this.auditoria.actualizar(usuario);
-    }
 
-    /**
-     * Elimina un antecedente familiar
-     */
-    public void eliminarAntecedenteFamiliar(TipoAntecedente tipo, String parentesco, String usuario) {
-        boolean eliminado = this.antecedentesPatologicosFamiliares.removeIf(
-                a -> a.getTipo() == tipo &&
-                        (parentesco == null || a.getParentesco().equals(parentesco)));
-
-        if (!eliminado) {
-            throw new IllegalArgumentException("No se encontró el antecedente familiar a eliminar");
-        }
-
-        this.fechaUltimaActualizacion = LocalDateTime.now();
-        this.auditoria = this.auditoria.actualizar(usuario);
-    }
 
     /**
      * Eliminación lógica de la historia clínica
@@ -221,5 +193,134 @@ public class HistoriaClinica {
                 antecedentesPatologicosPersonales != null ? antecedentesPatologicosPersonales.size() : 0,
                 antecedentesPatologicosFamiliares != null ? antecedentesPatologicosFamiliares.size() : 0
         );
+    }
+
+    /**
+     * Actualiza un antecedente personal existente
+     */
+    public void actualizarAntecedentePersonal(
+            TipoAntecedente tipoOriginal,
+            AntecedentePatologicoPersonal antecedenteActualizado,
+            String usuario) {
+
+        antecedenteActualizado.validar();
+
+        // Buscar el antecedente por tipo
+        boolean encontrado = false;
+        for (int i = 0; i < this.antecedentesPatologicosPersonales.size(); i++) {
+            if (this.antecedentesPatologicosPersonales.get(i).getTipo() == tipoOriginal) {
+
+                // Si se está cambiando el tipo, validar que el nuevo tipo no exista
+                if (tipoOriginal != antecedenteActualizado.getTipo()) {
+                    boolean nuevoTipoExiste = this.antecedentesPatologicosPersonales.stream()
+                            .anyMatch(a -> a.getTipo() == antecedenteActualizado.getTipo());
+
+                    if (nuevoTipoExiste) {
+                        throw new IllegalStateException(
+                                "Ya existe un antecedente personal del tipo: " +
+                                        antecedenteActualizado.getTipo().getDescripcion());
+                    }
+                }
+
+                this.antecedentesPatologicosPersonales.set(i, antecedenteActualizado);
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            throw new IllegalArgumentException(
+                    "No existe un antecedente personal del tipo: " + tipoOriginal.getDescripcion());
+        }
+
+        this.fechaUltimaActualizacion = LocalDateTime.now();
+        this.auditoria = this.auditoria.actualizar(usuario);
+    }
+
+    /**
+     * Actualiza un antecedente familiar por índice
+     */
+    public void actualizarAntecedenteFamiliar(
+            Integer indice,
+            AntecedentePatologicoFamiliar antecedenteActualizado,
+            String usuario) {
+
+        antecedenteActualizado.validar();
+
+        if (this.antecedentesPatologicosFamiliares == null ||
+                this.antecedentesPatologicosFamiliares.isEmpty()) {
+            throw new IllegalArgumentException("No existen antecedentes familiares para actualizar");
+        }
+
+        if (indice < 0 || indice >= this.antecedentesPatologicosFamiliares.size()) {
+            throw new IllegalArgumentException(
+                    "Índice de antecedente familiar inválido: " + indice);
+        }
+
+        this.antecedentesPatologicosFamiliares.set(indice, antecedenteActualizado);
+        this.fechaUltimaActualizacion = LocalDateTime.now();
+        this.auditoria = this.auditoria.actualizar(usuario);
+    }
+
+    /**
+     * Elimina un antecedente personal por tipo
+     */
+    public void eliminarAntecedentePersonal(TipoAntecedente tipo, String usuario) {
+        if (this.antecedentesPatologicosPersonales == null ||
+                this.antecedentesPatologicosPersonales.isEmpty()) {
+            throw new IllegalArgumentException("No existen antecedentes personales para eliminar");
+        }
+
+        boolean eliminado = this.antecedentesPatologicosPersonales.removeIf(
+                a -> a.getTipo() == tipo);
+
+        if (!eliminado) {
+            throw new IllegalArgumentException(
+                    "No existe un antecedente personal del tipo: " + tipo.getDescripcion());
+        }
+
+        this.fechaUltimaActualizacion = LocalDateTime.now();
+        this.auditoria = this.auditoria.actualizar(usuario);
+    }
+
+    /**
+     * Elimina un antecedente familiar por índice
+     */
+    public void eliminarAntecedenteFamiliar(Integer indice, String usuario) {
+        if (this.antecedentesPatologicosFamiliares == null ||
+                this.antecedentesPatologicosFamiliares.isEmpty()) {
+            throw new IllegalArgumentException("No existen antecedentes familiares para eliminar");
+        }
+
+        if (indice < 0 || indice >= this.antecedentesPatologicosFamiliares.size()) {
+            throw new IllegalArgumentException(
+                    "Índice de antecedente familiar inválido: " + indice);
+        }
+
+        this.antecedentesPatologicosFamiliares.remove(indice.intValue());
+        this.fechaUltimaActualizacion = LocalDateTime.now();
+        this.auditoria = this.auditoria.actualizar(usuario);
+    }
+
+    /**
+     * Obtiene un antecedente personal por tipo
+     */
+    public AntecedentePatologicoPersonal obtenerAntecedentePersonal(TipoAntecedente tipo) {
+        return this.antecedentesPatologicosPersonales.stream()
+                .filter(a -> a.getTipo() == tipo)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "No existe un antecedente personal del tipo: " + tipo.getDescripcion()));
+    }
+
+    /**
+     * Obtiene un antecedente familiar por índice
+     */
+    public AntecedentePatologicoFamiliar obtenerAntecedenteFamiliar(Integer indice) {
+        if (indice < 0 || indice >= this.antecedentesPatologicosFamiliares.size()) {
+            throw new IllegalArgumentException(
+                    "Índice de antecedente familiar inválido: " + indice);
+        }
+        return this.antecedentesPatologicosFamiliares.get(indice);
     }
 }

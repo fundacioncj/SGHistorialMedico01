@@ -38,11 +38,29 @@ public class ConsultaExternaQueryHandler {
                         "Consulta externa no encontrada con ID: " + query.getId()));
 
             ConsultaExternaDto resultado = mapper.entityToDto(consultaExterna);
-            System.out.println(consultaExterna);
             log.info("Consulta externa encontrada exitosamente con ID: {}", query.getId());
             
             return resultado;
             
+        } catch (Exception e) {
+            log.error("Error al buscar consulta externa por ID: {}", e.getMessage(), e);
+            throw new ConsultaExternaConsultaException("Error al buscar la consulta externa", e);
+        }
+    }
+
+    public ConsultaExternaDto handle(BuscarConsultaExternaPorCitaIdQuery query) {
+        log.info("Buscando consulta externa por cita ID: {}", query.getId());
+
+        try {
+            ConsultaExterna consultaExterna = consultaExternaRepository.findByCitaId(query.getId())
+                    .orElseThrow(() -> new ConsultaExternaNotFoundException(
+                            "Consulta externa no encontrada con CITA ID: " + query.getId()));
+
+            ConsultaExternaDto resultado = mapper.entityToDto(consultaExterna);
+            log.info("Consulta externa encontrada exitosamente con CITA ID: {}", query.getId());
+
+            return resultado;
+
         } catch (Exception e) {
             log.error("Error al buscar consulta externa por ID: {}", e.getMessage(), e);
             throw new ConsultaExternaConsultaException("Error al buscar la consulta externa", e);

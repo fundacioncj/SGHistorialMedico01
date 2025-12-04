@@ -43,6 +43,12 @@ public class MongoConsultaExternaRepositoryAdapter implements ConsultaExternaRep
         return mongoRepository.findById(id)
                 .map(document -> mapper.toDomain(document));
     }
+
+    @Override
+    public Optional<ConsultaExterna> findByCitaId(String id) {
+        return mongoRepository.findByCitaId(id)
+                .map(document -> mapper.toDomain(document));
+    }
     
     @Override
     public void deleteById(String id) {

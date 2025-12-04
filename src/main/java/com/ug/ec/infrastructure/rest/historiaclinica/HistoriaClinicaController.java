@@ -7,6 +7,7 @@ import com.ug.ec.application.historiaclinica.queries.ListarHistoriasClinicasQuer
 import com.ug.ec.application.historiaclinica.queries.ObtenerHistoriaClinicaPorIdQuery;
 import com.ug.ec.application.historiaclinica.queries.ObtenerHistoriaClinicaPorPacienteQuery;
 import com.ug.ec.domain.historiaclinica.HistoriaClinica;
+import com.ug.ec.domain.historiaclinica.enums.TipoAntecedente;
 import com.ug.ec.infrastructure.rest.historiaclinica.request.*;
 import com.ug.ec.infrastructure.rest.historiaclinica.response.HistoriaClinicaResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,6 +37,12 @@ public class HistoriaClinicaController {
     private final AgregarAntecedentePersonalHandler agregarAntecedentePersonalHandler;
     private final AgregarAntecedenteFamiliarHandler agregarAntecedenteFamiliarHandler;
     private final EliminarHistoriaClinicaHandler eliminarHandler;
+
+
+    private final ActualizarAntecedentePersonalHandler actualizarAntecedentePersonalHandler;
+    private final ActualizarAntecedenteFamiliarHandler actualizarAntecedenteFamiliarHandler;
+    private final EliminarAntecedentePersonalHandler eliminarAntecedentePersonalHandler;
+    private final EliminarAntecedenteFamiliarHandler eliminarAntecedenteFamiliarHandler;
 
     // Query Handlers
     private final ObtenerHistoriaClinicaPorIdHandler obtenerPorIdHandler;
@@ -189,6 +196,90 @@ public class HistoriaClinicaController {
                 .build();
 
         HistoriaClinica resultado = agregarAntecedenteFamiliarHandler.ejecutar(command);
+
+        return ResponseEntity.ok(toResponse(resultado));
+    }
+
+    /**
+     * Actualizar un antecedente patológico personal
+     */
+    @PutMapping("/{id}/antecedentes-personales")
+    public ResponseEntity<HistoriaClinicaResponse> actualizarAntecedentePersonal(
+            @PathVariable String id,
+            @Valid @RequestBody ActualizarAntecedentePersonalRequest request) {
+
+        ActualizarAntecedentePersonalCommand command = ActualizarAntecedentePersonalCommand.builder()
+                .historiaClinicaId(id)
+                .tipoAntecedenteOriginal(request.getTipoAntecedenteOriginal())
+                .antecedenteActualizado(request.getAntecedenteActualizado())
+                .usuarioModificacion(request.getUsuarioModificacion())
+                .build();
+
+        HistoriaClinica resultado = actualizarAntecedentePersonalHandler.ejecutar(command);
+
+        return ResponseEntity.ok(toResponse(resultado));
+    }
+
+    /**
+     * Actualizar un antecedente patológico familiar
+     */
+    @PutMapping("/{id}/antecedentes-familiares/{indice}")
+    public ResponseEntity<HistoriaClinicaResponse> actualizarAntecedenteFamiliar(
+            @PathVariable String id,
+            @PathVariable Integer indice,
+            @Valid @RequestBody ActualizarAntecedenteFamiliarRequest request) {
+
+        // El índice viene en el path, lo actualizamos en el request
+        request.setIndice(indice);
+
+        ActualizarAntecedenteFamiliarCommand command = ActualizarAntecedenteFamiliarCommand.builder()
+                .historiaClinicaId(id)
+                .indice(request.getIndice())
+                .antecedenteActualizado(request.getAntecedenteActualizado())
+                .usuarioModificacion(request.getUsuarioModificacion())
+                .build();
+
+        HistoriaClinica resultado = actualizarAntecedenteFamiliarHandler.ejecutar(command);
+
+        return ResponseEntity.ok(toResponse(resultado));
+    }
+
+    /**
+     * Eliminar un antecedente patológico personal por tipo
+     */
+    @DeleteMapping("/{id}/antecedentes-personales/{tipoAntecedente}")
+    public ResponseEntity<HistoriaClinicaResponse> eliminarAntecedentePersonal(
+            @PathVariable String id,
+            @PathVariable TipoAntecedente tipoAntecedente,
+            @RequestParam String usuarioModificacion) {
+
+        EliminarAntecedentePersonalCommand command = EliminarAntecedentePersonalCommand.builder()
+                .historiaClinicaId(id)
+                .tipoAntecedente(tipoAntecedente)
+                .usuarioModificacion(usuarioModificacion)
+                .build();
+
+        HistoriaClinica resultado = eliminarAntecedentePersonalHandler.ejecutar(command);
+
+        return ResponseEntity.ok(toResponse(resultado));
+    }
+
+    /**
+     * Eliminar un antecedente patológico familiar por índice
+     */
+    @DeleteMapping("/{id}/antecedentes-familiares/{indice}")
+    public ResponseEntity<HistoriaClinicaResponse> eliminarAntecedenteFamiliar(
+            @PathVariable String id,
+            @PathVariable Integer indice,
+            @RequestParam String usuarioModificacion) {
+
+        EliminarAntecedenteFamiliarCommand command = EliminarAntecedenteFamiliarCommand.builder()
+                .historiaClinicaId(id)
+                .indice(indice)
+                .usuarioModificacion(usuarioModificacion)
+                .build();
+
+        HistoriaClinica resultado = eliminarAntecedenteFamiliarHandler.ejecutar(command);
 
         return ResponseEntity.ok(toResponse(resultado));
     }

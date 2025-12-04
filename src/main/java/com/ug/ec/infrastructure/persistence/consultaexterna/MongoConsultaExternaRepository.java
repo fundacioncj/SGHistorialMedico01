@@ -29,6 +29,7 @@ public interface MongoConsultaExternaRepository extends
 
     // Búsquedas específicas de MongoDB
     Optional<ConsultaExternaDocument> findByNumeroConsulta(String numeroConsulta);
+    Optional<ConsultaExternaDocument> findByCitaId(String citaId);
 
     boolean existsByNumeroConsulta(String numeroConsulta);
 

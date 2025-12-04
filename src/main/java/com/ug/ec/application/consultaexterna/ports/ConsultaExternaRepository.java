@@ -14,6 +14,7 @@ public interface ConsultaExternaRepository {
     // Operaciones básicas
     ConsultaExterna save(ConsultaExterna consultaExterna);
     Optional<ConsultaExterna> findById(String id);
+    Optional<ConsultaExterna> findByCitaId(String id);
     void deleteById(String id);
     List<ConsultaExterna> findAll();
 

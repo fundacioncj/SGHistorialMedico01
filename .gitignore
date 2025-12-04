@@ -37,7 +37,7 @@ build/
 Diseño de Nuevos Flujos de Negocio.md
 informe_validacion_consulta_externa.md
 
-./logs/*
+/logs/*
 
 # ── Docs locales: no versionar ──
 /002 CONSULTA EXTERNA 2021*/

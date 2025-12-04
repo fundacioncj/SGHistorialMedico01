@@ -9,10 +9,7 @@ import com.ug.ec.application.consultaexterna.dto.ConsultaExternaResumenDto;
 import com.ug.ec.application.consultaexterna.handlers.ConsultaExternaCommandHandler;
 import com.ug.ec.application.consultaexterna.handlers.ConsultaExternaQueryHandler;
 import com.ug.ec.application.consultaexterna.handlers.CrearTriajeCommandHandler;
-import com.ug.ec.application.consultaexterna.queries.BuscarConsultaExternaPorIdQuery;
-import com.ug.ec.application.consultaexterna.queries.BuscarConsultaExternaPorCedulaQuery;
-import com.ug.ec.application.consultaexterna.queries.BuscarConsultaExternaPorNumeroConsultaQuery;
-import com.ug.ec.application.consultaexterna.queries.BuscarConsultasExternasPorFechaQuery;
+import com.ug.ec.application.consultaexterna.queries.*;
 import com.ug.ec.domain.consultaexterna.enums.EstadoConsulta;
 import com.ug.ec.domain.consultaexterna.exceptions.*;
 
@@ -184,6 +181,66 @@ public class ConsultaExternaController {
             
         } catch (Exception e) {
             log.error("Error al obtener consulta externa por ID: {}", e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    @Operation(
+            summary = "Obtener una consulta externa por Cita ID",
+            description = "Recupera los datos completos de una consulta externa médica a partir de la cita",
+            tags = {"Consultas Externas"}
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Consulta externa encontrada exitosamente",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Map.class))
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Consulta externa no encontrada",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Map.class))
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Error interno del servidor",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Map.class))
+            )
+    })
+    @GetMapping("/cita/{id}")
+    public ResponseEntity<Map<String, Object>> obtenerConsultaExternaPorCitaId(
+            @Parameter(
+                    description = "CITA ID de la consulta externa a recuperar",
+                    required = true,
+                    example = "1"
+            )
+            @PathVariable String id) {
+
+        log.info("Obteniendo consulta externa por cita ID: {}", id);
+
+        try {
+            BuscarConsultaExternaPorCitaIdQuery query = BuscarConsultaExternaPorCitaIdQuery.builder()
+                    .id(id)
+                    .build();
+
+            ConsultaExternaDto consulta = queryHandler.handle(query);
+
+            Map<String, Object> response = Map.of(
+                    "success", true,
+                    "message", "Consulta externa encontrada exitosamente",
+                    "data", consulta,
+                    "timestamp", LocalDateTime.now()
+            );
+
+            log.info("Consulta externa encontrada exitosamente con CITA ID: {}", id);
+
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+            log.error("Error al obtener consulta externa por CITA ID: {}", e.getMessage(), e);
             throw e;
         }
     }

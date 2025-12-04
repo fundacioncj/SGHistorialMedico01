@@ -36,6 +36,8 @@ public class ConsultaExternaDocument {
     private String historiaClinicaId;
     private String signosVitalesId;
 
+    private String citaId;
+
     @Indexed(unique = true)
     private String numeroConsulta;
 
