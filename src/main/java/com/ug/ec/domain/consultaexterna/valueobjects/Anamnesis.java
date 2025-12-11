@@ -17,7 +17,7 @@ import java.util.List;
 @Jacksonized
 public class Anamnesis {
     
-    @NotBlank(message = "La enfermedad actual es obligatoria")
+//    @NotBlank(message = "La enfermedad actual es obligatoria")
     private String enfermedadActual;
 
 

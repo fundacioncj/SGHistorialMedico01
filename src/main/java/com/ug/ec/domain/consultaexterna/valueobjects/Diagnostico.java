@@ -18,19 +18,19 @@ import java.util.List;
 @Jacksonized
 public class Diagnostico {
     
-    @NotBlank(message = "El código CIE-10 es obligatorio")
-    @Pattern(regexp = "^[A-Z]\\d{2}(\\.\\d{1,2})?$", message = "El código CIE-10 debe tener formato válido")
+//    @NotBlank(message = "El código CIE-10 es obligatorio")
+//    @Pattern(regexp = "^[A-Z]\\d{2}(\\.\\d{1,2})?$", message = "El código CIE-10 debe tener formato válido")
     private String codigoCie10;
     
-    @NotBlank(message = "La descripción del diagnóstico es obligatoria")
+//    @NotBlank(message = "La descripción del diagnóstico es obligatoria")
     private String descripcion;
     
-    @NotNull(message = "El tipo de diagnóstico es obligatorio")
+//    @NotNull(message = "El tipo de diagnóstico es obligatorio")
     private TipoDiagnostico tipo;
     
     private String observaciones;
     
-    @NotNull(message = "La fecha del diagnóstico es obligatoria")
+//    @NotNull(message = "La fecha del diagnóstico es obligatoria")
     private LocalDateTime fechaDiagnostico;
     
     // Nuevos campos
