@@ -28,8 +28,10 @@ public class DatosConsulta {
     
 //    @NotBlank(message = "El médico tratante es obligatorio")
     private String medicoTratante;
-    
+
     private String codigoMedico;
+
+    private String especialidad;
     
 //    @NotNull(message = "El tipo de consulta es obligatorio")
     private TipoConsulta tipoConsulta;

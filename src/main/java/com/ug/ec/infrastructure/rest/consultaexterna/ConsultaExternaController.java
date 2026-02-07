@@ -12,6 +12,8 @@ import com.ug.ec.application.consultaexterna.handlers.CrearTriajeCommandHandler;
 import com.ug.ec.application.consultaexterna.queries.*;
 import com.ug.ec.domain.consultaexterna.enums.EstadoConsulta;
 import com.ug.ec.domain.consultaexterna.exceptions.*;
+import com.ug.ec.infrastructure.pdf.ConsultaExternaPrintService;
+import com.ug.ec.infrastructure.pdf.ConsultaExternaSignatureProxyService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -24,7 +26,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,10 +46,12 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Tag(name = "Consultas Externas", description = "API para la gestión de consultas externas médicas (Formulario HCU-002)")
 public class ConsultaExternaController {
-    
+
     private final ConsultaExternaCommandHandler commandHandler;
     private final ConsultaExternaQueryHandler queryHandler;
     private final CrearTriajeCommandHandler triajeCommandHandler;
+    private final ConsultaExternaPrintService printService;
+    private final ConsultaExternaSignatureProxyService signatureService;
 
     @PostMapping("/triaje")
     public ResponseEntity<Map<String, Object>> crearTriaje(
@@ -682,6 +688,197 @@ public class ConsultaExternaController {
         
         } catch (Exception e) {
             log.error("Error al eliminar consulta externa: {}", e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    @Operation(
+        summary = "Descargar PDF de consulta externa",
+        description = "Genera y descarga el formulario HCU-002 en formato PDF para una consulta externa específica",
+        tags = {"Consultas Externas"}
+    )
+    @ApiResponses(value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "PDF generado exitosamente",
+            content = @Content(mediaType = "application/pdf")
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Consulta externa no encontrada",
+            content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Map.class))
+        ),
+        @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor",
+            content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Map.class))
+        )
+    })
+    @GetMapping("/{id}/pdf")
+    public ResponseEntity<byte[]> descargarPdf(
+            @Parameter(
+                description = "ID de la consulta externa",
+                required = true,
+                example = "60f1a5c2e8f87a2b94c12345"
+            )
+            @PathVariable String id) {
+
+        log.info("Generando PDF para consulta externa con ID: {}", id);
+
+        try {
+            byte[] pdfBytes = printService.generarPdf(id);
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=hcu002_" + id + ".pdf")
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .body(pdfBytes);
+
+        } catch (Exception e) {
+            log.error("Error al generar PDF para consulta externa: {}", e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    @Operation(
+        summary = "Descargar PDF de consulta externa por cita ID",
+        description = "Genera y descarga el formulario HCU-002 en formato PDF para una consulta externa asociada a una cita específica",
+        tags = {"Consultas Externas"}
+    )
+    @ApiResponses(value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "PDF generado exitosamente",
+            content = @Content(mediaType = "application/pdf")
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Consulta externa no encontrada para la cita especificada",
+            content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Map.class))
+        ),
+        @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor",
+            content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Map.class))
+        )
+    })
+    @GetMapping("/cita/{citaId}/pdf")
+    public ResponseEntity<byte[]> descargarPdfPorCitaId(
+            @Parameter(
+                description = "ID de la cita",
+                required = true,
+                example = "1"
+            )
+            @PathVariable String citaId) {
+
+        log.info("Generando PDF para consulta externa por cita ID: {}", citaId);
+
+        try {
+            byte[] pdfBytes = printService.generarPdfPorCitaId(citaId);
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=hcu002_cita_" + citaId + ".pdf")
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .body(pdfBytes);
+
+        } catch (Exception e) {
+            log.error("Error al generar PDF para consulta externa por cita ID: {}", e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    @Operation(
+        summary = "Descargar PDF firmado digitalmente",
+        description = "Genera el formulario HCU-002 en formato PDF y lo firma digitalmente con el certificado del profesional",
+        tags = {"Consultas Externas"}
+    )
+    @ApiResponses(value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "PDF firmado exitosamente",
+            content = @Content(mediaType = "application/pdf")
+        ),
+        @ApiResponse(
+            responseCode = "400",
+            description = "PIN no proporcionado o datos del profesional incompletos",
+            content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Map.class))
+        ),
+        @ApiResponse(
+            responseCode = "401",
+            description = "PIN incorrecto o certificado no encontrado",
+            content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Map.class))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Consulta externa no encontrada",
+            content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Map.class))
+        ),
+        @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor",
+            content = @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Map.class))
+        )
+    })
+    @PostMapping("/{id}/pdf/firmar")
+    public ResponseEntity<byte[]> descargarPdfFirmado(
+            @Parameter(
+                description = "ID de la consulta externa",
+                required = true,
+                example = "60f1a5c2e8f87a2b94c12345"
+            )
+            @PathVariable String id,
+            @Parameter(
+                description = "Cuerpo con el PIN del certificado digital",
+                required = true
+            )
+            @RequestBody java.util.Map<String, String> body,
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authHeader) {
+
+        log.info("Generando PDF firmado para consulta externa con ID: {}", id);
+
+        String pin = body.get("pin");
+        if (pin == null || pin.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        try {
+            // 1. Generar PDF original
+            byte[] pdfOriginal = printService.generarPdf(id);
+
+            // 2. Obtener la cédula del profesional desde la consulta
+            BuscarConsultaExternaPorIdQuery query = BuscarConsultaExternaPorIdQuery.builder()
+                    .id(id)
+                    .build();
+            var consulta = queryHandler.handle(query);
+
+            // Obtener cédula del médico desde datosConsulta.codigoMedico
+            String cedula = null;
+            if (consulta.getDatosConsulta() != null && consulta.getDatosConsulta().getCodigoMedico() != null) {
+                cedula = consulta.getDatosConsulta().getCodigoMedico();
+            }
+
+            if (cedula == null || cedula.isEmpty()) {
+                log.warn("No se encontró la cédula del profesional (codigoMedico) para la consulta: {}", id);
+                return ResponseEntity.badRequest().build();
+            }
+
+            // 3. Firmar remotamente (pasando el token de autorización)
+            byte[] pdfFirmado = signatureService.firmarRemotamente(pdfOriginal, cedula, pin, authHeader);
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=hcu002_signed_" + id + ".pdf")
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .body(pdfFirmado);
+
+        } catch (Exception e) {
+            log.error("Error al generar PDF firmado para consulta externa: {}", e.getMessage(), e);
             throw e;
         }
     }
