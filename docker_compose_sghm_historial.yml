@@ -1,0 +1,26 @@
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sghm_app
+    volumes:
+      # Monta el archivo de configuración para permitir overrides externos (opcional)
+      - ./src/main/resources/application.properties:/app/config/application.properties:ro
+    environment:
+      JAVA_OPTS: ${JAVA_OPTS:--Xms256m -Xmx512m}
+      SERVER_PORT: ${SERVER_PORT:-8080}
+      SPRING_DATA_MONGODB_URI: ${SPRING_DATA_MONGODB_URI:-mongodb://admin:password123@mongodb:27017/historial_medico?authSource=admin}
+    ports:
+      - "${SERVER_PORT:-8080}:8080"
+    networks:
+      - sgcita_net
+      - mongodb_mongodb_network
+
+networks:
+  sgcita_net:
+    name: sgcita_net
+    driver: bridge
+  mongodb_mongodb_network:
+    external: true
