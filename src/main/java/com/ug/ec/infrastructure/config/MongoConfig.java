@@ -27,7 +27,10 @@ import java.util.concurrent.TimeUnit;
 @EnableMongoRepositories(basePackages = "com.ug.ec.infrastructure.persistence")
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
-    @Value("${spring.data.mongodb.database}")
+    @Value("${spring.data.mongodb.uri:}")
+    private String mongoUri;
+
+    @Value("${spring.data.mongodb.database:}")
     private String databaseName;
 
     @Value("${spring.data.mongodb.host:localhost}")
@@ -56,7 +59,14 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
     @Override
     protected String getDatabaseName() {
-        return databaseName;
+        if (!databaseName.isEmpty()) {
+            return databaseName;
+        }
+        if (!mongoUri.isEmpty()) {
+            String db = new ConnectionString(mongoUri).getDatabase();
+            return db != null ? db : "historial_medico";
+        }
+        return "historial_medico";
     }
 
     @Override
@@ -75,20 +85,24 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
     }
 
     private ConnectionString buildConnectionString() {
+        if (!mongoUri.isEmpty()) {
+            return new ConnectionString(mongoUri);
+        }
+
         StringBuilder sb = new StringBuilder();
         sb.append("mongodb://");
-        
+
         if (!username.isEmpty() && !password.isEmpty()) {
             sb.append(username).append(":").append(password).append("@");
         }
-        
+
         sb.append(host).append(":").append(port);
-        sb.append("/").append(databaseName);
-        
+        sb.append("/").append(getDatabaseName());
+
         if (!username.isEmpty() && !password.isEmpty()) {
             sb.append("?authSource=").append(authenticationDatabase);
         }
-        
+
         return new ConnectionString(sb.toString());
     }
 
