@@ -723,12 +723,13 @@ public class ConsultaExternaController {
                 required = true,
                 example = "60f1a5c2e8f87a2b94c12345"
             )
-            @PathVariable String id) {
+            @PathVariable String id,
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authHeader) {
 
         log.info("Generando PDF para consulta externa con ID: {}", id);
 
         try {
-            byte[] pdfBytes = printService.generarPdf(id);
+            byte[] pdfBytes = printService.generarPdf(id, authHeader);
 
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=hcu002_" + id + ".pdf")
@@ -772,12 +773,13 @@ public class ConsultaExternaController {
                 required = true,
                 example = "1"
             )
-            @PathVariable String citaId) {
+            @PathVariable String citaId,
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authHeader) {
 
         log.info("Generando PDF para consulta externa por cita ID: {}", citaId);
 
         try {
-            byte[] pdfBytes = printService.generarPdfPorCitaId(citaId);
+            byte[] pdfBytes = printService.generarPdfPorCitaId(citaId, authHeader);
 
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=hcu002_cita_" + citaId + ".pdf")
@@ -850,7 +852,7 @@ public class ConsultaExternaController {
 
         try {
             // 1. Generar PDF original
-            byte[] pdfOriginal = printService.generarPdf(id);
+            byte[] pdfOriginal = printService.generarPdf(id, authHeader);
 
             // 2. Obtener la cédula del profesional desde la consulta
             BuscarConsultaExternaPorIdQuery query = BuscarConsultaExternaPorIdQuery.builder()

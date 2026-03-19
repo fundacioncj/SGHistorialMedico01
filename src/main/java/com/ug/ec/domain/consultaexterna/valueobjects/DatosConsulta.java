@@ -12,7 +12,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Data
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Jacksonized

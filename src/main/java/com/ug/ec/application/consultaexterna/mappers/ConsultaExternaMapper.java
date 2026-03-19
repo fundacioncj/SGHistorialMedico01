@@ -75,13 +75,32 @@ public class ConsultaExternaMapper {
     }
 
     public ConsultaExterna fromCommand(CrearConsultaExternaCommand command) {
+        com.ug.ec.domain.consultaexterna.valueobjects.DatosConsulta datosConsulta = command.getDatosConsulta();
+
+        // Generar número de consulta automáticamente si no viene en el request
+        String numeroConsulta = (datosConsulta.getNumeroConsulta() != null && !datosConsulta.getNumeroConsulta().isBlank())
+                ? datosConsulta.getNumeroConsulta()
+                : datosConsulta.generarNumeroConsulta();
+
+        // Asignar fecha de consulta automáticamente si no viene en el request
+        if (datosConsulta.getFechaConsulta() == null) {
+            datosConsulta = datosConsulta.toBuilder()
+                    .fechaConsulta(LocalDateTime.now())
+                    .build();
+        }
+
+        // Sincronizar el numeroConsulta dentro de DatosConsulta
+        datosConsulta = datosConsulta.toBuilder()
+                .numeroConsulta(numeroConsulta)
+                .build();
+
         return ConsultaExterna.builder()
-                .numeroConsulta(command.getDatosConsulta().getNumeroConsulta())
+                .numeroConsulta(numeroConsulta)
                 .historiaClinicaId(command.getHistoriaClinicaId())
                 .signosVitalesId(command.getSignosVitalesId())
                 .citaId(command.getCitaId())
-              .cedulaPaciente(command.getCedulaPaciente())
-                .datosConsulta(command.getDatosConsulta())
+                .cedulaPaciente(command.getCedulaPaciente())
+                .datosConsulta(datosConsulta)
                 .anamnesis(command.getAnamnesis())
                 .examenFisico(command.getExamenFisico())
                 .diagnosticos(command.getDiagnosticos())

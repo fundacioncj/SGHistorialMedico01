@@ -4,612 +4,1088 @@
     <meta charset="UTF-8"/>
     <title>HCU-002 Consulta Externa</title>
     <style>
+        /* ============================================================
+           CSS OPTIMIZADO PARA GENERACIÓN DE PDF (Flying Saucer / iText)
+           Tamaño A4, diseño basado en tablas, sin flexbox/grid
+           ============================================================ */
         @page {
             size: A4;
-            margin: 0.8cm;
-            margin-bottom: 2.5cm; /* Espacio reservado para firma y sello */
+            margin: 8mm 8mm 18mm 8mm;
             @bottom-center {
                 content: element(firma-footer);
             }
         }
 
+        /* --- Firma en pie de página (CSS Paged Media) --- */
         .firma-section {
             position: running(firma-footer);
         }
         .firma-container {
-            width: 100%;
+            width: 200px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .firma-imagen {
+            height: 45px;
             text-align: center;
         }
-
-        .firma-imagen {
-            height: 60px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            margin-bottom: 3px;
-        }
-
         .firma-imagen img {
-            max-height: 55px;
-            max-width: 200px;
+            max-height: 42px;
+            max-width: 180px;
         }
-
         .firma-linea {
-            width: 100%;
             border-top: 1px solid #000;
-            margin: 2px 0;
+            margin: 2px 0 1px 0;
         }
-
         .firma-label {
+            font-size: 5.5pt;
+            font-weight: bold;
+            text-transform: uppercase;
             display: block;
             text-align: center;
         }
 
+        /* --- Base body --- */
         body {
-            font-family: Arial, sans-serif;
-            font-size: 8pt;
-            line-height: 1.2;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 7pt;
+            line-height: 1.15;
             color: #000;
+            margin: 0;
+            padding: 0;
         }
+
+        /* --- Tablas: siempre ancho completo, borde colapsado --- */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 5px;
+            table-layout: fixed;
+            margin-bottom: 0;
         }
-        th, td {
-            padding: 4px 5px;
+        td {
+            border: 1px solid #000;
+            padding: 1px 2px;
+            vertical-align: top;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+
+        /* --- Utilidades --- */
+        .v-mid { vertical-align: middle !important; }
+        .center { text-align: center !important; }
+        .right  { text-align: right  !important; }
+        .no-border td { border: none !important; }
+
+        /* --- Encabezado de sección (gris, negrita, mayúsculas) --- */
+        .sec-hdr {
+            background-color: #a8a8ed;
+            font-weight: bold;
+            font-size: 7pt;
+            text-transform: uppercase;
+            padding: 2px 3px !important;
+            vertical-align: middle !important;
+            border: 1px solid #000;
+        }
+
+        /* --- Encabezados de columna (fondo claro) --- */
+        .col-hdr {
+            font-size: 5.5pt;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle !important;
+            padding: 1px !important;
+            background-color: #CCFFCC;
+            border: 1px solid #000;
+        }
+
+        /* --- Filas de datos --- */
+        .data-row td  { height: 16px; vertical-align: middle; }
+        .data-row-lg td { height: 28px; vertical-align: top; }
+
+        /* --- Ítems de condición/sistema con casilla de verificación --- */
+        .ant-item {
+            font-size: 6pt;
+            font-weight: bold;
+            border: 1px solid #000;
+            padding: 1px 2px;
+            text-align: left;
+            background-color: #CCFFCC;
             vertical-align: middle;
         }
-        h2 { font-size: 13pt; margin: 0; }
-        h4 { font-size: 9pt; margin: 2px 0 0 0; font-weight: normal; }
-        .no-border, .no-border td {
-            border: none;
-        }
-        .section-header {
-            background-color: #17A2BB;
-            color: #fff;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 9pt;
-            padding: 4px;
-        }
-        .label {
-            font-size: 6.5pt;
-            color: #333;
-            display: block;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin-bottom: 2px;
-        }
-        .value {
-            font-size: 8.5pt;
-            color: #000;
-            display: block;
-            font-weight: normal;
-        }
-        .text-center { text-align: center; }
-        .text-right { text-align: right; }
-        .w-100 { width: 100%; }
-        .vital-signs td { text-align: center; }
-        .vital-signs .label { font-size: 6pt; margin-bottom: 2px; }
-        .vital-signs .value { font-size: 9.5pt; font-weight: bold; }
-        .checkbox-inline {
-            display: inline-block;
-            margin-right: 15px;
-            font-size: 8pt;
-        }
-        .grid-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5px;
+        .ant-check {
             font-size: 7.5pt;
-        }
-        .grid-item {
-            padding: 3px;
-            border: 1px solid #e0e0e0;
-            border-radius: 3px;
-        }
-        .badge {
-            display: inline-block;
-            padding: 2px 6px;
-            font-size: 7pt;
             font-weight: bold;
-            border-radius: 3px;
-            margin-left: 5px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #000;
+            width: 12px;
+            padding: 0;
         }
-        .badge-success { background-color: #28a745; color: #fff; }
-        .badge-warning { background-color: #ffc107; color: #000; }
-        .badge-info { background-color: #17a2b8; color: #fff; }
-        .divider {
-            border-top: 1px dashed #ccc;
-            margin: 5px 0;
+
+        /* --- Cabeceras y celdas de signos vitales --- */
+        .sv-hdr {
+            font-size: 5.5pt;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: bottom !important;
+            padding: 1px !important;
+            border: 1px solid #000;
+            background-color: #CCFFCC;
+            line-height: 1.1;
         }
+        .sv-data {
+            font-size: 7.5pt;
+            text-align: center;
+            vertical-align: middle !important;
+            border: 1px solid #000;
+            height: 16px;
+
+        }
+
+        /* --- Ítems de examen físico --- */
+        .ef-item {
+            font-size: 5.5pt;
+            font-weight: bold;
+            border: 1px solid #000;
+            padding: 1px 2px;
+            vertical-align: middle;
+            background-color: #CCFFCC;
+        }
+        .ef-num {
+            font-size: 5.5pt;
+            font-weight: bold;
+            border: 1px solid #000;
+            border-right: 2px solid #000;
+            padding: 1px 2px;
+            vertical-align: middle;
+            background-color: #CCFFCC;
+            text-align: center;
+            white-space: nowrap;
+            width: 14px;
+        }
+        .ef-name {
+            font-size: 5.5pt;
+            font-weight: bold;
+            border: 1px solid #000;
+            border-left: none;
+            padding: 1px 3px;
+            vertical-align: middle;
+            background-color: #CCFFCC;
+        }
+        .ef-check {
+            font-size: 7.5pt;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #000;
+            width: 10px;
+            padding: 0;
+            vertical-align: middle;
+        }
+
+        /* --- Celdas de diagnóstico --- */
+        .diag-num  { font-size: 6.5pt; font-weight: bold; text-align: left; vertical-align: middle !important; width: 14px; padding: 1px 2px !important; border: 1px solid #555; }
+        .diag-desc { font-size: 6.5pt; vertical-align: middle; padding: 1px 3px !important; border: 1px solid #555; }
+        .diag-cie  { font-size: 6.5pt; text-align: center; vertical-align: middle !important; padding: 1px 2px !important; border: 1px solid #555; width: 40px; }
+        .diag-tipo { font-size: 6.5pt; text-align: center; vertical-align: middle !important; padding: 1px !important; width: 18px; border: 1px solid #555; }
+        .diag-subhdr { font-size: 5.5pt; font-weight: bold; text-align: center; vertical-align: middle !important; padding: 1px 2px !important; border: 1px solid #555; background-color: #f5f5f5; }
+
+        /* --- Separador de página --- */
+        .page-break { page-break-after: always; }
+
+        /* --- Pie de formulario --- */
+        .form-footer td { font-size: 6pt; border: none; padding: 1px 2px; }
     </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<table class="no-border" style="margin-bottom: 5px;">
+
+
+
+<table>
     <tr>
-        <td class="no-border" style="width: 15%; vertical-align: middle;">
-            <strong>MSP</strong>
+        <td rowspan="2" class="v-mid center"
+            style="width:10%; font-weight:bold; font-size:11pt; border:2px solid #000;">
+            MSP
         </td>
-        <td class="no-border text-center" style="width: 70%; vertical-align: middle;">
-            <h2 style="margin: 0; font-size: 14pt;">CONSULTA EXTERNA - ANAMNESIS, EXAMEN FÍSICO Y PRESCRIPCIONES</h2>
-            <h4 style="margin: 2px 0 0 0; font-size: 9pt; font-weight: normal;">SNS-MSP / HCU-form.002 / 2025</h4>
+        <td class="v-mid center"
+            style="font-weight:bold; font-size:9pt; border:2px solid #000; border-bottom:1px solid #000;">
+            CONSULTA EXTERNA — ANAMNESIS, EXAMEN FÍSICO Y PRESCRIPCIONES
         </td>
-        <td class="no-border text-right" style="width: 15%; vertical-align: middle; font-size: 8pt;">
-            <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"></span>
+        <td rowspan="2" class="v-mid center"
+            style="width:17%; font-size:6pt; border:2px solid #000;">
+            SNS-MSP / HCU-form.002 / 2021
+        </td>
+    </tr>
+    <tr>
+        <td class="v-mid center"
+            style="font-size:7pt; border:2px solid #000; border-top:1px solid #000;">
+            ANAMNESIS (1)
         </td>
     </tr>
 </table>
 
-<!-- A. DATOS DEL ESTABLECIMIENTO Y USUARIO / PACIENTE -->
+
 <table>
-    <tr class="section-header">
-        <td colspan="6">A. DATOS DEL ESTABLECIMIENTO Y USUARIO / PACIENTE</td>
-    </tr>
     <tr>
-        <td style="width: 25%;">
-            <span class="label">INSTITUCIÓN DEL SISTEMA</span>
-            <span class="value" th:text="${historiaClinica?.datosFormulario?.areaSalud}"></span>
+        <td colspan="6" class="sec-hdr">A. DATOS DEL ESTABLECIMIENTO Y USUARIO / PACIENTE</td>
+    </tr>
+    
+    <tr>
+        <td class="col-hdr" style="width:22%;">INSTITUCIÓN DEL SISTEMA</td>
+        <td class="col-hdr" style="width:10%;">UNICÓDIGO</td>
+        <td class="col-hdr" style="width:28%;">ESTABLECIMIENTO DE SALUD</td>
+        <td class="col-hdr" style="width:18%;">NÚMERO DE HISTORIA CLÍNICA ÚNICA</td>
+        <td class="col-hdr" style="width:12%;">NÚMERO DE ARCHIVO</td>
+        <td class="col-hdr" style="width:10%;">No. HOJA</td>
+    </tr>
+    
+    <tr class="data-row">
+        <td th:text="${historiaClinica?.datosFormulario?.areaSalud}"></td>
+        <td th:text="${historiaClinica?.datosFormulario?.codigoEstablecimiento}"></td>
+        <td th:text="${historiaClinica?.datosFormulario?.establecimiento}"></td>
+        <td th:text="${historiaClinica?.datosFormulario?.numeroFormulario}"></td>
+        <td th:text="${historiaClinica?.datosFormulario?.distrito}"></td>
+        <td class="center">1</td>
+    </tr>
+    
+    <tr>
+        <td class="col-hdr">PRIMER APELLIDO</td>
+        <td class="col-hdr">SEGUNDO APELLIDO</td>
+        <td class="col-hdr">PRIMER NOMBRE</td>
+        <td class="col-hdr">SEGUNDO NOMBRE</td>
+        <td class="col-hdr">SEXO</td>
+        <td class="col-hdr">EDAD (Años)</td>
+    </tr>
+    
+    <tr class="data-row">
+        <td th:text="${paciente?.persona?.primerApellido}"></td>
+        <td th:text="${paciente?.persona?.segundoApellido}"></td>
+        <td th:text="${paciente?.persona?.primerNombre}"></td>
+        <td th:text="${paciente?.persona?.segundoNombre}"></td>
+        <td class="center" th:text="${paciente?.persona?.cedula}"></td>
+        <td class="center" th:text="${paciente?.edad}"></td>
+    </tr>
+</table>
+
+
+<table>
+    <tr>
+        <td class="sec-hdr" style="width:40%;">B. MOTIVO DE CONSULTA</td>
+        <td class="v-mid center" style="width:20%; font-size:7pt;">
+            <span th:if="${consulta?.datosConsulta?.tipoConsulta == 'PRIMERA_VEZ'}">&#x2611;</span>
+            <span th:unless="${consulta?.datosConsulta?.tipoConsulta == 'PRIMERA_VEZ'}">&#x2610;</span>
+            <strong> PRIMERA VEZ</strong>
         </td>
-        <td style="width: 15%;">
-            <span class="label">UNICÓDIGO</span>
-            <span class="value" th:text="${historiaClinica?.datosFormulario?.codigoEstablecimiento}"></span>
-        </td>
-        <td style="width: 30%;">
-            <span class="label">ESTABLECIMIENTO DE SALUD</span>
-            <span class="value" th:text="${historiaClinica?.datosFormulario?.establecimiento}"></span>
-        </td>
-        <td style="width: 15%;">
-            <span class="label">NRO. HISTORIA CLÍNICA</span>
-            <span class="value" th:text="${historiaClinica?.datosFormulario?.numeroFormulario}"></span>
-        </td>
-        <td style="width: 10%;">
-            <span class="label">NRO. ARCHIVO</span>
-            <span class="value" th:text="${historiaClinica?.datosFormulario?.distrito}"></span>
-        </td>
-        <td style="width: 5%;">
-            <span class="label">NO. HOJA</span>
-            <span class="value">1</span>
+        <td class="v-mid center" style="width:20%; font-size:7pt;">
+            <span th:if="${consulta?.datosConsulta?.tipoConsulta == 'SUBSECUENTE'}">&#x2611;</span>
+            <span th:unless="${consulta?.datosConsulta?.tipoConsulta == 'SUBSECUENTE'}">&#x2610;</span>
+            <strong> SUBSECUENTE</strong>
         </td>
     </tr>
+    <tr class="data-row-lg">
+        <td colspan="3" th:text="${consulta?.datosConsulta?.motivoConsulta}"></td>
+    </tr>
+</table>
+
+
+<table>
     <tr>
-        <td style="width: 20%;">
-            <span class="label">PRIMER APELLIDO</span>
-            <span class="value" th:text="${paciente?.persona?.primerApellido}"></span>
+        <td colspan="20" class="sec-hdr">
+            C. ANTECEDENTES PATOLÓGICOS PERSONALES
+            <span style="font-weight:normal; font-size:6pt;"> — MARCAR X CUANDO PRESENTE PATOLOGÍA</span>
         </td>
-        <td style="width: 20%;">
-            <span class="label">SEGUNDO APELLIDO</span>
-            <span class="value" th:text="${paciente?.persona?.segundoApellido}"></span>
+    </tr>
+    
+    <tr style="height:14px;">
+        
+        <td class="ant-item" style="width:8%;">1. CARDIOPATÍA</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosPersonales}"
+                      th:if="${a.tipo?.name() == 'CARDIOPATIA' and a.presente}">X</span>
         </td>
-        <td style="width: 20%;">
-            <span class="label">PRIMER NOMBRE</span>
-            <span class="value" th:text="${paciente?.persona?.primerNombre}"></span>
+        
+        <td class="ant-item" style="width:8%;">2. HIPERTENSIÓN</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosPersonales}"
+                      th:if="${a.tipo?.name() == 'HIPERTENSION' and a.presente}">X</span>
         </td>
-        <td style="width: 20%;">
-            <span class="label">SEGUNDO NOMBRE</span>
-            <span class="value" th:text="${paciente?.persona?.segundoNombre}"></span>
+        
+        <td class="ant-item" style="width:9%;">3. ENF.C.VASCULAR</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosPersonales}"
+                      th:if="${a.tipo?.name() == 'ENF_C_VASCULAR' and a.presente}">X</span>
         </td>
-        <td style="width: 10%;">
-            <span class="label">EDAD (AÑOS)</span>
-            <span class="value" th:text="${paciente?.edad}"></span>
+        
+        <td class="ant-item" style="width:10%;">4. ENDÓCRINO METABÓLICO</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosPersonales}"
+                      th:if="${a.tipo?.name() == 'ENDOCRINO_METABOLICO' and a.presente}">X</span>
         </td>
-        <td style="width: 10%;">
-            <span class="label">CÉDULA</span>
-            <span class="value" th:text="${paciente?.persona?.cedula}"></span>
+        
+        <td class="ant-item" style="width:7%;">5. CÁNCER</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosPersonales}"
+                      th:if="${a.tipo?.name() == 'CANCER' and a.presente}">X</span>
+        </td>
+        
+        <td class="ant-item" style="width:8%;">6. TUBERCULOSIS</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosPersonales}"
+                      th:if="${a.tipo?.name() == 'TUBERCULOSIS' and a.presente}">X</span>
+        </td>
+        
+        <td class="ant-item" style="width:8%;">7. ENF.MENTAL</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosPersonales}"
+                      th:if="${a.tipo?.name() == 'ENF_MENTAL' and a.presente}">X</span>
+        </td>
+        
+        <td class="ant-item" style="width:9%;">8. ENF.INFECCIOSA</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosPersonales}"
+                      th:if="${a.tipo?.name() == 'ENF_INFECCIOSA' and a.presente}">X</span>
+        </td>
+        
+        <td class="ant-item" style="width:9%;">9. MAL FORMACIÓN</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosPersonales}"
+                      th:if="${a.tipo?.name() == 'MAL_FORMACION' and a.presente}">X</span>
+        </td>
+        
+        <td class="ant-item" style="width:6%;">10. OTRO</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosPersonales}"
+                      th:if="${a.tipo?.name() == 'OTRO' and a.presente}">X</span>
+        </td>
+    </tr>
+    
+    <tr class="data-row-lg">
+        <td colspan="20">
+            <span th:each="ant, iterStat : ${historiaClinica?.antecedentesPatologicosPersonales}"
+                  th:if="${ant.presente}">
+                <strong th:text="${ant.tipo?.descripcion}"></strong>:
+                <span th:text="${ant.descripcion}"></span>
+                <span th:unless="${iterStat.last}"> | </span>
+            </span>
         </td>
     </tr>
 </table>
 
-<!-- B. MOTIVO DE CONSULTA -->
+
 <table>
-    <tr class="section-header">
-        <td colspan="3">B. MOTIVO DE CONSULTA</td>
-    </tr>
     <tr>
-        <td colspan="3">
-            <span class="value" th:text="${consulta?.datosConsulta?.motivoConsulta}"></span>
+        <td colspan="20" class="sec-hdr">
+            D. ANTECEDENTES PATOLÓGICOS FAMILIARES
+            <span style="font-weight:normal; font-size:6pt;"> — MARCAR X CUANDO PRESENTE PATOLOGÍA</span>
         </td>
     </tr>
-    <tr>
-        <td style="width: 33%;">
-            <div class="checkbox-inline">
-                <span th:if="${consulta?.datosConsulta?.tipoConsulta == 'PRIMERA_VEZ'}">☑</span>
-                <span th:unless="${consulta?.datosConsulta?.tipoConsulta == 'PRIMERA_VEZ'}">☐</span>
-                <strong>PRIMERA</strong>
-            </div>
+    <tr style="height:14px;">
+        <td class="ant-item" style="width:8%;">1. CARDIOPATÍA</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosFamiliares}"
+                      th:if="${a.tipo?.name() == 'CARDIOPATIA' and a.presente}">X</span>
         </td>
-        <td style="width: 33%;">
-            <div class="checkbox-inline">
-                <span th:if="${consulta?.datosConsulta?.tipoConsulta == 'SUBSECUENTE'}">☑</span>
-                <span th:unless="${consulta?.datosConsulta?.tipoConsulta == 'SUBSECUENTE'}">☐</span>
-                <strong>SUBSECUENTE</strong>
-            </div>
+        <td class="ant-item" style="width:8%;">2. HIPERTENSIÓN</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosFamiliares}"
+                      th:if="${a.tipo?.name() == 'HIPERTENSION' and a.presente}">X</span>
         </td>
-        <td style="width: 34%;">
-            <div class="checkbox-inline">
-                <span th:if="${consulta?.datosConsulta?.tipoConsulta == 'CONTROL'}">☑</span>
-                <span th:unless="${consulta?.datosConsulta?.tipoConsulta == 'CONTROL'}">☐</span>
-                <strong>CONTROL</strong>
-            </div>
+        <td class="ant-item" style="width:9%;">3. ENF.C.VASCULAR</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosFamiliares}"
+                      th:if="${a.tipo?.name() == 'ENF_C_VASCULAR' and a.presente}">X</span>
+        </td>
+        <td class="ant-item" style="width:10%;">4. ENDÓCRINO METABÓLICO</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosFamiliares}"
+                      th:if="${a.tipo?.name() == 'ENDOCRINO_METABOLICO' and a.presente}">X</span>
+        </td>
+        <td class="ant-item" style="width:7%;">5. CÁNCER</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosFamiliares}"
+                      th:if="${a.tipo?.name() == 'CANCER' and a.presente}">X</span>
+        </td>
+        <td class="ant-item" style="width:8%;">6. TUBERCULOSIS</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosFamiliares}"
+                      th:if="${a.tipo?.name() == 'TUBERCULOSIS' and a.presente}">X</span>
+        </td>
+        <td class="ant-item" style="width:8%;">7. ENF.MENTAL</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosFamiliares}"
+                      th:if="${a.tipo?.name() == 'ENF_MENTAL' and a.presente}">X</span>
+        </td>
+        <td class="ant-item" style="width:9%;">8. ENF.INFECCIOSA</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosFamiliares}"
+                      th:if="${a.tipo?.name() == 'ENF_INFECCIOSA' and a.presente}">X</span>
+        </td>
+        <td class="ant-item" style="width:9%;">9. MAL FORMACIÓN</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosFamiliares}"
+                      th:if="${a.tipo?.name() == 'MAL_FORMACION' and a.presente}">X</span>
+        </td>
+        <td class="ant-item" style="width:6%;">10. OTRO</td>
+        <td class="ant-check">
+                <span th:each="a : ${historiaClinica?.antecedentesPatologicosFamiliares}"
+                      th:if="${a.tipo?.name() == 'OTRO' and a.presente}">X</span>
+        </td>
+    </tr>
+    
+    <tr class="data-row-lg">
+        <td colspan="20">
+            <span th:each="ant, iterStat : ${historiaClinica?.antecedentesPatologicosFamiliares}"
+                  th:if="${ant.presente}">
+                <strong th:text="${ant.tipo?.descripcion}"></strong>
+                (<span th:text="${ant.parentesco ?: 'No especificado'}"></span>):
+                <span th:text="${ant.descripcion}"></span>
+                <span th:unless="${iterStat.last}"> | </span>
+            </span>
         </td>
     </tr>
 </table>
 
-<!-- C. ANTECEDENTES PATOLÓGICOS PERSONALES -->
+
 <table>
-    <tr class="section-header">
-        <td>C. ANTECEDENTES PATOLÓGICOS PERSONALES</td>
-    </tr>
     <tr>
-        <td>
-            <div th:if="${historiaClinica?.antecedentesPatologicosPersonales != null and !#lists.isEmpty(historiaClinica.antecedentesPatologicosPersonales)}">
-                <div class="grid-layout">
-                    <div th:each="ant : ${historiaClinica.antecedentesPatologicosPersonales}"
-                         th:if="${ant.presente}"
-                         class="grid-item">
-                        <strong th:text="${ant.tipo?.descripcion}"></strong>
-                        <div style="margin-top: 2px; font-size: 7pt;">
-                            <span th:text="${ant.descripcion ?: 'Sin descripción adicional'}"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div th:if="${historiaClinica?.antecedentesPatologicosPersonales == null or #lists.isEmpty(historiaClinica.antecedentesPatologicosPersonales)}"
-                 style="font-size: 7.5pt; font-style: italic; color: #666;">
-                No se registraron antecedentes patológicos personales
-            </div>
+        <td class="sec-hdr" style="display:flex; justify-content:space-between; align-items:center;">
+            <span>E. ENFERMEDAD O PROBLEMA ACTUAL</span>
+            <span style="font-weight:normal; font-size:6pt;">CRONOLOGÍA — LOCALIZACIÓN — CARACTERÍSTICAS — INTENSIDAD — FRECUENCIA — FACTORES AGRAVANTES Y ATENUANTES</span>
         </td>
+    </tr>
+    <tr style="height:60px;">
+        <td style="vertical-align:top;" th:text="${consulta?.anamnesis?.enfermedadActual}"></td>
     </tr>
 </table>
 
-<!-- D. ANTECEDENTES PATOLÓGICOS FAMILIARES -->
-<table>
-    <tr class="section-header">
-        <td>D. ANTECEDENTES PATOLÓGICOS FAMILIARES</td>
-    </tr>
-    <tr>
-        <td>
-            <div th:if="${historiaClinica?.antecedentesPatologicosFamiliares != null and !#lists.isEmpty(historiaClinica.antecedentesPatologicosFamiliares)}">
-                <div class="grid-layout">
-                    <div th:each="ant : ${historiaClinica.antecedentesPatologicosFamiliares}"
-                         th:if="${ant.presente}"
-                         class="grid-item">
-                        <strong th:text="${ant.tipo?.descripcion}"></strong>
-                        <div style="margin-top: 2px; font-size: 7pt;">
-                            (<span th:text="${ant.parentesco ?: 'No especificado'}"></span>):
-                            <span th:text="${ant.descripcion ?: 'Sin descripción adicional'}"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div th:if="${historiaClinica?.antecedentesPatologicosFamiliares == null or #lists.isEmpty(historiaClinica.antecedentesPatologicosFamiliares)}"
-                 style="font-size: 7.5pt; font-style: italic; color: #666;">
-                No se registraron antecedentes patológicos familiares
-            </div>
-        </td>
-    </tr>
-</table>
 
-<!-- E. ENFERMEDAD O PROBLEMA ACTUAL -->
 <table>
-    <tr class="section-header">
-        <td>E. ENFERMEDAD O PROBLEMA ACTUAL</td>
-    </tr>
     <tr>
-        <td>
-            <span class="value" th:text="${consulta?.anamnesis?.enfermedadActual}"></span>
-        </td>
+        <td colspan="14" class="sec-hdr">F. CONSTANTES VITALES Y ANTROPOMETRÍA</td>
     </tr>
-</table>
-
-<!-- F. CONSTANTES VITALES Y ANTROPOMETRÍA -->
-<table>
-    <tr class="section-header">
-        <td colspan="11">F. CONSTANTES VITALES Y ANTROPOMETRÍA</td>
+    
+    <tr>
+        <td class="sv-hdr" style="width:7%;">FECHA<br/>(aaaa-mm-dd)</td>
+        <td class="sv-hdr" style="width:5%;">HORA<br/>(hh:mm)</td>
+        <td class="sv-hdr" style="width:7%;">Temperatura<br/>(&#176;C)</td>
+        <td class="sv-hdr" style="width:16%;">Presi&#243;n Arterial<br/>(mmHg)</td>
+        <td class="sv-hdr" style="width:7%;">Pulso<br/>/min</td>
+        <td class="sv-hdr" style="width:7%;">Frec.<br/>Resp.<br/>/min</td>
+        <td class="sv-hdr" style="width:7%;">Peso<br/>(Kg)</td>
+        <td class="sv-hdr" style="width:7%;">Talla<br/>(cm)</td>
+        <td class="sv-hdr" style="width:7%;">IMC<br/>(Kg/m&#178;)</td>
+        <td class="sv-hdr" style="width:8%;">Per&#237;metro<br/>Abdom.<br/>(cm)</td>
+        <td class="sv-hdr" style="width:7%;">Hb<br/>capilar<br/>(g/dl)</td>
+        <td class="sv-hdr" style="width:7%;">Glucosa<br/>capilar<br/>(mg/dl)</td>
+        <td class="sv-hdr" style="width:6%;">Pulsioximetr&#237;a<br/>(%)</td>
     </tr>
-    <tr class="vital-signs" th:if="${signosVitales?.tomas != null and !#lists.isEmpty(signosVitales.tomas)}">
-        <td style="width: 9%;">
-            <span class="label">TEMP (°C)</span>
-            <span class="value" th:text="${signosVitales.tomas[0].temperatura}"></span>
-        </td>
-        <td style="width: 9%;">
-            <span class="label">P.A. SIST</span>
-            <span class="value" th:text="${signosVitales.tomas[0].presionSistolica}"></span>
-        </td>
-        <td style="width: 9%;">
-            <span class="label">P.A. DIAST</span>
-            <span class="value" th:text="${signosVitales.tomas[0].presionDiastolica}"></span>
-        </td>
-        <td style="width: 9%;">
-            <span class="label">PULSO (lpm)</span>
-            <span class="value" th:text="${signosVitales.tomas[0].pulso}"></span>
-        </td>
-        <td style="width: 9%;">
-            <span class="label">FR (rpm)</span>
-            <span class="value" th:text="${signosVitales.tomas[0].frecuenciaRespiratoria}"></span>
-        </td>
-        <td style="width: 9%;">
-            <span class="label">SpO2 (%)</span>
-            <span class="value" th:text="${signosVitales.tomas[0].pulsioximetria}"></span>
-        </td>
-        <td style="width: 9%;">
-            <span class="label">PESO (Kg)</span>
-            <span class="value" th:text="${signosVitales.tomas[0].peso}"></span>
-        </td>
-        <td style="width: 9%;">
-            <span class="label">TALLA (m)</span>
-            <span class="value" th:text="${signosVitales.tomas[0].talla}"></span>
-        </td>
-        <td style="width: 9%;">
-            <span class="label">IMC</span>
-            <span class="value" th:text="${signosVitales.tomas[0].imc != null ? #numbers.formatDecimal(signosVitales.tomas[0].imc, 1, 1) : ''}"></span>
-        </td>
-        <td style="width: 9%;">
-            <span class="label">Hb (g/dL)</span>
-            <span class="value" th:text="${signosVitales.tomas[0].hemoglobinaCapilar}"></span>
-        </td>
-        <td style="width: 10%;">
-            <span class="label">GLUC (mg/dL)</span>
-            <span class="value" th:text="${signosVitales.tomas[0].glucosaCapilar}"></span>
-        </td>
+    
+    <tr th:if="${signosVitales?.tomas != null and !#lists.isEmpty(signosVitales.tomas)}">
+        <td class="sv-data" th:text="${signosVitales.tomas[0].fechaHoraToma != null ? #temporals.format(signosVitales.tomas[0].fechaHoraToma, 'yyyy-MM-dd') : ''}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[0].fechaHoraToma != null ? #temporals.format(signosVitales.tomas[0].fechaHoraToma, 'HH:mm') : ''}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[0].temperatura}"></td>
+        <td class="sv-data" th:text="|${signosVitales.tomas[0].presionSistolica} / ${signosVitales.tomas[0].presionDiastolica}|"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[0].pulso}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[0].frecuenciaRespiratoria}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[0].peso}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[0].talla}"></td>
+        <td class="sv-data"
+            th:text="${signosVitales.tomas[0].imc != null ? #numbers.formatDecimal(signosVitales.tomas[0].imc, 1, 1) : ''}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[0].perimetroAbdominal}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[0].hemoglobinaCapilar}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[0].glucosaCapilar}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[0].pulsioximetria}"></td>
     </tr>
+    
+    <tr th:if="${signosVitales?.tomas != null and #lists.size(signosVitales.tomas) > 1}">
+        <td class="sv-data" th:text="${signosVitales.tomas[1].fechaHoraToma != null ? #temporals.format(signosVitales.tomas[1].fechaHoraToma, 'yyyy-MM-dd') : ''}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[1].fechaHoraToma != null ? #temporals.format(signosVitales.tomas[1].fechaHoraToma, 'HH:mm') : ''}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[1].temperatura}"></td>
+        <td class="sv-data" th:text="|${signosVitales.tomas[1].presionSistolica} / ${signosVitales.tomas[1].presionDiastolica}|"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[1].pulso}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[1].frecuenciaRespiratoria}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[1].peso}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[1].talla}"></td>
+        <td class="sv-data"
+            th:text="${signosVitales.tomas[1].imc != null ? #numbers.formatDecimal(signosVitales.tomas[1].imc, 1, 1) : ''}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[1].perimetroAbdominal}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[1].hemoglobinaCapilar}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[1].glucosaCapilar}"></td>
+        <td class="sv-data" th:text="${signosVitales.tomas[1].pulsioximetria}"></td>
+    </tr>
+    
     <tr th:if="${signosVitales?.tomas == null or #lists.isEmpty(signosVitales.tomas)}">
-        <td colspan="11" style="font-size: 7.5pt; font-style: italic; color: #666; text-align: center;">
-            No se registraron signos vitales
-        </td>
+        <td class="sv-data" colspan="13" style="height:16px;"></td>
     </tr>
 </table>
 
-<!-- G. REVISIÓN ACTUAL DE ÓRGANOS Y SISTEMAS -->
+
 <table>
-    <tr class="section-header">
-        <td>G. REVISIÓN ACTUAL DE ÓRGANOS Y SISTEMAS</td>
-    </tr>
     <tr>
-        <td>
-            <div th:if="${consulta?.anamnesis?.revisionActualOrganosSistemas != null and !#lists.isEmpty(consulta.anamnesis.revisionActualOrganosSistemas)}">
-                <div class="grid-layout">
-                    <div th:each="sistema : ${consulta.anamnesis.revisionActualOrganosSistemas}"
-                         th:if="${sistema.presente}"
-                         class="grid-item">
-                        <strong th:text="${sistema.tipo?.etiqueta}"></strong>
-                        <div style="margin-top: 2px; font-size: 7pt;">
-                            <span th:text="${sistema.descripcion ?: 'Sin descripción adicional'}"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div th:if="${consulta?.anamnesis?.revisionActualOrganosSistemas == null or #lists.isEmpty(consulta.anamnesis.revisionActualOrganosSistemas)}"
-                 style="font-size: 7.5pt; font-style: italic; color: #666;">
-                No se realizó revisión de órganos y sistemas
-            </div>
+        <td colspan="10" class="sec-hdr">
+            G. REVISIÓN ACTUAL DE ÓRGANOS Y SISTEMAS
+            <span style="font-weight:normal; font-size:6pt;"> — MARCAR X CUANDO PRESENTE PATOLOGÍA Y DESCRIBA</span>
+        </td>
+    </tr>
+    
+    <tr style="height:14px;">
+        <td class="ef-num" style="width:14px;">1.</td><td class="ef-name" style="width:16%;">PIEL - ANEXOS</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.anamnesis?.revisionActualOrganosSistemas}"
+                      th:if="${a.tipo?.name() == 'PIEL_ANEXOS' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">3.</td><td class="ef-name" style="width:16%;">RESPIRATORIO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.anamnesis?.revisionActualOrganosSistemas}"
+                      th:if="${a.tipo?.name() == 'RESPIRATORIO' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">5.</td><td class="ef-name" style="width:16%;">DIGESTIVO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.anamnesis?.revisionActualOrganosSistemas}"
+                      th:if="${a.tipo?.name() == 'DIGESTIVO' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">7.</td><td class="ef-name" style="width:19%;">MÚSCULO-ESQUELÉTICO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.anamnesis?.revisionActualOrganosSistemas}"
+                      th:if="${a.tipo?.name() == 'MUSCULO_ESQUELETICO' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">9.</td><td class="ef-name" style="width:16%;">HEMO-LINFÁTICO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.anamnesis?.revisionActualOrganosSistemas}"
+                      th:if="${a.tipo?.name() == 'HEMO_LINFATICO' and a.presente}">X</span>
+        </td>
+    </tr>
+
+    <tr style="height:14px;">
+        <td class="ef-num">2.</td><td class="ef-name">ÓRGANOS DE LOS SENTIDOS</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.anamnesis?.revisionActualOrganosSistemas}"
+                      th:if="${a.tipo?.name() == 'ORGANOS_SENTIDOS' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">4.</td><td class="ef-name">CARDIO-VASCULAR</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.anamnesis?.revisionActualOrganosSistemas}"
+                      th:if="${a.tipo?.name() == 'CARDIO_VASCULAR' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">6.</td><td class="ef-name">GENITO-URINARIO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.anamnesis?.revisionActualOrganosSistemas}"
+                      th:if="${a.tipo?.name() == 'GENITO_URINARIO' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">8.</td><td class="ef-name">ENDÓCRINO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.anamnesis?.revisionActualOrganosSistemas}"
+                      th:if="${a.tipo?.name() == 'ENDOCRINO' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">10.</td><td class="ef-name">NERVIOSO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.anamnesis?.revisionActualOrganosSistemas}"
+                      th:if="${a.tipo?.name() == 'NERVIOSO' and a.presente}">X</span>
+        </td>
+    </tr>
+    
+    <tr style="height:42px;">
+        <td colspan="10" style="vertical-align:top; font-size:7pt;">
+            <span th:each="sistema, iterStat : ${consulta?.anamnesis?.revisionActualOrganosSistemas}"
+                  th:if="${sistema.presente}">
+                <strong th:text="${sistema.tipo?.etiqueta}"></strong>:
+                <span th:text="${sistema.descripcion}"></span>
+                <span th:unless="${iterStat.last}"> | </span>
+            </span>
         </td>
     </tr>
 </table>
 
-<!-- H. EXAMEN FÍSICO -->
+
+<table class="form-footer">
+    <tr>
+        <td style="width:50%;">SNS-MSP / HCU-form.002 / 2021</td>
+        <td class="right">CONSULTA EXTERNA — ANAMNESIS (1)</td>
+    </tr>
+</table>
+
+
+<div class="page-break"></div>
+
+
+
+
 <table>
-    <tr class="section-header">
-        <td>H. EXAMEN FÍSICO</td>
+    <tr>
+        <td rowspan="2" class="v-mid center"
+            style="width:10%; font-weight:bold; font-size:11pt; border:2px solid #000;">
+            MSP
+        </td>
+        <td class="v-mid center"
+            style="font-weight:bold; font-size:9pt; border:2px solid #000; border-bottom:1px solid #000;">
+            CONSULTA EXTERNA — ANAMNESIS, EXAMEN FÍSICO Y PRESCRIPCIONES
+        </td>
+        <td rowspan="2" class="v-mid center"
+            style="width:17%; font-size:6pt; border:2px solid #000;">
+            SNS-MSP / HCU-form.002 / 2021
+        </td>
     </tr>
     <tr>
-        <td>
-            <!-- Examen General -->
-            <div th:if="${consulta?.examenFisico?.examenGeneral != null and !#strings.isEmpty(consulta.examenFisico.examenGeneral)}">
-                <span class="label">EXAMEN GENERAL:</span>
-                <span class="value" th:text="${consulta.examenFisico.examenGeneral}"></span>
-                <div class="divider"></div>
-            </div>
-
-            <!-- Examen Regional -->
-            <div th:if="${consulta?.examenFisico?.examenesRegionales != null and !#lists.isEmpty(consulta.examenFisico.examenesRegionales)}">
-                <span class="label" style="margin-top: 3px;">REGIONAL:</span>
-                <div class="grid-layout">
-                    <div th:each="region : ${consulta.examenFisico.examenesRegionales}"
-                         th:if="${region.presente}"
-                         class="grid-item">
-                        <strong th:text="${region.region}"></strong>
-                        <div th:if="${region.hallazgos != null and !#lists.isEmpty(region.hallazgos)}" style="margin-top: 2px;">
-                                <span th:each="h, iterStat : ${region.hallazgos}">
-                                    • <span th:text="${h}"></span><span th:if="${!iterStat.last}">, </span>
-                                </span>
-                        </div>
-                        <div th:if="${region.observaciones != null and !#strings.isEmpty(region.observaciones)}"
-                             style="font-size: 7pt; color: #666; margin-top: 2px;">
-                            Obs: <span th:text="${region.observaciones}"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Examen Sistémico -->
-            <div th:if="${consulta?.examenFisico?.examenesSistemicos != null and !#lists.isEmpty(consulta.examenFisico.examenesSistemicos)}">
-                <div class="divider"></div>
-                <span class="label" style="margin-top: 3px;">SISTÉMICO:</span>
-                <div class="grid-layout">
-                    <div th:each="sistema : ${consulta.examenFisico.examenesSistemicos}"
-                         th:if="${sistema.presente}"
-                         class="grid-item">
-                        <strong th:text="${sistema.sistema}"></strong>
-                        <div th:if="${sistema.hallazgos != null and !#lists.isEmpty(sistema.hallazgos)}" style="margin-top: 2px;">
-                                <span th:each="h, iterStat : ${sistema.hallazgos}">
-                                    • <span th:text="${h}"></span><span th:if="${!iterStat.last}">, </span>
-                                </span>
-                        </div>
-                        <div th:if="${sistema.observaciones != null and !#strings.isEmpty(sistema.observaciones)}"
-                             style="font-size: 7pt; color: #666; margin-top: 2px;">
-                            Obs: <span th:text="${sistema.observaciones}"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mensaje si no hay exámenes -->
-            <div th:if="${(consulta?.examenFisico?.examenGeneral == null or #strings.isEmpty(consulta.examenFisico.examenGeneral)) and
-                             (consulta?.examenFisico?.examenesRegionales == null or #lists.isEmpty(consulta.examenFisico.examenesRegionales)) and
-                             (consulta?.examenFisico?.examenesSistemicos == null or #lists.isEmpty(consulta.examenFisico.examenesSistemicos))}"
-                 style="font-size: 7.5pt; font-style: italic; color: #666;">
-                No se realizó examen físico
-            </div>
+        <td class="v-mid center"
+            style="font-size:7pt; border:2px solid #000; border-top:1px solid #000;">
+            EXAMEN FÍSICO Y PRESCRIPCIONES (2)
         </td>
     </tr>
 </table>
 
-<!-- I. DIAGNÓSTICO -->
+
 <table>
-    <tr class="section-header">
-        <td>I. DIAGNÓSTICO</td>
+    <tr>
+        <td colspan="2" class="sec-hdr">
+            H. EXAMEN FÍSICO
+            <span style="font-weight:normal; font-size:6pt;"> — MARCAR X CUANDO PRESENTE PATOLOGÍA Y DESCRIBA</span>
+        </td>
     </tr>
     <tr>
-        <td>
-            <div th:if="${consulta?.diagnosticos != null and !#lists.isEmpty(consulta.diagnosticos)}">
-                <div th:each="diag, iterStat : ${consulta.diagnosticos}" style="margin-bottom: 4px; font-size: 7.5pt;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <strong><span th:text="${iterStat.count}"></span>. CIE-10: <span th:text="${diag.codigoCie10}"></span></strong>
-                            <span class="badge"
-                                  th:classappend="${diag.tipo == 'DEF' or diag.tipo == 'PRINCIPAL' ? 'badge-success' : 'badge-warning'}"
-                                  th:text="${diag.tipo}"></span>
-                        </div>
-                    </div>
-                    <div style="margin-left: 15px; margin-top: 2px;">
-                        <span th:text="${diag.descripcion}"></span>
-                        <span th:if="${diag.severidad != null}" style="margin-left: 10px;">
-                                [<span th:text="${diag.severidad}"></span>]
-                            </span>
-                    </div>
-                    <div th:if="${diag.observaciones != null and !#strings.isEmpty(diag.observaciones)}"
-                         style="margin-left: 15px; font-size: 7pt; color: #666;">
-                        Obs: <span th:text="${diag.observaciones}"></span>
-                    </div>
-                    <div th:if="${diag.requiereSeguimiento == true}"
-                         style="margin-left: 15px; font-size: 7pt; color: #17a2b8;">
-                        ⚕ Seguimiento: <span th:text="${diag.planSeguimiento}"></span>
-                        (<span th:text="${diag.tiempoSeguimientoMeses}"></span> meses)
-                    </div>
-                </div>
-            </div>
-            <div th:if="${consulta?.diagnosticos == null or #lists.isEmpty(consulta.diagnosticos)}"
-                 style="font-size: 7.5pt; font-style: italic; color: #666;">
-                No se registraron diagnósticos
-            </div>
-        </td>
+        <td class="col-hdr" style="width:58%; background-color:#CCF0FF;">REGIONAL</td>
+        <td class="col-hdr" style="width:42%; background-color:#CCF0FF;">SISTÉMICO</td>
     </tr>
 </table>
 
-<!-- J. PLAN DE TRATAMIENTO -->
+
 <table>
-    <tr class="section-header">
-        <td>J. PLAN DE TRATAMIENTO</td>
+    
+    <tr style="height:13px;">
+        <td class="ef-num" style="width:14px;">1R</td><td class="ef-name" style="width:9%;">PIEL-FANERAS</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'PIEL-FANERAS' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">6R</td><td class="ef-name" style="width:8%;">BOCA</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'BOCA' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">11R</td><td class="ef-name" style="width:8%;">ABDOMEN</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'ABDOMEN' and a.presente}">X</span>
+        </td>
+
+        <td style="width:1%; border-left:2px solid #000; padding:0;"></td>
+        <td class="ef-num">1S</td><td class="ef-name" style="width:12%;">ÓRG.SENTIDOS</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesSistemicos}"
+                      th:if="${a.sistema == 'ÓRGANOS DE LOS SENTIDOS' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">6S</td><td class="ef-name" style="width:12%;">URINARIO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesSistemicos}"
+                      th:if="${a.sistema == 'URINARIO' and a.presente}">X</span>
+        </td>
     </tr>
-    <tr>
-        <td>
-            <!-- Prescripciones -->
-            <div th:if="${consulta?.planTratamiento?.prescripciones != null and !#lists.isEmpty(consulta.planTratamiento.prescripciones)}">
-                <span class="label">PRESCRIPCIONES:</span>
-                <div th:each="presc, iterStat : ${consulta.planTratamiento.prescripciones}"
-                     style="font-size: 7.5pt; margin-bottom: 3px; padding-left: 5px;">
-                    <strong><span th:text="${iterStat.count}"></span>. <span th:text="${presc.medicamento}"></span></strong>
-                    <div style="margin-left: 15px;">
-                        Dosis: <span th:text="${presc.dosis}"></span> |
-                        Frecuencia: <span th:text="${presc.frecuencia}"></span>
-                        <span th:if="${presc.duracionDias != null}"> |
-                                Duración: <span th:text="${presc.duracionDias}"></span> días
-                            </span>
-                    </div>
-                    <div th:if="${presc.viaAdministracion != null}" style="margin-left: 15px; font-size: 7pt; color: #666;">
-                        Vía: <span th:text="${presc.viaAdministracion}"></span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Indicaciones Generales -->
-            <div th:if="${consulta?.planTratamiento?.indicacionesGenerales != null and !#strings.isEmpty(consulta.planTratamiento.indicacionesGenerales)}">
-                <div class="divider" th:if="${consulta?.planTratamiento?.prescripciones != null and !#lists.isEmpty(consulta.planTratamiento.prescripciones)}"></div>
-                <span class="label">INDICACIONES GENERALES:</span>
-                <div style="font-size: 7.5pt; padding-left: 5px;">
-                    <span th:text="${consulta.planTratamiento.indicacionesGenerales}"></span>
-                </div>
-            </div>
+    <tr style="height:13px;">
+        <td class="ef-num">2R</td><td class="ef-name">CABEZA</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'CABEZA' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">7R</td><td class="ef-name">OROFARINGE</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'OROFARINGE' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">12R</td><td class="ef-name">COL.VERTEBRAL</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'COLUMNA VERTEBRAL' and a.presente}">X</span>
+        </td>
+        <td style="width:1%; border-left:2px solid #000; padding:0;"></td>
+        <td class="ef-num">2S</td><td class="ef-name">RESPIRATORIO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesSistemicos}"
+                      th:if="${a.sistema == 'RESPIRATORIO' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">7S</td><td class="ef-name">MÚSCULO-ESQUELÉTICO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesSistemicos}"
+                      th:if="${a.sistema == 'MÚSCULO-ESQUELÉTICO' and a.presente}">X</span>
+        </td>
+    </tr>
 
-            <!-- Recomendaciones -->
-            <div th:if="${consulta?.planTratamiento?.recomendaciones != null and !#lists.isEmpty(consulta.planTratamiento.recomendaciones)}">
-                <div class="divider"></div>
-                <span class="label">RECOMENDACIONES:</span>
-                <div th:each="rec, iterStat : ${consulta.planTratamiento.recomendaciones}"
-                     style="font-size: 7.5pt; padding-left: 5px;">
-                    • <span th:text="${rec}"></span>
-                </div>
-            </div>
+    <tr style="height:13px;">
+        <td class="ef-num">3R</td><td class="ef-name">OJOS</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'OJOS' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">8R</td><td class="ef-name">CUELLO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'CUELLO' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">13R</td><td class="ef-name">INGLE-PERINÉ</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'INGLE-PERINÉ' and a.presente}">X</span>
+        </td>
+        <td style="width:1%; border-left:2px solid #000; padding:0;"></td>
+        <td class="ef-num">3S</td><td class="ef-name">CARDIO-VASCULAR</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesSistemicos}"
+                      th:if="${a.sistema == 'CARDIO-VASCULAR' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">8S</td><td class="ef-name">ENDÓCRINO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesSistemicos}"
+                      th:if="${a.sistema == 'ENDÓCRINO' and a.presente}">X</span>
+        </td>
+    </tr>
 
-            <!-- Plan Educacional -->
-            <div th:if="${consulta?.planTratamiento?.planEducacional != null and !#strings.isEmpty(consulta.planTratamiento.planEducacional)}">
-                <div class="divider"></div>
-                <span class="label">PLAN EDUCACIONAL:</span>
-                <div style="font-size: 7.5pt; padding-left: 5px;">
-                    <span th:text="${consulta.planTratamiento.planEducacional}"></span>
-                </div>
-            </div>
+    <tr style="height:13px;">
+        <td class="ef-num">4R</td><td class="ef-name">OÍDOS</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'OÍDOS' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">9R</td><td class="ef-name">AXILAS-MAMAS</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'AXILAS-MAMAS' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">14R</td><td class="ef-name">MIEMBROS SUP.</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'MIEMBROS SUPERIORES' and a.presente}">X</span>
+        </td>
+        <td style="width:1%; border-left:2px solid #000; padding:0;"></td>
+        <td class="ef-num">4S</td><td class="ef-name">DIGESTIVO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesSistemicos}"
+                      th:if="${a.sistema == 'DIGESTIVO' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">9S</td><td class="ef-name">HEMO-LINFÁTICO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesSistemicos}"
+                      th:if="${a.sistema == 'HEMO-LINFÁTICO' and a.presente}">X</span>
+        </td>
+    </tr>
 
-            <!-- Mensaje si no hay plan de tratamiento -->
-            <div th:if="${(consulta?.planTratamiento?.prescripciones == null or #lists.isEmpty(consulta.planTratamiento.prescripciones)) and
-                             (consulta?.planTratamiento?.indicacionesGenerales == null or #strings.isEmpty(consulta.planTratamiento.indicacionesGenerales)) and
-                             (consulta?.planTratamiento?.recomendaciones == null or #lists.isEmpty(consulta.planTratamiento.recomendaciones)) and
-                             (consulta?.planTratamiento?.planEducacional == null or #strings.isEmpty(consulta.planTratamiento.planEducacional))}"
-                 style="font-size: 7.5pt; font-style: italic; color: #666;">
-                No se registró plan de tratamiento
-            </div>
+    <tr style="height:13px;">
+        <td class="ef-num">5R</td><td class="ef-name">NARIZ</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'NARIZ' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">10R</td><td class="ef-name">TÓRAX</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'TÓRAX' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">15R</td><td class="ef-name">MIEMBROS INF.</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesRegionales}"
+                      th:if="${a.region == 'MIEMBROS INFERIORES' and a.presente}">X</span>
+        </td>
+        <td style="width:1%; border-left:2px solid #000; padding:0;"></td>
+        <td class="ef-num">5S</td><td class="ef-name">GENITAL</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesSistemicos}"
+                      th:if="${a.sistema == 'GENITAL' and a.presente}">X</span>
+        </td>
+        <td class="ef-num">10S</td><td class="ef-name">NEUROLÓGICO</td>
+        <td class="ef-check">
+                <span th:each="a : ${consulta?.examenFisico?.examenesSistemicos}"
+                      th:if="${a.sistema == 'NEUROLÓGICO' and a.presente}">X</span>
         </td>
     </tr>
 </table>
 
-<!-- K. DATOS DEL PROFESIONAL RESPONSABLE -->
-<table class="no-border" style="margin-top: 20px;">
-    <tr>
-        <td class="text-center" style="width: 50%; vertical-align: top;">
-            <div style="width: 80%; margin: 0 auto;">
-                <span class="label">ESPECIALIDAD(ES)</span>
-                <span class="value" th:text="${#strings.listJoin(medico?.especialidades?.![nombre], ', ')}"></span>
 
-                <span class="label" style="margin-top: 5px;">NOMBRE DEL PROFESIONAL</span>
-                <span class="value" th:text="${medico != null ? ((medico.persona.primerNombre ?: '') + ' ' + (medico.persona.segundoNombre ?: '') + ' ' + (medico.persona.primerApellido ?: '') + ' ' + (medico.persona.segundoApellido ?: '')) : ''}"></span>
-
-                <span class="label" style="margin-top: 2px;">CÉDULA</span>
-                <span class="value" th:text="${medico?.persona?.cedula}"></span>
-            </div>
+<table>
+    
+    <tr th:if="${consulta?.examenFisico?.examenGeneral != null and !#strings.isEmpty(consulta.examenFisico.examenGeneral)}"
+        style="height:16px;">
+        <td style="width:13%; font-size:6pt; font-weight:bold; vertical-align:middle; background-color:#f0f0f0;">
+            EXAMEN GENERAL:
+        </td>
+        <td style="font-size:7.5pt; vertical-align:middle;"
+            th:text="${consulta.examenFisico.examenGeneral}"></td>
+    </tr>
+    
+    <tr style="height:55px;">
+        <td colspan="2" style="vertical-align:top; font-size:7pt;">
+            <span th:each="region : ${consulta?.examenFisico?.examenesRegionales}"
+                  th:if="${region.presente}">
+                <strong th:text="${region.region}"></strong>:
+                <span th:each="h, iH : ${region.hallazgos}">
+                    <span th:text="${h}"></span><span th:unless="${iH.last}">, </span>
+                </span>
+                <span th:if="${region.observaciones != null and !#strings.isEmpty(region.observaciones)}">
+                    (<span th:text="${region.observaciones}"></span>)
+                </span> |
+            </span>
+            <span th:each="sis : ${consulta?.examenFisico?.examenesSistemicos}"
+                  th:if="${sis.presente}">
+                <strong th:text="${sis.sistema}"></strong>:
+                <span th:each="h, iH : ${sis.hallazgos}">
+                    <span th:text="${h}"></span><span th:unless="${iH.last}">, </span>
+                </span>
+                <span th:if="${sis.observaciones != null and !#strings.isEmpty(sis.observaciones)}">
+                    (<span th:text="${sis.observaciones}"></span>)
+                </span> |
+            </span>
         </td>
     </tr>
 </table>
 
-<!-- FIRMA Y SELLO - Posición fija al final de cada página -->
-<!--<div class="firma-section">-->
-<!--    <div style="width: 200px; text-align: center;">-->
-<!--        <div style="height: 60px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 2px;">-->
-<!--            <img th:if="${medico?.firma != null and medico.firma != ''}"-->
-<!--                 th:src="${medico.firma.startsWith('data:') ? medico.firma : 'data:image/png;base64,' + medico.firma}"-->
-<!--                 style="max-height: 55px; max-width: 100%;" alt="Firma"/>-->
-<!--        </div>-->
-<!--        <div style="border-top: 1px solid #000; padding-top: 2px;">-->
-<!--            <span class="label">FIRMA Y SELLO</span>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
-<!-- FIRMA Y SELLO - Posición fija al final de cada página -->
-<div class="firma-section">
-    <div class="firma-container">
-        <div class="firma-imagen">
-            <img th:if="${medico?.firma != null and medico.firma != ''}"
-                 th:src="${medico.firma.startsWith('data:') ? medico.firma : 'data:image/png;base64,' + medico.firma}"
-                 alt="Firma"/>
-        </div>
-        <div class="firma-linea"></div>
-        <span class="label firma-label">FIRMA Y SELLO</span>
-    </div>
-</div>
+<table>
+    <tr>
+        <td colspan="11" class="sec-hdr" style="display:flex; justify-content:space-between; align-items:center;">
+            <span>I. DIAGNÓSTICO</span>
+            <span style="font-weight:normal; font-size:6pt;">PRE = PRESUNTIVO / DEF = DEFINITIVO</span>
+        </td>
+    </tr>
+    
+    <tr>
+        <td class="diag-subhdr" style="width:2%;"></td>
+        <td class="diag-subhdr" style="width:28%;">DESCRIPCIÓN (DIAGNÓSTICO)</td>
+        <td class="diag-subhdr" style="width:7%;">CIE-10</td>
+        <td class="diag-subhdr" style="width:3%;">PRE</td>
+        <td class="diag-subhdr" style="width:3%;">DEF</td>
+        <td class="diag-subhdr" style="width:4%;"></td>
+        <td class="diag-subhdr" style="width:2%;"></td>
+        <td class="diag-subhdr" style="width:28%;">DESCRIPCIÓN (DIAGNÓSTICO)</td>
+        <td class="diag-subhdr" style="width:7%;">CIE-10</td>
+        <td class="diag-subhdr" style="width:3%;">PRE</td>
+        <td class="diag-subhdr" style="width:3%;">DEF</td>
+    </tr>
+    
+    <tr class="data-row">
+        <td class="diag-num">1.</td>
+        <td class="diag-desc">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 0}"
+                  th:text="${consulta.diagnosticos[0].descripcion}"></span>
+        </td>
+        <td class="diag-cie">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 0}"
+                  th:text="${consulta.diagnosticos[0].codigoCie10}"></span>
+        </td>
+        <td class="diag-tipo center">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 0
+                          and (consulta.diagnosticos[0].tipo == 'PRE' or consulta.diagnosticos[0].tipo == 'PRESUNTIVO')}">X</span>
+        </td>
+        <td class="diag-tipo center">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 0
+                          and (consulta.diagnosticos[0].tipo == 'DEF' or consulta.diagnosticos[0].tipo == 'DEFINITIVO' or consulta.diagnosticos[0].tipo == 'PRINCIPAL')}">X</span>
+        </td>
+        <td style="border: 1px solid #555; background-color:#f5f5f5;"></td>
+        <td class="diag-num">4.</td>
+        <td class="diag-desc">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 3}"
+                  th:text="${consulta.diagnosticos[3].descripcion}"></span>
+        </td>
+        <td class="diag-cie">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 3}"
+                  th:text="${consulta.diagnosticos[3].codigoCie10}"></span>
+        </td>
+        <td class="diag-tipo center">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 3
+                          and (consulta.diagnosticos[3].tipo == 'PRE' or consulta.diagnosticos[3].tipo == 'PRESUNTIVO')}">X</span>
+        </td>
+        <td class="diag-tipo center">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 3
+                          and (consulta.diagnosticos[3].tipo == 'DEF' or consulta.diagnosticos[3].tipo == 'DEFINITIVO' or consulta.diagnosticos[3].tipo == 'PRINCIPAL')}">X</span>
+        </td>
+    </tr>
+    
+    <tr class="data-row">
+        <td class="diag-num">2.</td>
+        <td class="diag-desc">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 1}"
+                  th:text="${consulta.diagnosticos[1].descripcion}"></span>
+        </td>
+        <td class="diag-cie">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 1}"
+                  th:text="${consulta.diagnosticos[1].codigoCie10}"></span>
+        </td>
+        <td class="diag-tipo center">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 1
+                          and (consulta.diagnosticos[1].tipo == 'PRE' or consulta.diagnosticos[1].tipo == 'PRESUNTIVO')}">X</span>
+        </td>
+        <td class="diag-tipo center">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 1
+                          and (consulta.diagnosticos[1].tipo == 'DEF' or consulta.diagnosticos[1].tipo == 'DEFINITIVO' or consulta.diagnosticos[1].tipo == 'PRINCIPAL')}">X</span>
+        </td>
+        <td style="border: 1px solid #555; background-color:#f5f5f5;"></td>
+        <td class="diag-num">5.</td>
+        <td class="diag-desc">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 4}"
+                  th:text="${consulta.diagnosticos[4].descripcion}"></span>
+        </td>
+        <td class="diag-cie">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 4}"
+                  th:text="${consulta.diagnosticos[4].codigoCie10}"></span>
+        </td>
+        <td class="diag-tipo center">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 4
+                          and (consulta.diagnosticos[4].tipo == 'PRE' or consulta.diagnosticos[4].tipo == 'PRESUNTIVO')}">X</span>
+        </td>
+        <td class="diag-tipo center">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 4
+                          and (consulta.diagnosticos[4].tipo == 'DEF' or consulta.diagnosticos[4].tipo == 'DEFINITIVO' or consulta.diagnosticos[4].tipo == 'PRINCIPAL')}">X</span>
+        </td>
+    </tr>
+    
+    <tr class="data-row">
+        <td class="diag-num">3.</td>
+        <td class="diag-desc">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 2}"
+                  th:text="${consulta.diagnosticos[2].descripcion}"></span>
+        </td>
+        <td class="diag-cie">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 2}"
+                  th:text="${consulta.diagnosticos[2].codigoCie10}"></span>
+        </td>
+        <td class="diag-tipo center">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 2
+                          and (consulta.diagnosticos[2].tipo == 'PRE' or consulta.diagnosticos[2].tipo == 'PRESUNTIVO')}">X</span>
+        </td>
+        <td class="diag-tipo center">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 2
+                          and (consulta.diagnosticos[2].tipo == 'DEF' or consulta.diagnosticos[2].tipo == 'DEFINITIVO' or consulta.diagnosticos[2].tipo == 'PRINCIPAL')}">X</span>
+        </td>
+        <td style="border: 1px solid #555; background-color:#f5f5f5;"></td>
+        <td class="diag-num">6.</td>
+        <td class="diag-desc">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 5}"
+                  th:text="${consulta.diagnosticos[5].descripcion}"></span>
+        </td>
+        <td class="diag-cie">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 5}"
+                  th:text="${consulta.diagnosticos[5].codigoCie10}"></span>
+        </td>
+        <td class="diag-tipo center">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 5
+                          and (consulta.diagnosticos[5].tipo == 'PRE' or consulta.diagnosticos[5].tipo == 'PRESUNTIVO')}">X</span>
+        </td>
+        <td class="diag-tipo center">
+            <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 5
+                          and (consulta.diagnosticos[5].tipo == 'DEF' or consulta.diagnosticos[5].tipo == 'DEFINITIVO' or consulta.diagnosticos[5].tipo == 'PRINCIPAL')}">X</span>
+        </td>
+    </tr>
+    
+    <tr th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 6}">
+        <td colspan="11" style="font-size:6.5pt; vertical-align:top; padding:2px;">
+            <strong>Diagnósticos adicionales: </strong>
+            <span th:each="diag, iterStat : ${consulta.diagnosticos}"
+                  th:if="${iterStat.index >= 6}">
+                <span th:text="${iterStat.count}"></span>.
+                <span th:text="${diag.descripcion}"></span>
+                (<span th:text="${diag.codigoCie10}"></span> /
+                <span th:text="${diag.tipo}"></span>)<span th:unless="${iterStat.last}">; </span>
+            </span>
+        </td>
+    </tr>
+</table>
+
+
+<table>
+    <tr>
+        <td class="sec-hdr" style="display:flex; justify-content:space-between; align-items:center;">
+            <span>J. PLAN DE TRATAMIENTO</span>
+            <span style="font-weight:normal; font-size:6pt;">DIAGNÓSTICO, TERAPÉUTICO Y EDUCACIONAL</span>
+        </td>
+    </tr>
+    <tr style="height:120px;">
+        <td style="vertical-align:top; font-size:7.5pt; padding:2px 3px;">
+
+            
+            <span th:if="${consulta?.planTratamiento?.prescripciones != null and !#lists.isEmpty(consulta.planTratamiento.prescripciones)}">
+                <strong>Rx: </strong>
+                <span th:each="presc, iterStat : ${consulta.planTratamiento.prescripciones}">
+                    <span th:text="${iterStat.count}"></span>.
+                    <strong th:text="${presc.medicamento}"></strong>
+                    <span th:text="${presc.dosis}"></span>
+                    <span th:text="${presc.frecuencia}"></span>
+                    <span th:if="${presc.duracionDias != null}">
+                        x <span th:text="${presc.duracionDias}"></span>d
+                    </span>
+                    <span th:if="${presc.viaAdministracion != null}">
+                        (<span th:text="${presc.viaAdministracion}"></span>)
+                    </span>
+                    <span th:unless="${iterStat.last}">; </span>
+                </span>
+                <br/>
+            </span>
+
+            
+            <span th:if="${consulta?.planTratamiento?.indicacionesGenerales != null and !#strings.isEmpty(consulta.planTratamiento.indicacionesGenerales)}">
+                <strong>Indicaciones: </strong>
+                <span th:text="${consulta.planTratamiento.indicacionesGenerales}"></span>
+                <br/>
+            </span>
+
+            
+            <span th:if="${consulta?.planTratamiento?.recomendaciones != null and !#lists.isEmpty(consulta.planTratamiento.recomendaciones)}">
+                <strong>Recomendaciones: </strong>
+                <span th:each="rec, iterStat : ${consulta.planTratamiento.recomendaciones}">
+                    <span th:text="${rec}"></span><span th:unless="${iterStat.last}">; </span>
+                </span>
+                <br/>
+            </span>
+
+            
+            <span th:if="${consulta?.planTratamiento?.planEducacional != null and !#strings.isEmpty(consulta.planTratamiento.planEducacional)}">
+                <strong>Plan educacional: </strong>
+                <span th:text="${consulta.planTratamiento.planEducacional}"></span>
+            </span>
+
+        </td>
+    </tr>
+</table>
+
+
+<table>
+    <tr>
+        <td colspan="5" class="sec-hdr">K. DATOS DEL PROFESIONAL RESPONSABLE</td>
+    </tr>
+    
+    <tr>
+        <td class="col-hdr" style="width:16%;">FECHA (aaaa-mm-dd)</td>
+        <td class="col-hdr" style="width:10%;">HORA (hh:mm)</td>
+        <td class="col-hdr" style="width:22%;">PRIMER NOMBRE</td>
+        <td class="col-hdr" style="width:26%;">PRIMER APELLIDO</td>
+        <td class="col-hdr" style="width:26%;">SEGUNDO APELLIDO</td>
+    </tr>
+    
+    <tr class="data-row">
+        <td th:text="${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}"></td>
+        <td th:text="${#temporals.format(#temporals.createNow(), 'HH:mm')}"></td>
+        <td th:text="${medico?.persona?.primerNombre}"></td>
+        <td th:text="${medico?.persona?.primerApellido}"></td>
+        <td th:text="${medico?.persona?.segundoApellido}"></td>
+    </tr>
+    
+    <tr>
+        <td class="col-hdr" colspan="2">NRO. DOCUMENTO DE IDENTIFICACIÓN</td>
+        <td class="col-hdr" colspan="2">FIRMA</td>
+        <td class="col-hdr">SELLO</td>
+    </tr>
+
+    <tr style="height:130px;">
+        <td colspan="2" class="v-mid" th:text="${medico?.persona?.cedula}"></td>
+        <td colspan="2" class="v-mid center"></td>
+        <td class="v-mid center"></td>
+    </tr>
+</table>
+
+
+<table class="form-footer">
+    <tr>
+        <td style="width:50%;">SNS-MSP / HCU-form.002 / 2021</td>
+        <td class="right">CONSULTA EXTERNA — EXAMEN FÍSICO Y PRESCRIPCIONES (2)</td>
+    </tr>
+</table>
+
+
 
 
 </body>

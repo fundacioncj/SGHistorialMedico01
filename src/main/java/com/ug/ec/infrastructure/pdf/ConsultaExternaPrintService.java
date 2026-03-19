@@ -10,6 +10,8 @@ import com.ug.ec.domain.consultaexterna.exceptions.ConsultaExternaNotFoundExcept
 import com.ug.ec.domain.historiaclinica.HistoriaClinica;
 import com.ug.ec.domain.signosvitales.SignosVitales;
 import com.ug.ec.infrastructure.pdf.dto.*;
+
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,14 +30,16 @@ public class ConsultaExternaPrintService {
     private final HistoriaClinicaRepository historiaClinicaRepository;
     private final SignosVitalesRepository signosVitalesRepository;
     private final TemplateEngine templateEngine;
+    private final CoreApiClientService coreApiClientService;
 
     /**
      * Genera un PDF del formulario HCU-002 de Consulta Externa
      *
      * @param consultaId ID de la consulta externa
+     * @param authToken  Bearer token de autenticación para el Core
      * @return byte[] con el contenido del PDF
      */
-    public byte[] generarPdf(String consultaId) {
+    public byte[] generarPdf(String consultaId, String authToken) {
         log.info("Generando PDF para consulta externa con ID: {}", consultaId);
 
         // 1. Obtener la consulta externa
@@ -70,9 +74,9 @@ public class ConsultaExternaPrintService {
             }
         }
 
-        // 4. Construir DTOs para el PDF
-        PacientePdfDto paciente = construirPacienteDto(consulta, historiaClinica);
-        MedicoPdfDto medico = construirMedicoDto(consulta);
+        // 4. Construir DTOs para el PDF enriquecidos desde el Core
+        PacientePdfDto paciente = construirPacienteDto(consulta, historiaClinica, authToken);
+        MedicoPdfDto medico = construirMedicoDto(consulta, authToken);
 
         // 5. Preparar contexto Thymeleaf
         Context context = new Context();
@@ -104,10 +108,11 @@ public class ConsultaExternaPrintService {
     /**
      * Genera un PDF para una consulta externa buscando por cita ID
      *
-     * @param citaId ID de la cita
+     * @param citaId    ID de la cita
+     * @param authToken Bearer token de autenticación para el Core
      * @return byte[] con el contenido del PDF
      */
-    public byte[] generarPdfPorCitaId(String citaId) {
+    public byte[] generarPdfPorCitaId(String citaId, String authToken) {
         log.info("Generando PDF para consulta externa por cita ID: {}", citaId);
 
         var query = com.ug.ec.application.consultaexterna.queries.BuscarConsultaExternaPorCitaIdQuery.builder()
@@ -119,48 +124,84 @@ public class ConsultaExternaPrintService {
             throw new ConsultaExternaNotFoundException("Consulta externa no encontrada para cita ID: " + citaId);
         }
 
-        return generarPdf(consulta.getId());
+        return generarPdf(consulta.getId(), authToken);
     }
 
-    private PacientePdfDto construirPacienteDto(ConsultaExternaDto consulta, HistoriaClinica historiaClinica) {
-        PersonaPdfDto persona = PersonaPdfDto.builder()
-                .cedula(consulta.getCedulaPaciente())
-                .build();
+    private PacientePdfDto construirPacienteDto(ConsultaExternaDto consulta, HistoriaClinica historiaClinica,
+                                                 String authToken) {
+        CorePacientePdfResponse coreData =
+                coreApiClientService.obtenerPaciente(consulta.getCedulaPaciente(), authToken);
 
-        // Si tenemos datos adicionales de la historia clínica, podríamos usarlos
-        // Por ahora solo tenemos la cédula en la consulta
+        PersonaPdfDto persona;
+        Integer edad = null;
+
+        if (coreData != null) {
+            persona = PersonaPdfDto.builder()
+                    .cedula(coreData.getCedula())
+                    .primerNombre(coreData.getPrimerNombre())
+                    .segundoNombre(coreData.getSegundoNombre())
+                    .primerApellido(coreData.getPrimerApellido())
+                    .segundoApellido(coreData.getSegundoApellido())
+                    .build();
+            edad = coreData.getEdad();
+        } else {
+            persona = PersonaPdfDto.builder()
+                    .cedula(consulta.getCedulaPaciente())
+                    .build();
+        }
 
         return PacientePdfDto.builder()
                 .persona(persona)
-                .edad(null) // Se puede calcular si se tiene la fecha de nacimiento
+                .edad(edad)
                 .build();
     }
 
-    private MedicoPdfDto construirMedicoDto(ConsultaExternaDto consulta) {
-        // Obtener datos del médico desde la auditoría o datos de consulta
-        String nombreMedico = null;
-        if (consulta.getDatosConsulta() != null) {
-            nombreMedico = consulta.getDatosConsulta().getMedicoTratante();
-        }
+    private MedicoPdfDto construirMedicoDto(ConsultaExternaDto consulta, String authToken) {
+        String codigoMedico = consulta.getDatosConsulta() != null
+                ? consulta.getDatosConsulta().getCodigoMedico()
+                : null;
 
-        PersonaPdfDto persona = PersonaPdfDto.builder()
-                .primerNombre(nombreMedico)
-                .build();
+        CoreMedicoPdfResponse coreData = coreApiClientService.obtenerMedico(codigoMedico, authToken);
 
-        // Obtener especialidad si existe
+        PersonaPdfDto persona;
         List<EspecialidadPdfDto> especialidades = null;
-        if (consulta.getDatosConsulta() != null && consulta.getDatosConsulta().getEspecialidad() != null) {
-            especialidades = List.of(
-                    EspecialidadPdfDto.builder()
-                            .nombre(consulta.getDatosConsulta().getEspecialidad())
-                            .build()
-            );
+        String firma = null;
+
+        if (coreData != null) {
+            persona = PersonaPdfDto.builder()
+                    .cedula(coreData.getCedula())
+                    .primerNombre(coreData.getPrimerNombre())
+                    .segundoNombre(coreData.getSegundoNombre())
+                    .primerApellido(coreData.getPrimerApellido())
+                    .segundoApellido(coreData.getSegundoApellido())
+                    .build();
+            if (coreData.getEspecialidades() != null && !coreData.getEspecialidades().isEmpty()) {
+                especialidades = coreData.getEspecialidades().stream()
+                        .map(e -> EspecialidadPdfDto.builder().nombre(e).build())
+                        .collect(Collectors.toList());
+            }
+            firma = coreData.getFirma();
+        } else {
+            // Fallback: usar datos almacenados en la consulta
+            String nombreMedico = consulta.getDatosConsulta() != null
+                    ? consulta.getDatosConsulta().getMedicoTratante()
+                    : null;
+            persona = PersonaPdfDto.builder()
+                    .primerNombre(nombreMedico)
+                    .build();
+            if (consulta.getDatosConsulta() != null && consulta.getDatosConsulta().getEspecialidad() != null) {
+                especialidades = List.of(
+                        EspecialidadPdfDto.builder()
+                                .nombre(consulta.getDatosConsulta().getEspecialidad())
+                                .build()
+                );
+            }
         }
 
         return MedicoPdfDto.builder()
                 .persona(persona)
                 .especialidades(especialidades)
-                .firma(null) // La firma se puede agregar si existe en la base de datos
+                .firma(firma)
                 .build();
     }
 }
