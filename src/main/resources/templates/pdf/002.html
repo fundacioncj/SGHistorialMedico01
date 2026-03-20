@@ -185,8 +185,8 @@
         /* --- Celdas de diagnóstico --- */
         .diag-num  { font-size: 6.5pt; font-weight: bold; text-align: left; vertical-align: middle !important; width: 14px; padding: 1px 2px !important; border: 1px solid #555; }
         .diag-desc { font-size: 6.5pt; vertical-align: middle; padding: 1px 3px !important; border: 1px solid #555; }
-        .diag-cie  { font-size: 6.5pt; text-align: center; vertical-align: middle !important; padding: 1px 2px !important; border: 1px solid #555; width: 40px; }
-        .diag-tipo { font-size: 6.5pt; text-align: center; vertical-align: middle !important; padding: 1px !important; width: 18px; border: 1px solid #555; }
+        .diag-cie  { font-size: 6.5pt; text-align: center; vertical-align: middle !important; padding: 1px 1px !important; border: 1px solid #555; width: 28px; }
+        .diag-tipo { font-size: 6.5pt; text-align: center; vertical-align: middle !important; padding: 1px !important; width: 12px; border: 1px solid #555; }
         .diag-subhdr { font-size: 5.5pt; font-weight: bold; text-align: center; vertical-align: middle !important; padding: 1px 2px !important; border: 1px solid #555; background-color: #f5f5f5; }
 
         /* --- Separador de página --- */
@@ -838,24 +838,23 @@
 
 <table>
     <tr>
-        <td colspan="11" class="sec-hdr" style="display:flex; justify-content:space-between; align-items:center;">
+        <td colspan="10" class="sec-hdr" style="display:flex; justify-content:space-between; align-items:center;">
             <span>I. DIAGNÓSTICO</span>
             <span style="font-weight:normal; font-size:6pt;">PRE = PRESUNTIVO / DEF = DEFINITIVO</span>
         </td>
     </tr>
-    
+
     <tr>
         <td class="diag-subhdr" style="width:2%;"></td>
-        <td class="diag-subhdr" style="width:28%;">DESCRIPCIÓN (DIAGNÓSTICO)</td>
-        <td class="diag-subhdr" style="width:7%;">CIE-10</td>
-        <td class="diag-subhdr" style="width:3%;">PRE</td>
-        <td class="diag-subhdr" style="width:3%;">DEF</td>
-        <td class="diag-subhdr" style="width:4%;"></td>
+        <td class="diag-subhdr" style="width:39%;"></td>
+        <td class="diag-subhdr" style="width:4%;">CIE-10</td>
+        <td class="diag-subhdr" style="width:1.5%;">PRE</td>
+        <td class="diag-subhdr" style="width:1.5%;">DEF</td>
         <td class="diag-subhdr" style="width:2%;"></td>
-        <td class="diag-subhdr" style="width:28%;">DESCRIPCIÓN (DIAGNÓSTICO)</td>
-        <td class="diag-subhdr" style="width:7%;">CIE-10</td>
-        <td class="diag-subhdr" style="width:3%;">PRE</td>
-        <td class="diag-subhdr" style="width:3%;">DEF</td>
+        <td class="diag-subhdr" style="width:39%;"></td>
+        <td class="diag-subhdr" style="width:4%;">CIE-10</td>
+        <td class="diag-subhdr" style="width:1.5%;">PRE</td>
+        <td class="diag-subhdr" style="width:1.5%;">DEF</td>
     </tr>
     
     <tr class="data-row">
@@ -870,13 +869,12 @@
         </td>
         <td class="diag-tipo center">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 0
-                          and (consulta.diagnosticos[0].tipo == 'PRE' or consulta.diagnosticos[0].tipo == 'PRESUNTIVO')}">X</span>
+                          and (consulta.diagnosticos[0].tipo?.name() == 'PRESUNTIVO')}">X</span>
         </td>
         <td class="diag-tipo center">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 0
-                          and (consulta.diagnosticos[0].tipo == 'DEF' or consulta.diagnosticos[0].tipo == 'DEFINITIVO' or consulta.diagnosticos[0].tipo == 'PRINCIPAL')}">X</span>
+                          and (consulta.diagnosticos[0].tipo?.name() == 'CONFIRMADO' or consulta.diagnosticos[0].tipo?.name() == 'PRINCIPAL')}">X</span>
         </td>
-        <td style="border: 1px solid #555; background-color:#f5f5f5;"></td>
         <td class="diag-num">4.</td>
         <td class="diag-desc">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 3}"
@@ -888,14 +886,14 @@
         </td>
         <td class="diag-tipo center">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 3
-                          and (consulta.diagnosticos[3].tipo == 'PRE' or consulta.diagnosticos[3].tipo == 'PRESUNTIVO')}">X</span>
+                          and (consulta.diagnosticos[3].tipo?.name() == 'PRESUNTIVO')}">X</span>
         </td>
         <td class="diag-tipo center">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 3
-                          and (consulta.diagnosticos[3].tipo == 'DEF' or consulta.diagnosticos[3].tipo == 'DEFINITIVO' or consulta.diagnosticos[3].tipo == 'PRINCIPAL')}">X</span>
+                          and (consulta.diagnosticos[3].tipo?.name() == 'CONFIRMADO' or consulta.diagnosticos[3].tipo?.name() == 'PRINCIPAL')}">X</span>
         </td>
     </tr>
-    
+
     <tr class="data-row">
         <td class="diag-num">2.</td>
         <td class="diag-desc">
@@ -908,13 +906,12 @@
         </td>
         <td class="diag-tipo center">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 1
-                          and (consulta.diagnosticos[1].tipo == 'PRE' or consulta.diagnosticos[1].tipo == 'PRESUNTIVO')}">X</span>
+                          and (consulta.diagnosticos[1].tipo?.name() == 'PRESUNTIVO')}">X</span>
         </td>
         <td class="diag-tipo center">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 1
-                          and (consulta.diagnosticos[1].tipo == 'DEF' or consulta.diagnosticos[1].tipo == 'DEFINITIVO' or consulta.diagnosticos[1].tipo == 'PRINCIPAL')}">X</span>
+                          and (consulta.diagnosticos[1].tipo?.name() == 'CONFIRMADO' or consulta.diagnosticos[1].tipo?.name() == 'PRINCIPAL')}">X</span>
         </td>
-        <td style="border: 1px solid #555; background-color:#f5f5f5;"></td>
         <td class="diag-num">5.</td>
         <td class="diag-desc">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 4}"
@@ -926,14 +923,14 @@
         </td>
         <td class="diag-tipo center">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 4
-                          and (consulta.diagnosticos[4].tipo == 'PRE' or consulta.diagnosticos[4].tipo == 'PRESUNTIVO')}">X</span>
+                          and (consulta.diagnosticos[4].tipo?.name() == 'PRESUNTIVO')}">X</span>
         </td>
         <td class="diag-tipo center">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 4
-                          and (consulta.diagnosticos[4].tipo == 'DEF' or consulta.diagnosticos[4].tipo == 'DEFINITIVO' or consulta.diagnosticos[4].tipo == 'PRINCIPAL')}">X</span>
+                          and (consulta.diagnosticos[4].tipo?.name() == 'CONFIRMADO' or consulta.diagnosticos[4].tipo?.name() == 'PRINCIPAL')}">X</span>
         </td>
     </tr>
-    
+
     <tr class="data-row">
         <td class="diag-num">3.</td>
         <td class="diag-desc">
@@ -946,13 +943,12 @@
         </td>
         <td class="diag-tipo center">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 2
-                          and (consulta.diagnosticos[2].tipo == 'PRE' or consulta.diagnosticos[2].tipo == 'PRESUNTIVO')}">X</span>
+                          and (consulta.diagnosticos[2].tipo?.name() == 'PRESUNTIVO')}">X</span>
         </td>
         <td class="diag-tipo center">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 2
-                          and (consulta.diagnosticos[2].tipo == 'DEF' or consulta.diagnosticos[2].tipo == 'DEFINITIVO' or consulta.diagnosticos[2].tipo == 'PRINCIPAL')}">X</span>
+                          and (consulta.diagnosticos[2].tipo?.name() == 'CONFIRMADO' or consulta.diagnosticos[2].tipo?.name() == 'PRINCIPAL')}">X</span>
         </td>
-        <td style="border: 1px solid #555; background-color:#f5f5f5;"></td>
         <td class="diag-num">6.</td>
         <td class="diag-desc">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 5}"
@@ -964,16 +960,16 @@
         </td>
         <td class="diag-tipo center">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 5
-                          and (consulta.diagnosticos[5].tipo == 'PRE' or consulta.diagnosticos[5].tipo == 'PRESUNTIVO')}">X</span>
+                          and (consulta.diagnosticos[5].tipo?.name() == 'PRESUNTIVO')}">X</span>
         </td>
         <td class="diag-tipo center">
             <span th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 5
-                          and (consulta.diagnosticos[5].tipo == 'DEF' or consulta.diagnosticos[5].tipo == 'DEFINITIVO' or consulta.diagnosticos[5].tipo == 'PRINCIPAL')}">X</span>
+                          and (consulta.diagnosticos[5].tipo?.name() == 'CONFIRMADO' or consulta.diagnosticos[5].tipo?.name() == 'PRINCIPAL')}">X</span>
         </td>
     </tr>
-    
+
     <tr th:if="${consulta?.diagnosticos != null and #lists.size(consulta.diagnosticos) > 6}">
-        <td colspan="11" style="font-size:6.5pt; vertical-align:top; padding:2px;">
+        <td colspan="10" style="font-size:6.5pt; vertical-align:top; padding:2px;">
             <strong>Diagnósticos adicionales: </strong>
             <span th:each="diag, iterStat : ${consulta.diagnosticos}"
                   th:if="${iterStat.index >= 6}">
