@@ -461,7 +461,7 @@
 
 <table>
     <tr>
-        <td colspan="14" class="sec-hdr">F. CONSTANTES VITALES Y ANTROPOMETRÍA</td>
+        <td colspan="13" class="sec-hdr">F. CONSTANTES VITALES Y ANTROPOMETRÍA</td>
     </tr>
     
     <tr>
@@ -522,7 +522,7 @@
 
 <table>
     <tr>
-        <td colspan="10" class="sec-hdr">
+        <td colspan="15" class="sec-hdr">
             G. REVISIÓN ACTUAL DE ÓRGANOS Y SISTEMAS
             <span style="font-weight:normal; font-size:6pt;"> — MARCAR X CUANDO PRESENTE PATOLOGÍA Y DESCRIBA</span>
         </td>
@@ -585,7 +585,7 @@
     </tr>
     
     <tr style="height:42px;">
-        <td colspan="10" style="vertical-align:top; font-size:7pt;">
+        <td colspan="15" style="vertical-align:top; font-size:7pt;">
             <span th:each="sistema, iterStat : ${consulta?.anamnesis?.revisionActualOrganosSistemas}"
                   th:if="${sistema.presente}">
                 <strong th:text="${sistema.tipo?.etiqueta}"></strong>:
